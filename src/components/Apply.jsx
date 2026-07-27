@@ -1,36 +1,433 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
+import ConfettiEffect from './ConfettiEffect';
 
-export default function Apply() {
+const HEARD_FROM_OPTIONS = [
+  { value: 'twitter',   label: 'Twitter / X' },
+  { value: 'instagram', label: 'Instagram' },
+  { value: 'linkedin',  label: 'LinkedIn' },
+  { value: 'youtube',   label: 'YouTube' },
+  { value: 'friend',    label: 'Friend / Word of mouth' },
+  { value: 'whatsapp',  label: 'WhatsApp group' },
+  { value: 'college',   label: 'College / University' },
+  { value: 'google',    label: 'Google Search' },
+  { value: 'podcast',   label: 'Podcast' },
+  { value: 'other',     label: 'Other' },
+];
+
+export default function Apply({ navigate, isStandalone = false }) {
+  const [activeStep, setActiveStep] = useState(1);
+  const [formData, setFormData] = useState({
+    name: '',
+    age: '',
+    city: '',
+    whatsapp: '',
+    email: '',
+    whatYouDo: '',
+    trackChoice: 'maker',
+    soldSomething: '',
+    whatToCut: '',
+    howFound: [],
+    commitLive: false,
+    commitCheckpoint: false
+  });
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [shakingFields, setShakingFields] = useState([]);
+
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: null }));
+    }
+  };
+
+  const toggleHowFound = (val) => {
+    setFormData(prev => {
+      const current = prev.howFound;
+      const updated = current.includes(val)
+        ? current.filter(v => v !== val)
+        : [...current, val];
+      return { ...prev, howFound: updated };
+    });
+    if (errors.howFound) setErrors(prev => ({ ...prev, howFound: null }));
+  };
+
+  const triggerShake = useCallback((fieldNames) => {
+    setShakingFields(fieldNames);
+    setTimeout(() => setShakingFields([]), 500);
+  }, []);
+
+  const goToStep = (step) => {
+    setErrors({});
+    setShakingFields([]);
+    setActiveStep(step);
+  };
+
+  const validateStep = (step) => {
+    const newErrors = {};
+    if (step === 1) {
+      if (!formData.name.trim()) newErrors.name = true;
+      if (!formData.age.trim()) newErrors.age = true;
+      if (!formData.city.trim()) newErrors.city = true;
+      if (!formData.whatsapp.trim()) newErrors.whatsapp = true;
+      if (!formData.email.trim()) newErrors.email = true;
+      if (!formData.whatYouDo.trim()) newErrors.whatYouDo = true;
+    } else if (step === 2) {
+      if (!formData.soldSomething.trim()) newErrors.soldSomething = true;
+      if (!formData.whatToCut.trim()) newErrors.whatToCut = true;
+    } else if (step === 3) {
+      if (formData.howFound.length === 0) newErrors.howFound = true;
+      if (!formData.commitLive) newErrors.commitLive = true;
+      if (!formData.commitCheckpoint) newErrors.commitCheckpoint = true;
+    }
+    setErrors(newErrors);
+    const invalidFields = Object.keys(newErrors);
+    if (invalidFields.length > 0) triggerShake(invalidFields);
+    return invalidFields.length === 0;
+  };
+
+  const fieldClass = (name) => {
+    const classes = [];
+    if (errors[name]) classes.push('error');
+    if (shakingFields.includes(name)) classes.push('shake');
+    return classes.join(' ');
+  };
+
+  const handleNext = () => {
+    if (validateStep(activeStep)) {
+      setActiveStep(prev => prev + 1);
+    }
+  };
+
+  const handleBack = () => {
+    goToStep(activeStep - 1);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateStep(3)) {
+      setIsSubmitted(true);
+    }
+  };
+
   return (
-    <>
-      <p className="pagebreak-label">Separate page · /apply</p>
-      <div className="frame pagebreak" style={{ marginTop: '12px' }}>
-        <span className="tag">/apply · Application</span>
-        <h2 style={{ fontSize: '28px' }}>Apply for Cohort 1</h2>
-        <p className="sub" style={{ marginTop: '10px' }}>
-          This is an application, not a checkout. We read every answer personally. About 5 minutes. Honest and specific beats polished and vague.
-        </p>
-        <div className="steps">
-          <div className="card">
-            <span className="num mono">Step 1</span>
-            <h3>Who you are</h3>
-            <p>Name, age, city, WhatsApp, email, what you do right now.</p>
+    <section className={`apply-section ${isStandalone ? 'standalone' : ''}`} id="apply">
+      <div className="apply-body">
+        {/* Header Text */}
+        <div className="apply-header">
+          <h2 className="apply-title">
+            <span className="apply-highlight-box">Apply for Cohort 1</span>
+          </h2>
+          <p className="apply-sub">
+            This is an application, not a checkout. We read every answer personally. About 5 minutes. Honest and specific beats polished and vague.
+          </p>
+        </div>
+
+        {/* Main Content Area */}
+        <div className="apply-content-container">
+          {/* Left Step Cards */}
+          <div className="apply-sidebar-steps">
+            <div
+              className={`apply-card card-1 ${activeStep === 1 ? 'active' : 'inactive'}`}
+              onClick={() => goToStep(1)}
+            >
+              <span className="apply-step-num">Step 1</span>
+              <h3>Who you are</h3>
+              <p>Name, age, city, WhatsApp, email, what you do right now.</p>
+            </div>
+
+            <div
+              className={`apply-card card-2 ${activeStep === 2 ? 'active' : 'inactive'}`}
+              onClick={() => goToStep(2)}
+            >
+              <span className="apply-step-num">Step 2</span>
+              <h3>The filter</h3>
+              <p>Track choice + &ldquo;sell us something you&rsquo;ve sold&rdquo; + &ldquo;what will you cut to make 10 hrs/week&rdquo;.</p>
+            </div>
+
+            <div
+              className={`apply-card card-3 ${activeStep === 3 ? 'active' : 'inactive'}`}
+              onClick={() => goToStep(3)}
+            >
+              <span className="apply-step-num">Step 3</span>
+              <h3>The handshake</h3>
+              <p>How you found us + live-attendance and checkpoint commitments. Fee shown, payable only if selected.</p>
+            </div>
           </div>
-          <div className="card">
-            <span className="num mono">Step 2</span>
-            <h3>The filter</h3>
-            <p>Track choice + "sell us something you've sold" + "what will you cut to make 10 hrs/week".</p>
-          </div>
-          <div className="card">
-            <span className="num mono">Step 3</span>
-            <h3>The handshake</h3>
-            <p>How you found us + live-attendance and checkpoint commitments. Fee shown, payable only if selected.</p>
+
+          {/* Right Purple Rectangle Box with Form inside */}
+          <div className="apply-purple-box">
+            {isSubmitted ? (
+              <div className="apply-success">
+                <ConfettiEffect />
+                <div className="apply-success-header">
+                  <span className="success-highlight-box">Application Received!</span>
+                </div>
+                <p className="success-thanks">Thank you, <strong>{formData.name}</strong>.</p>
+                <p className="success-tagline">We read every answer personally. Honest and specific beats polished and vague.</p>
+                <div className="success-contact-grid">
+                  <div className="success-contact-card">
+                    <span className="success-contact-label">WhatsApp</span>
+                    <span className="success-contact-value">{formData.whatsapp}</span>
+                  </div>
+                  <div className="success-contact-card">
+                    <span className="success-contact-label">Email</span>
+                    <span className="success-contact-value">{formData.email}</span>
+                  </div>
+                </div>
+                <div className="success-next-box">
+                  <p>We will review your answers for <span className="success-em">Cohort 1</span> and reach out within <span className="success-em">48 hours</span>.</p>
+                </div>
+                <button type="button" className="success-home-btn" onClick={() => { isStandalone ? window.location.href = '/' : navigate('/') }}>
+                  ← Back to Homepage
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="purple-form-inner">
+
+                {/* ── STEP 1 ── */}
+                {activeStep === 1 && (
+                  <div className="purple-form-step">
+                    <h3 className="purple-step-title"><span className="step-highlight-box">Step 1: Who You Are</span></h3>
+                    <div className="purple-form-grid">
+                      <div className="purple-form-group">
+                        <label htmlFor="name">Full Name</label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          placeholder="e.g. Arjun Sharma"
+                          className={fieldClass('name')}
+                        />
+                      </div>
+
+                      <div className="purple-form-group">
+                        <label htmlFor="age">Age</label>
+                        <input
+                          type="number"
+                          id="age"
+                          name="age"
+                          value={formData.age}
+                          onChange={handleInputChange}
+                          placeholder="e.g. 21"
+                          className={fieldClass('age')}
+                        />
+                      </div>
+
+                      <div className="purple-form-group">
+                        <label htmlFor="email">Email Address</label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          placeholder="name@example.com"
+                          className={fieldClass('email')}
+                        />
+                      </div>
+
+                      <div className="purple-form-group">
+                        <label htmlFor="whatsapp">WhatsApp Number</label>
+                        <input
+                          type="tel"
+                          id="whatsapp"
+                          name="whatsapp"
+                          value={formData.whatsapp}
+                          onChange={handleInputChange}
+                          placeholder="+91 XXXXX XXXXX"
+                          className={fieldClass('whatsapp')}
+                        />
+                      </div>
+
+                      <div className="purple-form-group">
+                        <label htmlFor="city">City / Town</label>
+                        <input
+                          type="text"
+                          id="city"
+                          name="city"
+                          value={formData.city}
+                          onChange={handleInputChange}
+                          placeholder="e.g. Bangalore"
+                          className={fieldClass('city')}
+                        />
+                      </div>
+
+                      <div className="purple-form-group">
+                        <label htmlFor="whatYouDo">What do you do right now?</label>
+                        <input
+                          type="text"
+                          id="whatYouDo"
+                          name="whatYouDo"
+                          value={formData.whatYouDo}
+                          onChange={handleInputChange}
+                          placeholder="e.g. Student / Working"
+                          className={fieldClass('whatYouDo')}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* ── STEP 2 ── */}
+                {activeStep === 2 && (
+                  <div className="purple-form-step step2-layout">
+                    <h3 className="purple-step-title"><span className="step-highlight-box">Step 2: The Filter</span></h3>
+
+                    <div className="step2-body">
+                      {/* Left: Track Image Selector */}
+                      <div className="track-image-selector">
+                        <p className="track-choose-prompt">Choose your track</p>
+                        <div className="track-image-cards">
+                          <div
+                            className={`track-image-card ${formData.trackChoice === 'maker' ? 'selected' : 'dimmed'}`}
+                            onClick={() => setFormData(prev => ({ ...prev, trackChoice: 'maker' }))}
+                          >
+                            <img src="/karkhana.jpg" alt="Karkhana" className="track-img" />
+                            <span className="track-img-label">KARKHANA</span>
+                            <span className="track-img-sublabel">Maker Track</span>
+                          </div>
+                          <div
+                            className={`track-image-card ${formData.trackChoice === 'skills' ? 'selected' : 'dimmed'}`}
+                            onClick={() => setFormData(prev => ({ ...prev, trackChoice: 'skills' }))}
+                          >
+                            <img src="/hunarkhana.jpg" alt="Hunarkhana" className="track-img" />
+                            <span className="track-img-label">HUNARKHANA</span>
+                            <span className="track-img-sublabel">Skills Track</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Right: Textareas */}
+                      <div className="step2-textareas">
+                        <div className="purple-form-group">
+                          <label htmlFor="soldSomething">Sell us something you&rsquo;ve sold in the past (or explain how you would sell it)</label>
+                          <textarea
+                            id="soldSomething"
+                            name="soldSomething"
+                            value={formData.soldSomething}
+                            onChange={handleInputChange}
+                            placeholder="Be honest and specific. What did you sell, to whom, and for how much?"
+                            className={fieldClass('soldSomething')}
+                            rows={4}
+                          />
+                        </div>
+
+                        <div className="purple-form-group">
+                          <label htmlFor="whatToCut">What will you cut from your routine to make 10 hours/week?</label>
+                          <textarea
+                            id="whatToCut"
+                            name="whatToCut"
+                            value={formData.whatToCut}
+                            onChange={handleInputChange}
+                            placeholder="e.g. Reduce social media / skip college clubs / adjust weekend schedules..."
+                            className={fieldClass('whatToCut')}
+                            rows={4}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* ── STEP 3 ── */}
+                {activeStep === 3 && (
+                  <div className="purple-form-step step3-layout">
+                    <h3 className="purple-step-title"><span className="step-highlight-box">Step 3: The Handshake</span></h3>
+
+                    <div className="step3-body">
+                      {/* Left: Multi-select pills */}
+                      <div className="step3-left">
+                        <div className={`purple-form-group ${shakingFields.includes('howFound') ? 'shake' : ''}`}>
+                          <label>Where did you hear about Dhandha School? <span className="label-hint">(tick all that apply)</span></label>
+                          <div className={`howfound-pill-grid ${errors.howFound ? 'error-border' : ''}`}>
+                            {HEARD_FROM_OPTIONS.map(opt => (
+                              <button
+                                key={opt.value}
+                                type="button"
+                                className={`howfound-pill ${formData.howFound.includes(opt.value) ? 'selected' : ''}`}
+                                onClick={() => toggleHowFound(opt.value)}
+                              >
+                                {formData.howFound.includes(opt.value) && <span className="pill-tick">✓ </span>}
+                                {opt.label}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Right: Commitments + Fee */}
+                      <div className="step3-right">
+                        {/* Commitments */}
+                        <div className="step3-commitments">
+                          <p className="step3-section-label">Commitments</p>
+                          <label className={`checkbox-label ${shakingFields.includes('commitLive') ? 'shake' : ''}`}>
+                            <input
+                              type="checkbox"
+                              name="commitLive"
+                              checked={formData.commitLive}
+                              onChange={handleInputChange}
+                              className={errors.commitLive ? 'error' : ''}
+                            />
+                            <span className={`checkbox-text ${errors.commitLive ? 'text-error' : ''}`}>I commit to attending live sessions and collaborating with cohort members.</span>
+                          </label>
+                          <label className={`checkbox-label ${shakingFields.includes('commitCheckpoint') ? 'shake' : ''}`}>
+                            <input
+                              type="checkbox"
+                              name="commitCheckpoint"
+                              checked={formData.commitCheckpoint}
+                              onChange={handleInputChange}
+                              className={errors.commitCheckpoint ? 'error' : ''}
+                            />
+                            <span className={`checkbox-text ${errors.commitCheckpoint ? 'text-error' : ''}`}>I commit to completing weekly checkpoints for my selected track alone.</span>
+                          </label>
+                        </div>
+
+                        {/* Fee */}
+                        <div className="step3-fee-block">
+                          <div className="step3-fee-left">
+                            <p className="step3-section-label">Program Fee</p>
+                            <div className="step3-fee-amount">₹999</div>
+                            <p className="step3-fee-note">Payable only if accepted into Cohort 1.</p>
+                          </div>
+                          <div className="step3-free-badge">
+                            <span className="step-highlight-box free-to-apply-badge">Free to Apply</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+
+                {/* Controls */}
+                <div className="purple-form-actions">
+                  {activeStep > 1 && (
+                    <button type="button" onClick={handleBack} className="purple-btn back-btn">
+                      Back
+                    </button>
+                  )}
+                  {activeStep < 3 ? (
+                    <button type="button" onClick={handleNext} className="purple-btn next-btn">
+                      Next Step &rarr;
+                    </button>
+                  ) : (
+                    <button type="submit" className="purple-btn submit-btn">
+                      Submit Application
+                    </button>
+                  )}
+                </div>
+              </form>
+            )}
           </div>
         </div>
-        <span className="note">
-          <b>NOTE</b> Full field-by-field spec unchanged from v1 playbook, section 4. Multi-step native form, autosave, no payment on this page.
-        </span>
       </div>
-    </>
+    </section>
   );
 }
