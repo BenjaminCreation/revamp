@@ -15,7 +15,7 @@ export default function FAQ() {
       </details>
       <details>
         <summary>How much money do I need to start?</summary>
-        <p>Hunarkhana: ₹0. Karkhana: a few thousand rupees, and the playbook makes your customers fund most of it through pre-orders.</p>
+        <p>SevaDaata: ₹0. Karkhana: a few thousand rupees, and the playbook makes your customers fund most of it through pre-orders.</p>
       </details>
       <details>
         <summary>How much time does it take?</summary>

@@ -1,0 +1,301 @@
+.pill-nav-container {
+  position: fixed;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 1.5rem;
+}
+
+.pill-nav-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .pill-nav-container {
+    width: 100%;
+    left: 0;
+    transform: none;
+    padding: 0;
+  }
+  .pill-nav-wrapper {
+    width: 100%;
+    justify-content: space-between;
+    padding: 0.75rem 1.5rem;
+    box-sizing: border-box;
+    gap: 0;
+  }
+}
+
+/* ==========================================
+   Navigation Header Logo (Compact Variant A)
+   ========================================== */
+.nav-logo-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0;
+  box-sizing: border-box;
+  background: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.nav-brand-dhandha {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+  color: #000000 !important;
+  line-height: 1;
+  background: transparent !important;
+}
+
+.nav-brand-school {
+  font-family: 'Caveat', cursive;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #d97706 !important; /* Golden Amber */
+  transform: rotate(-6deg) translateY(-0.06rem);
+  display: inline-block;
+  line-height: 1;
+  background: transparent !important;
+  will-change: transform;
+}
+
+/* Dark Mode Logo Overrides */
+@media (prefers-color-scheme: dark) {
+  .nav-brand-dhandha {
+    color: var(--ink, #ffffff) !important;
+  }
+}
+
+:root[data-theme="dark"] .nav-brand-dhandha {
+  color: var(--ink, #ffffff) !important;
+}
+
+.is-home .nav-brand-dhandha {
+  color: #000000 !important;
+}
+
+/* ==========================================
+   Pill Nav Styling
+   ========================================== */
+.pill-nav {
+  --nav-h: 2.85rem;
+  --pill-pad-x: 1.25rem;
+  --pill-pad-y: 0.35rem;
+  --pill-gap: 0.25rem;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .pill-nav {
+    width: auto;
+  }
+}
+
+.pill-nav-items {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: var(--nav-h);
+  background: var(--base, #000);
+  border-radius: 3px;
+  box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.08);
+}
+
+.pill-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: var(--pill-gap);
+  margin: 0;
+  padding: 0.25rem;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.pill-list > li {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(var(--nav-h) - 0.5rem);
+  padding: 0 var(--pill-pad-x);
+  background: var(--pill-bg, #fff);
+  color: var(--pill-text, var(--base, #000));
+  text-decoration: none;
+  border-radius: 3px;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02rem;
+  white-space: nowrap;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.pill .hover-circle {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  border-radius: 50%;
+  background: #d97706;
+  z-index: 1;
+  display: block;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.pill .label-stack {
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+  z-index: 2;
+}
+
+.pill .pill-label {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  line-height: 1;
+  will-change: transform;
+}
+
+.pill .pill-label-hover {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--hover-text, #fff);
+  z-index: 3;
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.pill.is-active::after {
+  content: '';
+  position: absolute;
+  bottom: 0.12rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0.25rem;
+  height: 0.25rem;
+  background: var(--base, #000);
+  border-radius: 50%;
+  z-index: 4;
+}
+
+.desktop-only {
+  display: flex;
+}
+
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+  .mobile-only {
+    display: flex;
+  }
+}
+
+.mobile-menu-button {
+  width: var(--nav-h);
+  height: var(--nav-h);
+  border-radius: 3px;
+  background: var(--base, #000);
+  border: none;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-button {
+    display: flex;
+  }
+}
+
+.hamburger-line {
+  width: 1rem;
+  height: 0.12rem;
+  background: var(--pill-bg, #fff);
+  border-radius: 0.06rem;
+  transition: all 0.01s ease;
+  transform-origin: center;
+}
+
+.mobile-menu-popover {
+  position: absolute;
+  top: 4.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  background: var(--base, #f0f0f0);
+  border-radius: 3px;
+  box-shadow: 0 0.75rem 2.25rem rgba(0, 0, 0, 0.15);
+  z-index: 1001;
+  opacity: 0;
+  transform-origin: top center;
+  visibility: hidden;
+  border: 2px solid var(--pill-bg);
+}
+
+.mobile-menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.mobile-menu-popover .mobile-menu-link {
+  display: block;
+  padding: 0.85rem 1.25rem;
+  color: var(--pill-text, #fff);
+  background-color: var(--pill-bg, #fff);
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02rem;
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+
+.mobile-menu-popover .mobile-menu-link:hover {
+  cursor: pointer;
+  background-color: var(--base);
+  color: var(--hover-text, #fff);
+}

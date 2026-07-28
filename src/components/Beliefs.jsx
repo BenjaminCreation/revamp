@@ -1,32 +1,118 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export default function Beliefs() {
+export default function Beliefs({ navigate }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const data = [
+    {
+      num: '01',
+      title: 'Wealth comes from ownership.',
+      text: "Nobody gets truly rich on a salary. Look at any rich list: it's people who built and owned businesses. A job pays your bills. Ownership buys your freedom."
+    },
+    {
+      num: '02',
+      title: 'There is no right age.',
+      text: "16 or 45, the market doesn't check your birth certificate. It checks whether someone will pay for what you made. You can start today."
+    },
+    {
+      num: '03',
+      title: "You don't need a degree. You need the basics.",
+      text: "Marketing, strategy, finance: enough to get moving. That takes weeks, not years. The rest you learn on the business, while running it."
+    },
+    {
+      num: '04',
+      title: 'Your network is the moat.',
+      text: "Survival depends most on the people around your business: customers who trust you, founders who've seen your problem, one senior who picks up your call. AI can write your ads. It cannot build your relationships."
+    }
+  ];
+
+  const cardColors = ['#FFD166', '#B4D5FF', '#FFB3D9', '#C2F5E9']; // Yellow, Blue, Pink, Mint
+
   return (
-    <div className="frame">
-      <span className="tag">Home · 03 · What we believe</span>
-      <h2 style={{ fontSize: '28px' }}>Four things we hold to be true.</h2>
-      <div className="grid2">
-        <div className="card">
-          <span className="num mono">01</span>
-          <h3>Wealth comes from ownership.</h3>
-          <p>Nobody gets truly rich on a salary. Look at any rich list: it's people who built and owned businesses. A job pays your bills. Ownership buys your freedom.</p>
+    <section className="beliefs-section">
+      <div className="beliefs-main-box">
+        {/* Marquee at the top of the box */}
+        <div className="beliefs-marquee">
+          <div className="beliefs-marquee-inner">
+            <div className="beliefs-marquee-content">
+              <span className="marquee-item">BUILD YOUR BUSINESS</span>
+              <span className="marquee-item">✦</span>
+              <span className="marquee-item">NO RIGHT AGE</span>
+              <span className="marquee-item">✦</span>
+              <span className="marquee-item">OWNERSHIP IS FREEDOM</span>
+              <span className="marquee-item">✦</span>
+              <span className="marquee-item">YOUR NETWORK IS THE MOAT</span>
+              <span className="marquee-item">✦</span>
+            </div>
+            <div className="beliefs-marquee-content" aria-hidden="true">
+              <span className="marquee-item">BUILD YOUR BUSINESS</span>
+              <span className="marquee-item">✦</span>
+              <span className="marquee-item">NO RIGHT AGE</span>
+              <span className="marquee-item">✦</span>
+              <span className="marquee-item">OWNERSHIP IS FREEDOM</span>
+              <span className="marquee-item">✦</span>
+              <span className="marquee-item">YOUR NETWORK IS THE MOAT</span>
+              <span className="marquee-item">✦</span>
+            </div>
+          </div>
         </div>
-        <div className="card">
-          <span className="num mono">02</span>
-          <h3>There is no right age.</h3>
-          <p>16 or 45, the market doesn't check your birth certificate. It checks whether someone will pay for what you made. You can start today.</p>
+
+        <div className="beliefs-header">
+          <h2 className="beliefs-title">
+            <span className="beliefs-highlight-box">FOUR THINGS</span> WE HOLD TO BE TRUE.
+          </h2>
+          <div className="beliefs-subheading-box">
+            The principles that drive Dhandha School.
+          </div>
         </div>
-        <div className="card">
-          <span className="num mono">03</span>
-          <h3>You don't need a degree. You need the basics.</h3>
-          <p>Marketing, strategy, finance: enough to get moving. That takes weeks, not years. The rest you learn on the business, while running it.</p>
-        </div>
-        <div className="card">
-          <span className="num mono">04</span>
-          <h3>Your network is the moat.</h3>
-          <p>Survival depends most on the people around your business: customers who trust you, founders who've seen your problem, one senior who picks up your call. AI can write your ads. It cannot build your relationships.</p>
+        
+        <div className="beliefs-split">
+          {/* Left Column: Interactive Title Buttons */}
+          <div className="beliefs-left">
+            <div className="beliefs-options-box">
+              {data.map((item, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveIndex(idx)}
+                  className={`beliefs-btn ${activeIndex === idx ? 'is-active' : ''}`}
+                  aria-label={`Show belief: ${item.title}`}
+                >
+                  <span className="beliefs-btn-num">{item.num}</span>
+                  <span className="beliefs-btn-text">{item.title}</span>
+                </button>
+              ))}
+            </div>
+            
+            {/* Inline Segue Link Block */}
+            <div className="beliefs-segue">
+              <span className="beliefs-segue-label">Still not convinced? Fair.</span>
+              <a
+                className="beliefs-segue-link"
+                href="/read-this"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate('/read-this');
+                }}
+              >
+                Read this →
+              </a>
+            </div>
+          </div>
+          
+          {/* Right Column: Revealed Text Card */}
+          <div className="beliefs-right">
+            <div 
+              className="beliefs-content-card" 
+              style={{ backgroundColor: cardColors[activeIndex] }}
+            >
+              <span className="beliefs-content-num">{data[activeIndex].num}</span>
+              <p key={activeIndex} className="beliefs-content-text anim-fade-in">
+                {data[activeIndex].text}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
