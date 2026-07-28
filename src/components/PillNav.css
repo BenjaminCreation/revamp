@@ -1,5 +1,5 @@
 .pill-nav-container {
-  position: absolute;
+  position: fixed;
   top: 1.5rem;
   left: 50%;
   transform: translateX(-50%);
@@ -113,7 +113,7 @@
   align-items: center;
   height: var(--nav-h);
   background: var(--base, #000);
-  border-radius: 9999px;
+  border-radius: 3px;
   box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.08);
 }
 
@@ -143,7 +143,7 @@
   background: var(--pill-bg, #fff);
   color: var(--pill-text, var(--base, #000));
   text-decoration: none;
-  border-radius: 9999px;
+  border-radius: 3px;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
@@ -226,7 +226,7 @@
 .mobile-menu-button {
   width: var(--nav-h);
   height: var(--nav-h);
-  border-radius: 50%;
+  border-radius: 3px;
   background: var(--base, #000);
   border: none;
   display: none;
@@ -261,7 +261,7 @@
   left: 1.5rem;
   right: 1.5rem;
   background: var(--base, #f0f0f0);
-  border-radius: 1rem;
+  border-radius: 3px;
   box-shadow: 0 0.75rem 2.25rem rgba(0, 0, 0, 0.15);
   z-index: 1001;
   opacity: 0;
@@ -290,7 +290,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.02rem;
-  border-radius: 0.5rem;
+  border-radius: 3px;
   transition: all 0.2s ease;
 }
 

@@ -33,19 +33,41 @@ export default function App() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  // Initialize GSAP ScrollSmoother throughout the website
-  useEffect(() => {
+  const [smootherReady, setSmootherReady] = useState(false);
+
+  // Initialize GSAP ScrollSmoother ONLY ONCE on mount using useLayoutEffect
+  // This ensures it wraps the DOM before children create their ScrollTriggers.
+  React.useLayoutEffect(() => {
     const smoother = ScrollSmoother.create({
       smooth: 1.2,
       effects: true,
       smoothTouch: 0.1
     });
     window.__smoother = smoother;
+    setSmootherReady(true);
 
     return () => {
       window.__smoother = null;
       smoother.kill();
     };
+  }, []); // Empty dependency array means it only runs once
+
+  // Handle route changes
+  useEffect(() => {
+    // Reset native scroll
+    window.scrollTo(0, 0);
+    
+    // If smoother exists, tell it to reset its position to 0
+    if (window.__smoother) {
+      window.__smoother.scrollTop(0);
+    }
+    
+    // Give React a tick to mount new route DOM, then refresh GSAP
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 50);
+
+    return () => clearTimeout(timer);
   }, [path]);
 
   // Prevent and correct browser zoom levels to preserve 100% layout proportions
@@ -139,36 +161,36 @@ export default function App() {
         <div id="smooth-content">
 
           {/* Full-bleed New Hero Section at the top of homepage */}
-          {path === '/' && (
+          {smootherReady && path === '/' && (
             <>
-              <NewHero navigate={navigate} />
-              <AlternativeSection />
-              <Beliefs navigate={navigate} />
-              <Offer />
-              <Tracks />
-              <Curriculum />
-              <WeekMap />
-              <InvestorDay />
-            </>
-          )}
+                  <NewHero navigate={navigate} />
+                  <AlternativeSection />
+                  <Beliefs navigate={navigate} />
+                  <Offer />
+                  <Tracks />
+                  <Curriculum />
+                  <WeekMap />
+                  <InvestorDay />
+                </>
+              )}
 
           {/* Full-bleed ReadThis Section */}
-          {path === '/read-this' && (
+          {smootherReady && path === '/read-this' && (
             <ReadThis navigate={navigate} isStandalone={true} />
           )}
 
           {/* Full-bleed Apply Section */}
-          {path === '/apply' && (
+          {smootherReady && path === '/apply' && (
             <Apply navigate={navigate} isStandalone={true} />
           )}
 
           {/* Main Content Bounded Sheet */}
-          {path !== '/' && path !== '/read-this' && path !== '/apply' && (
+          {smootherReady && path !== '/' && path !== '/read-this' && path !== '/apply' && (
             <div className="sheet">
             </div>
           )}
 
-          {path === '/' && (
+          {smootherReady && path === '/' && (
             <>
               <BottomSection navigate={navigate} />
               <Footer navigate={navigate} />
@@ -178,7 +200,7 @@ export default function App() {
         </div>
       </div>
 
-      {path === '/' && <ScrollPlane />}
+      {smootherReady && path === '/' && <ScrollPlane />}
     </div>
   );
 }

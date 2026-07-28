@@ -26,7 +26,7 @@ export default function BottomSection({ navigate }) {
               },
               {
                 q: "How much money do I need to start?",
-                a: "Hunarkhana: ₹0. Karkhana: a few thousand rupees, and the playbook makes your customers fund most of it through pre-orders."
+                a: "SevaDaata: ₹0. Karkhana: a few thousand rupees, and the playbook makes your customers fund most of it through pre-orders."
               },
               {
                 q: "How much time does it take?",

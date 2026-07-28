@@ -106,7 +106,7 @@ export default function WeekMap() {
           {/* Column 4 */}
           <div className="wm-col">
             <div className="wm-bar wm-orange">
-              <span className="wm-bar-text">Hunarkhana checkpoint</span>
+              <span className="wm-bar-text">SevaDaata checkpoint</span>
             </div>
             <div className="wm-cell">
               <p className="wm-checkpoint">Service picked, 25 target businesses listed. 10 customer conversations.</p>

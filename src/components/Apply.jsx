@@ -26,6 +26,8 @@ export default function Apply({ navigate, isStandalone = false }) {
     trackChoice: 'maker',
     soldSomething: '',
     whatToCut: '',
+    backgroundStory: '',
+    whyJoin: '',
     howFound: [],
     commitLive: false,
     commitCheckpoint: false
@@ -79,6 +81,8 @@ export default function Apply({ navigate, isStandalone = false }) {
     } else if (step === 2) {
       if (!formData.soldSomething.trim()) newErrors.soldSomething = true;
       if (!formData.whatToCut.trim()) newErrors.whatToCut = true;
+      if (!formData.backgroundStory.trim()) newErrors.backgroundStory = true;
+      if (!formData.whyJoin.trim()) newErrors.whyJoin = true;
     } else if (step === 3) {
       if (formData.howFound.length === 0) newErrors.howFound = true;
       if (!formData.commitLive) newErrors.commitLive = true;
@@ -145,7 +149,7 @@ export default function Apply({ navigate, isStandalone = false }) {
               onClick={() => goToStep(2)}
             >
               <span className="apply-step-num">Step 2</span>
-              <h3>The filter</h3>
+              <h3>Your mindset</h3>
               <p>Track choice + &ldquo;sell us something you&rsquo;ve sold&rdquo; + &ldquo;what will you cut to make 10 hrs/week&rdquo;.</p>
             </div>
 
@@ -278,11 +282,10 @@ export default function Apply({ navigate, isStandalone = false }) {
                 {/* ── STEP 2 ── */}
                 {activeStep === 2 && (
                   <div className="purple-form-step step2-layout">
-                    <h3 className="purple-step-title"><span className="step-highlight-box">Step 2: The Filter</span></h3>
-
                     <div className="step2-body">
                       {/* Left: Track Image Selector */}
                       <div className="track-image-selector">
+                        <h3 className="purple-step-title" style={{ marginTop: 0, marginBottom: '1.5rem' }}><span className="step-highlight-box">Step 2: Your Mindset</span></h3>
                         <p className="track-choose-prompt">Choose your track</p>
                         <div className="track-image-cards">
                           <div
@@ -297,8 +300,8 @@ export default function Apply({ navigate, isStandalone = false }) {
                             className={`track-image-card ${formData.trackChoice === 'skills' ? 'selected' : 'dimmed'}`}
                             onClick={() => setFormData(prev => ({ ...prev, trackChoice: 'skills' }))}
                           >
-                            <img src="/hunarkhana.jpg" alt="Hunarkhana" className="track-img" />
-                            <span className="track-img-label">HUNARKHANA</span>
+                            <img src="/hunarkhana.jpg" alt="SevaDaata" className="track-img" />
+                            <span className="track-img-label">SEVADAATA</span>
                             <span className="track-img-sublabel">Skills Track</span>
                           </div>
                         </div>
@@ -315,7 +318,7 @@ export default function Apply({ navigate, isStandalone = false }) {
                             onChange={handleInputChange}
                             placeholder="Be honest and specific. What did you sell, to whom, and for how much?"
                             className={fieldClass('soldSomething')}
-                            rows={4}
+                            rows={1}
                           />
                         </div>
 
@@ -328,7 +331,33 @@ export default function Apply({ navigate, isStandalone = false }) {
                             onChange={handleInputChange}
                             placeholder="e.g. Reduce social media / skip college clubs / adjust weekend schedules..."
                             className={fieldClass('whatToCut')}
-                            rows={4}
+                            rows={1}
+                          />
+                        </div>
+
+                        <div className="purple-form-group">
+                          <label htmlFor="backgroundStory">Tell us about your background, your life story. You can be as brief or as detailed as you want.</label>
+                          <textarea
+                            id="backgroundStory"
+                            name="backgroundStory"
+                            value={formData.backgroundStory}
+                            onChange={handleInputChange}
+                            placeholder="Your story..."
+                            className={fieldClass('backgroundStory')}
+                            rows={1}
+                          />
+                        </div>
+
+                        <div className="purple-form-group">
+                          <label htmlFor="whyJoin">Why should you be part of the founding cohort of Dhandha School?</label>
+                          <textarea
+                            id="whyJoin"
+                            name="whyJoin"
+                            value={formData.whyJoin}
+                            onChange={handleInputChange}
+                            placeholder="Why you?"
+                            className={fieldClass('whyJoin')}
+                            rows={1}
                           />
                         </div>
                       </div>

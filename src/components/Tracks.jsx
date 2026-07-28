@@ -127,7 +127,6 @@ export default function Tracks() {
 
         <div className="tracks">
           <div className="track maker-track">
-            <img src="/karkhana.jpg" className="track-image" alt="Karkhana" />
             <h3>
               <span className="tracks-highlight-box blue-highlight">KARKHANA</span>
             </h3>
@@ -135,9 +134,8 @@ export default function Tracks() {
             <span className="cap mono">Capital: a few thousand ₹, mostly collected from customers first</span>
           </div>
           <div className="track skills-track">
-            <img src="/hunarkhana.jpg" className="track-image" alt="Hunarkhana" />
             <h3>
-              <span className="tracks-highlight-box pink-highlight">HUNARKHANA</span>
+              <span className="tracks-highlight-box pink-highlight">SEVADAATA</span>
             </h3>
             <p>India has over 6 crore small businesses, and most run on instinct. You pick a skill they need, package it as a service, price it, and land your first paying client. Sell to the shops around you.</p>
             <span className="cap mono">Capital: ₹0</span>
