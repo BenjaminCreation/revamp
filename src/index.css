@@ -3994,68 +3994,76 @@ h3,
     left: 10px;
   }
 
-  /* Popup Event Cards for Mobile Storytelling (Zero Overlap) */
+  /* Popup Event Cards for Mobile Storytelling (Pastel Sticky Note Cards) */
   .mobile-event-card {
     position: absolute;
-    background: #FAF8F2;
-    border: 1.5px solid #1C1B17;
-    border-radius: 8px;
+    border: 2px solid #1C1B17;
+    border-radius: 4px;
     padding: 10px 14px;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
     color: #1C1B17;
-    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.12);
+    box-shadow: 4px 4px 0 #1C1B17;
     opacity: 0;
     transform: translateY(8px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    width: 190px;
+    transition: opacity 0.35s ease, transform 0.35s ease;
     pointer-events: none;
-    z-index: 10;
+    z-index: 12;
     text-align: left;
     line-height: 1.35;
+    box-sizing: border-box;
   }
 
   .mobile-event-card strong {
-    display: block;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 800;
-    font-size: 12px;
-    letter-spacing: 0.05em;
-    color: #f97316;
-    text-transform: uppercase;
-    margin-bottom: 3px;
+    display: none;
   }
 
   .mobile-event-card p {
     margin: 0;
     font-family: 'Satoshi', sans-serif;
-    font-size: 12.5px;
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: 700;
     color: #1C1B17;
+    line-height: 1.35;
   }
 
+  /* Card 16: Light Blue Pastel Sticky Note (-3deg tilt) */
   .mobile-event-card.card-16 {
-    top: 10px;
-    left: 110px;
+    background: #B4D5FE;
+    top: 15px;
+    left: 95px;
+    width: 195px;
+    transform: rotate(-3deg);
   }
 
+  /* Card 18: Yellow Pastel Sticky Note (+2.5deg tilt) */
   .mobile-event-card.card-18 {
-    top: 190px;
-    left: 15px;
+    background: #FFD966;
+    top: 185px;
+    left: 25px;
+    width: 210px;
+    transform: rotate(2.5deg);
   }
 
+  /* Card 22: Pink Pastel Sticky Note (-2deg tilt, overlaps CTA below) */
   .mobile-event-card.card-22 {
-    top: 370px;
-    left: 110px;
+    background: #FFB3D9;
+    top: 355px;
+    left: 48px;
+    width: 225px;
+    transform: rotate(-2deg);
+    z-index: 25;
   }
 
-  /* Mobile Hero CTA Block (32px after timeline) */
+  /* Mobile Hero CTA Block (Card 22 overlaps top edge of CTA block) */
   .mobile-hero-cta {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 12px;
-    margin-top: 32px !important;
+    margin-top: -15px !important;
+    position: relative;
+    z-index: 10;
     width: 100%;
   }
 

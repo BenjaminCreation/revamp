@@ -100,19 +100,18 @@ export default function NewHero({ navigate }) {
               }
             });
 
-            // Stage 16 (0 to 0.5): Card 16 shows, Boy 16 moves to 18
-            mobTl.to(mobCard16Ref.current, { opacity: 1, y: 0, duration: 0.08 }, 0);
+            // Stage 16 (0 to 0.5): Card 16 (Blue) reveals & stays visible, Boy 16 moves to 18
+            mobTl.to(mobCard16Ref.current, { opacity: 1, y: 0, scale: 1, duration: 0.1 }, 0);
             mobTl.to(mobBoyGroupRef.current, {
               motionPath: { path: "#mobile-road-path", align: "#mobile-road-path", alignOrigin: [0.5, 0.5], start: 0, end: 0.5 },
               duration: 0.5,
               ease: "none"
             }, 0);
 
-            // Morph at Stage 18 (0.5)
-            mobTl.to(mobCard16Ref.current, { opacity: 0, y: -8, duration: 0.05 }, 0.48);
+            // Morph to Boy 18 at Stage 18 (0.5) & Card 18 (Yellow) reveals
             mobTl.to(mobFace16Ref.current, { opacity: 0, duration: 0.02 }, 0.48);
             mobTl.to(mobFace18Ref.current, { opacity: 1, duration: 0.02 }, 0.48);
-            mobTl.to(mobCard18Ref.current, { opacity: 1, y: 0, duration: 0.08 }, 0.5);
+            mobTl.to(mobCard18Ref.current, { opacity: 1, y: 0, scale: 1, duration: 0.1 }, 0.5);
 
             // Stage 18 to 22 (0.5 to 1.0): Boy 18 moves to 22
             mobTl.to(mobBoyGroupRef.current, {
@@ -121,11 +120,10 @@ export default function NewHero({ navigate }) {
               ease: "none"
             }, 0.5);
 
-            // Morph at Stage 22 (1.0)
-            mobTl.to(mobCard18Ref.current, { opacity: 0, y: -8, duration: 0.05 }, 0.98);
+            // Morph to Boy 22 at Stage 22 (1.0) & Card 22 (Pink) reveals, overlapping CTA below
             mobTl.to(mobFace18Ref.current, { opacity: 0, duration: 0.02 }, 0.98);
             mobTl.to(mobFace22Ref.current, { opacity: 1, duration: 0.02 }, 0.98);
-            mobTl.to(mobCard22Ref.current, { opacity: 1, y: 0, duration: 0.08 }, 0.98);
+            mobTl.to(mobCard22Ref.current, { opacity: 1, y: 0, scale: 1, duration: 0.1 }, 0.95);
           }
         }
 
