@@ -320,13 +320,13 @@ export default function NewHero({ navigate }) {
             </div>
           </div>
 
-          <svg className="mobile-s-path-svg" viewBox="0 0 280 200" preserveAspectRatio="none">
+          <svg className="mobile-s-path-svg" viewBox="0 0 280 320" preserveAspectRatio="none">
             <path
-              d="M 50 20 H 230 V 85 H 50 V 150 H 230"
+              d="M 55 20 H 235 V 125 H 55 V 230 H 235"
               fill="none"
               stroke="#1C1B17"
-              strokeWidth="3"
-              strokeDasharray="6 6"
+              strokeWidth="3.5"
+              strokeDasharray="7 7"
               strokeLinecap="round"
             />
           </svg>
