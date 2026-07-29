@@ -4784,4 +4784,153 @@ h3,
     margin-bottom: 0 !important;
     line-height: 1.35 !important;
   }
+
+  /* ==========================================================================
+     Mobile Curriculum Section Redesign (Exact Screenshot Spec)
+     ========================================================================== */
+
+  .curriculum-section {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 24px 14px 40px !important;
+    background-color: #B4D5FE !important;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.15) 1px, transparent 1px) !important;
+    background-size: 20px 20px !important;
+  }
+
+  .curriculum-marquee {
+    margin: 0 -14px 20px -14px !important;
+    height: 38px !important;
+    border-bottom: 2px solid #1C1B17 !important;
+    border-top: 2px solid #1C1B17 !important;
+    background-color: #1C1B17 !important;
+  }
+
+  .curriculum-main-box {
+    width: 100% !important;
+    max-width: 440px !important;
+    padding: 24px 18px !important;
+    border: 2.5px solid #1C1B17 !important;
+    box-shadow: 6px 6px 0 #1C1B17 !important;
+    background: #ffffff !important;
+    border-radius: 4px !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+  }
+
+  .curriculum-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    width: 100% !important;
+  }
+
+  .curriculum-left, .curriculum-right {
+    width: 100% !important;
+  }
+
+  .curriculum-title {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: clamp(26px, 7.5vw, 36px) !important;
+    line-height: 1.15 !important;
+    color: #1C1B17 !important;
+    text-transform: uppercase !important;
+    text-align: center !important;
+    margin: 0 0 14px 0 !important;
+  }
+
+  .curriculum-highlight-box.yellow-highlight {
+    background: #FFD166 !important;
+    border: 2.5px solid #1C1B17 !important;
+    box-shadow: 4px 4px 0 #1C1B17 !important;
+    padding: 2px 10px !important;
+    display: inline-block !important;
+    transform: rotate(-1.5deg) !important;
+    color: #1C1B17 !important;
+  }
+
+  .curriculum-text-box {
+    background: #1C1B17 !important;
+    color: #FAF8F2 !important;
+    font-family: 'Satoshi', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.88rem !important;
+    padding: 10px 14px !important;
+    border-radius: 4px !important;
+    transform: rotate(-1deg) !important;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.15) !important;
+    margin-bottom: 14px !important;
+    text-align: center !important;
+    line-height: 1.4 !important;
+  }
+
+  .curriculum-footnote.mono {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace !important;
+    font-size: 0.78rem !important;
+    font-weight: 700 !important;
+    color: #0E7A4A !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    text-align: center !important;
+    margin-bottom: 20px !important;
+    line-height: 1.35 !important;
+  }
+
+  .curriculum-disc-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    width: 100% !important;
+  }
+
+  .curriculum-disc-card {
+    background: #ffffff !important;
+    border: 2.5px solid #1C1B17 !important;
+    box-shadow: 4px 4px 0 #1C1B17 !important;
+    padding: 14px 16px !important;
+    border-radius: 4px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 16px !important;
+    box-sizing: border-box !important;
+    text-align: left !important;
+  }
+
+  .curriculum-disc-num {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: 2.6rem !important;
+    line-height: 1 !important;
+    color: #1C1B17 !important;
+    text-shadow: 2.5px 2.5px 0 #B4D5FE !important;
+    min-width: 2rem !important;
+    text-align: center !important;
+  }
+
+  .curriculum-disc-right {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2px !important;
+  }
+
+  .curriculum-disc-name {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 0.95rem !important;
+    letter-spacing: 0.05em !important;
+    color: #1C1B17 !important;
+    text-transform: uppercase !important;
+    margin: 0 !important;
+  }
+
+  .curriculum-disc-desc {
+    font-family: 'Satoshi', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.85rem !important;
+    color: #1C1B17 !important;
+    line-height: 1.35 !important;
+    margin: 0 !important;
+  }
 }
