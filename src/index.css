@@ -5115,4 +5115,140 @@ h3,
     line-height: 1.45 !important;
     margin: 2px 0 0 0 !important;
   }
+
+  /* ==========================================================================
+     Mobile FAQ Section Redesign (Exact Screenshot Spec)
+     ========================================================================== */
+
+  .faq-section {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 32px 16px 48px !important;
+    background-color: #E6E0F8 !important;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px) !important;
+    background-size: 20px 20px !important;
+    display: block !important;
+  }
+
+  .faq-container {
+    max-width: 440px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .bottom-tag-container {
+    display: flex !important;
+    justify-content: center !important;
+    margin-bottom: 18px !important;
+  }
+
+  .bottom-tag {
+    display: inline-block !important;
+    border: 2px solid #1C1B17 !important;
+    border-radius: 20px !important;
+    padding: 4px 16px !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+    color: #1C1B17 !important;
+    background: transparent !important;
+  }
+
+  .bottom-faq-title {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: clamp(1.7rem, 7vw, 2.2rem) !important;
+    color: #1C1B17 !important;
+    text-align: left !important;
+    margin: 0 0 24px 0 !important;
+    line-height: 1.3 !important;
+    width: 100% !important;
+  }
+
+  .faq-highlight-box {
+    color: #000 !important;
+    border: 2.5px solid #1C1B17 !important;
+    box-shadow: 4px 4px 0 #1C1B17 !important;
+    padding: 2px 8px !important;
+    display: inline-block !important;
+  }
+
+  .faq-highlight-box.yellow-highlight {
+    background: #FFD166 !important;
+    transform: rotate(-1.5deg) !important;
+  }
+
+  .faq-highlight-box.blue-highlight {
+    background: #B4D5FE !important;
+    transform: rotate(1deg) !important;
+  }
+
+  .bottom-faq-list {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .bottom-faq-list details {
+    background: #ffffff !important;
+    border: 2px solid #1C1B17 !important;
+    border-radius: 4px !important;
+    margin-bottom: 12px !important;
+    box-shadow: 4px 4px 0 #1C1B17 !important;
+    padding: 0 !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+    box-sizing: border-box !important;
+  }
+
+  .bottom-faq-list details[open] {
+    box-shadow: 2px 2px 0 #1C1B17 !important;
+    transform: translate(2px, 2px) !important;
+  }
+
+  .bottom-faq-list summary {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    color: #1C1B17 !important;
+    list-style: none !important;
+    cursor: pointer !important;
+    padding: 16px 18px !important;
+    gap: 12px !important;
+  }
+
+  .bottom-faq-list summary::-webkit-details-marker {
+    display: none !important;
+  }
+
+  .bottom-faq-list summary::after {
+    content: '+' !important;
+    font-weight: 700 !important;
+    font-size: 1.3rem !important;
+    line-height: 1 !important;
+    color: #1C1B17 !important;
+    flex-shrink: 0 !important;
+  }
+
+  .bottom-faq-list details[open] summary::after {
+    content: '−' !important;
+  }
+
+  .bottom-faq-list details p {
+    color: #55524A !important;
+    font-family: 'Satoshi', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.9rem !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 18px 16px 18px !important;
+    line-height: 1.55 !important;
+  }
 }
