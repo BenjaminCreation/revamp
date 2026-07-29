@@ -5251,4 +5251,94 @@ h3,
     padding: 0 18px 16px 18px !important;
     line-height: 1.55 !important;
   }
+
+  /* ==========================================================================
+     Mobile CTA Section Redesign (Design System Match)
+     ========================================================================== */
+
+  .cta-section {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 40px 16px !important;
+    background: repeating-linear-gradient(
+      -45deg,
+      #3BB481,
+      #3BB481 32px,
+      #1C1B17 32px,
+      #1C1B17 64px
+    ) !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .cta-main-box {
+    background: #FAF8F2 !important;
+    border: 3px solid #1C1B17 !important;
+    box-shadow: 8px 8px 0 #1C1B17 !important;
+    border-radius: 4px !important;
+    padding: 32px 24px !important;
+    max-width: 440px !important;
+    width: 100% !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
+    transform: rotate(-1deg) !important;
+  }
+
+  .bottom-cta-title {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: clamp(1.7rem, 7vw, 2.1rem) !important;
+    color: #1C1B17 !important;
+    margin: 0 0 14px 0 !important;
+    line-height: 1.15 !important;
+    text-transform: uppercase !important;
+  }
+
+  .cta-highlight-box {
+    color: #1C1B17 !important;
+    border: 2.5px solid #1C1B17 !important;
+    box-shadow: 4px 4px 0 #1C1B17 !important;
+    padding: 2px 8px !important;
+    display: inline-block !important;
+  }
+
+  .cta-highlight-box.yellow-highlight {
+    background: #FFD166 !important;
+    transform: rotate(1.5deg) !important;
+  }
+
+  .bottom-cta-sub {
+    font-family: 'Satoshi', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.92rem !important;
+    color: #1C1B17 !important;
+    max-width: none !important;
+    margin: 0 0 24px !important;
+    line-height: 1.55 !important;
+    text-align: center !important;
+  }
+
+  .bottom-cta-btn {
+    display: block !important;
+    width: 100% !important;
+    background: #1C1B17 !important;
+    color: #FAF8F2 !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 1rem !important;
+    letter-spacing: 0.5px !important;
+    text-transform: uppercase !important;
+    padding: 16px 24px !important;
+    border-radius: 4px !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    border: 2.5px solid #1C1B17 !important;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3) !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+  }
 }
