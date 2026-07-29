@@ -1,32 +1,26 @@
 import React from 'react';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Footer.css';
 
 export default function Footer({ navigate }) {
   const scrollToTarget = (targetId, smooth = true) => {
+    const el = targetId === 'top' ? null : document.querySelector(targetId);
     const smoother = ScrollSmoother.get();
+    if (typeof ScrollTrigger !== 'undefined') {
+      ScrollTrigger.refresh();
+    }
     if (smoother) {
       if (targetId === 'top') {
         smoother.scrollTo(0, smooth);
-      } else {
-        smoother.scrollTo(targetId, smooth);
+      } else if (el) {
+        smoother.scrollTo(el, smooth);
       }
     } else {
       if (targetId === 'top') {
-        if (smooth) {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-          window.scrollTo(0, 0);
-        }
-      } else {
-        const el = document.querySelector(targetId);
-        if (el) {
-          if (smooth) {
-            el.scrollIntoView({ behavior: 'smooth' });
-          } else {
-            el.scrollIntoView();
-          }
-        }
+        window.scrollTo({ top: 0, behavior: smooth ? 'smooth' : 'auto' });
+      } else if (el) {
+        el.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto' });
       }
     }
   };
@@ -52,9 +46,22 @@ export default function Footer({ navigate }) {
       }
       const id = targetId.replace('#', '');
       const waitForEl = setInterval(() => {
-        if (document.getElementById(id) && ScrollSmoother.get()) {
+        const el = document.getElementById(id);
+        const smoother = ScrollSmoother.get();
+        if (el && smoother) {
           clearInterval(waitForEl);
-          scrollToTarget(targetId, false);
+          if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+          smoother.scrollTo(el, false);
+
+          setTimeout(() => {
+            if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+            smoother.scrollTo(el, true);
+          }, 300);
+
+          setTimeout(() => {
+            if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+            smoother.scrollTo(el, true);
+          }, 750);
         }
       }, 50);
       setTimeout(() => clearInterval(waitForEl), 5000);

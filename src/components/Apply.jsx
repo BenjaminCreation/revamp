@@ -391,7 +391,7 @@ export default function Apply({ navigate, isStandalone = false }) {
                             onChange={handleInputChange}
                             placeholder="Your story..."
                             className={fieldClass('backgroundStory')}
-                            rows={4}
+                            rows={3}
                           />
                         </div>
 
@@ -404,7 +404,7 @@ export default function Apply({ navigate, isStandalone = false }) {
                             onChange={handleInputChange}
                             placeholder="Why you?"
                             className={fieldClass('whyJoin')}
-                            rows={4}
+                            rows={3}
                           />
                         </div>
                       </div>
@@ -473,7 +473,7 @@ export default function Apply({ navigate, isStandalone = false }) {
                               <span className="step3-fee-crossed">₹14,999</span>
                               <span className="step-highlight-box free-to-apply-badge">Free to Apply</span>
                             </div>
-                            <p className="step3-fee-note">First Cohort Is Completely Free.</p>
+                            <p className="step3-fee-note">The founding cohort will be given 100% scholarships</p>
                           </div>
                         </div>
                       </div>

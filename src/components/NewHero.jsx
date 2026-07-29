@@ -135,6 +135,7 @@ export default function NewHero({ navigate }) {
               onClick={(e) => {
                 e.preventDefault();
                 const smoother = ScrollSmoother.get();
+                if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
                 if (smoother) {
                   smoother.scrollTo('#alt', true);
                 } else {

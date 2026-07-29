@@ -18,12 +18,12 @@ export default function Beliefs({ navigate }) {
     {
       num: '03',
       title: "You don't need a degree. You need the basics.",
-      text: "Marketing, strategy, finance: enough to get moving. That takes weeks, not years. The rest you learn on the business, while running it."
+      text: "Marketing, strategy, finance, relevant tech tools: enough to get moving. That takes weeks, not years. The rest you learn on the business, while running it."
     },
     {
       num: '04',
       title: 'Your network is the moat.',
-      text: "Survival depends most on the people around your business: customers who trust you, founders who've seen your problem, one senior who picks up your call. AI can write your ads. It cannot build your relationships."
+      text: "Dhandhas are built on meaningful relationships: customers who trust you, founders who've seen your problem, one senior who picks up your call. AI can write your ads. It cannot build your relationships."
     }
   ];
 
@@ -50,26 +50,18 @@ export default function Beliefs({ navigate }) {
         {/* Marquee at the top of the box */}
         <div className="beliefs-marquee">
           <div className="beliefs-marquee-inner">
-            <div className="beliefs-marquee-content">
-              <span className="marquee-item">BUILD YOUR BUSINESS</span>
-              <span className="marquee-item">✦</span>
-              <span className="marquee-item">NO RIGHT AGE</span>
-              <span className="marquee-item">✦</span>
-              <span className="marquee-item">OWNERSHIP IS FREEDOM</span>
-              <span className="marquee-item">✦</span>
-              <span className="marquee-item">YOUR NETWORK IS THE MOAT</span>
-              <span className="marquee-item">✦</span>
-            </div>
-            <div className="beliefs-marquee-content" aria-hidden="true">
-              <span className="marquee-item">BUILD YOUR BUSINESS</span>
-              <span className="marquee-item">✦</span>
-              <span className="marquee-item">NO RIGHT AGE</span>
-              <span className="marquee-item">✦</span>
-              <span className="marquee-item">OWNERSHIP IS FREEDOM</span>
-              <span className="marquee-item">✦</span>
-              <span className="marquee-item">YOUR NETWORK IS THE MOAT</span>
-              <span className="marquee-item">✦</span>
-            </div>
+            {[...Array(4)].map((_, i) => (
+              <div className="beliefs-marquee-content" key={i} aria-hidden={i > 0 ? "true" : undefined}>
+                <span className="marquee-item">BUILD YOUR BUSINESS</span>
+                <span className="marquee-item">✦</span>
+                <span className="marquee-item">NO RIGHT AGE</span>
+                <span className="marquee-item">✦</span>
+                <span className="marquee-item">OWNERSHIP IS FREEDOM</span>
+                <span className="marquee-item">✦</span>
+                <span className="marquee-item">YOUR NETWORK IS THE MOAT</span>
+                <span className="marquee-item">✦</span>
+              </div>
+            ))}
           </div>
         </div>
 
