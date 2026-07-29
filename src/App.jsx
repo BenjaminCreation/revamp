@@ -188,7 +188,7 @@ export default function App() {
         baseColor={path === '/' || path === '/apply' ? '#1C1B17' : 'var(--ink)'}
         pillColor={path === '/' || path === '/apply' ? '#FAF8F2' : 'var(--paper)'}
         pillTextColor={path === '/' || path === '/apply' ? '#1C1B17' : 'var(--ink)'}
-        hoveredPillTextColor={path === '/' || path === '/apply' ? '#FAF8F2' : 'var(--paper)'}
+        hoveredPillTextColor="#FFFFFF"
         initialLoadAnimation={true}
       />
 

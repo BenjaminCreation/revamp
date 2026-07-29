@@ -27,7 +27,7 @@ export default function FAQ() {
       </details>
       <details>
         <summary>How is the Bangalore team picked?</summary>
-        <p>Week 4 demo: real numbers, real customers, real story. The cohort watches, we decide, and we explain the choice publicly.</p>
+        <p>We evaluate teams throughout the cohort and select the finalists. The cohort watches, we decide, and we explain the choice publicly.</p>
       </details>
       <details>
         <summary>Do I get a certificate?</summary>

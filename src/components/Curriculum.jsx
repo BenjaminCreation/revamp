@@ -1,12 +1,12 @@
 import React, { useRef, useEffect } from 'react';
 
 const DISCIPLINES = [
-  { name: 'Marketing',      count: 2, desc: 'Attract customers without a budget.' },
-  { name: 'Strategy',       count: 2, desc: 'Pick fights you can win. Ignore the rest.' },
-  { name: 'Finance',        count: 2, desc: 'Read money. Run margins. Don\'t guess.' },
-  { name: 'Sales',          count: 1, desc: 'Close. Without it, everything else is a hobby.' },
-  { name: 'Founder Tech',   count: 2, desc: 'Build tools, not teams. Move fast with AI.' },
-  { name: 'Audit & Legal',  count: 1, desc: 'Stay clean. Know what you\'re signing.' },
+  { name: 'Marketing',      count: 2, desc: 'Learn how to be omnipresent.' },
+  { name: 'Strategy',       count: 2, desc: 'Understand what games you will play and how to win them.' },
+  { name: 'Finance',        count: 2, desc: 'Learn the business language so you are never suprised.' },
+  { name: 'Sales',          count: 1, desc: 'Learn how to close. Most important.' },
+  { name: 'Founder Tech',   count: 2, desc: 'Learn the relevant tools & move fast with AI.' },
+  { name: 'Audit & Legal',  count: 1, desc: 'GST/other docs: Get on top of all legality' },
 ];
 
 export default function Curriculum() {
@@ -35,7 +35,7 @@ export default function Curriculum() {
             <div className="curriculum-marquee-content">
               <span className="marquee-item">LEARN BY BUILDING</span>
               <span className="marquee-item">✦</span>
-              <span className="marquee-item">NO THEORY</span>
+              <span className="marquee-item">PRACTICALITY OVER THEORY</span>
               <span className="marquee-item">✦</span>
               <span className="marquee-item">INDIAN CASE STUDIES</span>
               <span className="marquee-item">✦</span>
@@ -45,7 +45,7 @@ export default function Curriculum() {
             <div className="curriculum-marquee-content" aria-hidden="true">
               <span className="marquee-item">LEARN BY BUILDING</span>
               <span className="marquee-item">✦</span>
-              <span className="marquee-item">NO THEORY</span>
+              <span className="marquee-item">PRACTICALITY OVER THEORY</span>
               <span className="marquee-item">✦</span>
               <span className="marquee-item">INDIAN CASE STUDIES</span>
               <span className="marquee-item">✦</span>
