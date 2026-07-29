@@ -24,51 +24,102 @@ export default function NewHero({ navigate }) {
   const box18Ref = useRef(null);
   const box22Ref = useRef(null);
 
+  // Mobile Animation Refs
+  const mobCircle16Ref = useRef(null);
+  const mobCircle18Ref = useRef(null);
+  const mobCircle22Ref = useRef(null);
+  const mobCard16Ref = useRef(null);
+  const mobCard18Ref = useRef(null);
+  const mobCard22Ref = useRef(null);
+
   useEffect(() => {
     let ctx;
     
     const initHeroAnimation = () => {
       ctx = gsap.context(() => {
-        // Initial positioning along the path
-        gsap.set(boy1GroupRef.current, { motionPath: { path: "#road-path", align: "#road-path", alignOrigin: [0.5, 0.5], start: 0, end: 0 } });
-        gsap.set(boy2GroupRef.current, { motionPath: { path: "#road-path", align: "#road-path", alignOrigin: [0.5, 0.5], start: 0.5, end: 0.5 } });
-        gsap.set(boy3GroupRef.current, { motionPath: { path: "#road-path", align: "#road-path", alignOrigin: [0.5, 0.5], start: 1, end: 1 } });
+        const isMobile = window.innerWidth <= 768;
 
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: heroRef.current,
-            start: "top top",
-            end: "+=1500",
-            scrub: 1,
-            pin: true,
-            pinSpacing: true
+        if (!isMobile) {
+          // Desktop Pinned MotionPath Timeline
+          if (boy1GroupRef.current && boy2GroupRef.current && boy3GroupRef.current) {
+            gsap.set(boy1GroupRef.current, { motionPath: { path: "#road-path", align: "#road-path", alignOrigin: [0.5, 0.5], start: 0, end: 0 } });
+            gsap.set(boy2GroupRef.current, { motionPath: { path: "#road-path", align: "#road-path", alignOrigin: [0.5, 0.5], start: 0.5, end: 0.5 } });
+            gsap.set(boy3GroupRef.current, { motionPath: { path: "#road-path", align: "#road-path", alignOrigin: [0.5, 0.5], start: 1, end: 1 } });
+
+            const tl = gsap.timeline({
+              scrollTrigger: {
+                trigger: heroRef.current,
+                start: "top top",
+                end: "+=1500",
+                scrub: 1,
+                pin: true,
+                pinSpacing: true
+              }
+            });
+
+            tl.to(boy1CircleRef.current, { opacity: 0, duration: 0.02 }, 0);
+            tl.to(boy1FaceRef.current, { opacity: 1, duration: 0.02 }, 0);
+            tl.to(box16Ref.current, { opacity: 1, duration: 0.05 }, 0);
+            tl.to(boy1GroupRef.current, {
+              motionPath: { path: "#road-path", align: "#road-path", alignOrigin: [0.5, 0.5], start: 0, end: 0.5 },
+              duration: 0.5, ease: "none"
+            }, 0);
+            tl.set(boy1GroupRef.current, { opacity: 0 }, 0.5);
+
+            tl.to(boy2CircleRef.current, { opacity: 0, duration: 0.02 }, 0.5);
+            tl.to(boy2FaceRef.current, { opacity: 1, duration: 0.02 }, 0.5);
+            tl.to(box18Ref.current, { opacity: 1, duration: 0.05 }, 0.5);
+            tl.to(boy2GroupRef.current, {
+              motionPath: { path: "#road-path", align: "#road-path", alignOrigin: [0.5, 0.5], start: 0.5, end: 1 },
+              duration: 0.5, ease: "none"
+            }, 0.5);
+            tl.set(boy2GroupRef.current, { opacity: 0 }, 1.0);
+
+            tl.to(boy3CircleRef.current, { opacity: 0, duration: 0.02 }, 0.98);
+            tl.to(boy3FaceRef.current, { opacity: 1, duration: 0.02 }, 0.98);
+            tl.to(box22Ref.current, { opacity: 1, duration: 0.05 }, 0.98);
           }
-        });
+        } else {
+          // Mobile ScrollTrigger Sequence (Reveals Boy Faces & Event Tooltips)
+          const mobTl = gsap.timeline({
+            scrollTrigger: {
+              trigger: heroRef.current,
+              start: "top top+=20",
+              end: "+=400",
+              scrub: 0.5
+            }
+          });
 
-        // 1. BOY 1 JOURNEY (0 to 0.5 scroll)
-        tl.to(boy1CircleRef.current, { opacity: 0, duration: 0.02 }, 0);
-        tl.to(boy1FaceRef.current, { opacity: 1, duration: 0.02 }, 0);
-        tl.to(box16Ref.current, { opacity: 1, duration: 0.05 }, 0);
-        tl.to(boy1GroupRef.current, {
-          motionPath: { path: "#road-path", align: "#road-path", alignOrigin: [0.5, 0.5], start: 0, end: 0.5 },
-          duration: 0.5, ease: "none"
-        }, 0);
-        tl.set(boy1GroupRef.current, { opacity: 0 }, 0.5);
+          // Boy 16 reveal
+          if (mobCircle16Ref.current) {
+            mobTl.to(mobCircle16Ref.current, { scale: 1.15, borderColor: '#f97316', duration: 0.2 }, 0);
+            mobTl.to(mobCircle16Ref.current.querySelector('.mob-badge-num'), { opacity: 0, duration: 0.1 }, 0);
+            mobTl.to(mobCircle16Ref.current.querySelector('.mob-badge-img'), { opacity: 1, scale: 1, duration: 0.2 }, 0);
+          }
+          if (mobCard16Ref.current) {
+            mobTl.to(mobCard16Ref.current, { opacity: 1, y: 0, duration: 0.2 }, 0.05);
+          }
 
-        // 2. BOY 2 JOURNEY (0.5 to 1.0 scroll)
-        tl.to(boy2CircleRef.current, { opacity: 0, duration: 0.02 }, 0.5);
-        tl.to(boy2FaceRef.current, { opacity: 1, duration: 0.02 }, 0.5);
-        tl.to(box18Ref.current, { opacity: 1, duration: 0.05 }, 0.5);
-        tl.to(boy2GroupRef.current, {
-          motionPath: { path: "#road-path", align: "#road-path", alignOrigin: [0.5, 0.5], start: 0.5, end: 1 },
-          duration: 0.5, ease: "none"
-        }, 0.5);
-        tl.set(boy2GroupRef.current, { opacity: 0 }, 1.0);
+          // Boy 18 reveal
+          if (mobCircle18Ref.current) {
+            mobTl.to(mobCircle18Ref.current, { scale: 1.15, borderColor: '#f97316', duration: 0.2 }, 0.3);
+            mobTl.to(mobCircle18Ref.current.querySelector('.mob-badge-num'), { opacity: 0, duration: 0.1 }, 0.3);
+            mobTl.to(mobCircle18Ref.current.querySelector('.mob-badge-img'), { opacity: 1, scale: 1, duration: 0.2 }, 0.3);
+          }
+          if (mobCard18Ref.current) {
+            mobTl.to(mobCard18Ref.current, { opacity: 1, y: 0, duration: 0.2 }, 0.35);
+          }
 
-        // 3. BOY 3 ARRIVAL (1.0 scroll)
-        tl.to(boy3CircleRef.current, { opacity: 0, duration: 0.02 }, 0.98);
-        tl.to(boy3FaceRef.current, { opacity: 1, duration: 0.02 }, 0.98);
-        tl.to(box22Ref.current, { opacity: 1, duration: 0.05 }, 0.98);
+          // Boy 22 reveal
+          if (mobCircle22Ref.current) {
+            mobTl.to(mobCircle22Ref.current, { scale: 1.15, borderColor: '#f97316', duration: 0.2 }, 0.6);
+            mobTl.to(mobCircle22Ref.current.querySelector('.mob-badge-num'), { opacity: 0, duration: 0.1 }, 0.6);
+            mobTl.to(mobCircle22Ref.current.querySelector('.mob-badge-img'), { opacity: 1, scale: 1, duration: 0.2 }, 0.6);
+          }
+          if (mobCard22Ref.current) {
+            mobTl.to(mobCard22Ref.current, { opacity: 1, y: 0, duration: 0.2 }, 0.65);
+          }
+        }
 
       }, heroRef);
     };
@@ -237,23 +288,41 @@ export default function NewHero({ navigate }) {
         {/* Mobile Vertical S-Curve Timeline (Design Spec) */}
         <div className="mobile-receipt-timeline mobile-only">
           <div className="mobile-timeline-step step-16">
-            <div className="mobile-badge-circle">16</div>
+            <div className="mobile-badge-circle" ref={mobCircle16Ref}>
+              <span className="mob-badge-num">16</span>
+              <img src="/boy16.png" alt="16" className="mob-badge-img" />
+            </div>
             <p className="mobile-step-desc">You enter the system.</p>
+            <div className="mobile-event-card card-16" ref={mobCard16Ref}>
+              Lakhs to a coaching institute to crack JEE/NEET.
+            </div>
           </div>
 
           <div className="mobile-timeline-step step-18">
-            <div className="mobile-badge-circle">18</div>
+            <div className="mobile-badge-circle" ref={mobCircle18Ref}>
+              <span className="mob-badge-num">18</span>
+              <img src="/boy18.png" alt="18" className="mob-badge-img" />
+            </div>
             <p className="mobile-step-desc">You prepare for the exam.</p>
+            <div className="mobile-event-card card-18" ref={mobCard18Ref}>
+              9 out of 10 don't crack it. So: lakhs more to college.
+            </div>
           </div>
 
           <div className="mobile-timeline-step step-22">
-            <div className="mobile-badge-circle">22</div>
+            <div className="mobile-badge-circle" ref={mobCircle22Ref}>
+              <span className="mob-badge-num">22</span>
+              <img src="/boy22.png" alt="22" className="mob-badge-img" />
+            </div>
             <p className="mobile-step-desc">You get a degree.<br />Not a skill.</p>
+            <div className="mobile-event-card card-22" ref={mobCard22Ref}>
+              Job barely covers living expenses. Buy next exam: CAT/UPSC.
+            </div>
           </div>
 
-          <svg className="mobile-s-path-svg" viewBox="0 0 280 240" preserveAspectRatio="none">
+          <svg className="mobile-s-path-svg" viewBox="0 0 280 200" preserveAspectRatio="none">
             <path
-              d="M 60 25 H 220 V 105 H 60 V 185 H 220"
+              d="M 50 20 H 230 V 85 H 50 V 150 H 230"
               fill="none"
               stroke="#1C1B17"
               strokeWidth="3"
