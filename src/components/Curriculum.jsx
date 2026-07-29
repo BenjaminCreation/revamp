@@ -1,27 +1,92 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+
+const DISCIPLINES = [
+  { name: 'Marketing',      count: 2, desc: 'Learn how to be omnipresent.' },
+  { name: 'Strategy',       count: 2, desc: 'Understand what games you will play and how to win them.' },
+  { name: 'Finance',        count: 2, desc: 'Learn the business language so you are never suprised.' },
+  { name: 'Sales',          count: 1, desc: 'Learn how to close. Most important.' },
+  { name: 'Founder Tech',   count: 2, desc: 'Learn the relevant tools & move fast with AI.' },
+  { name: 'Audit & Legal',  count: 1, desc: 'GST/other docs: Get on top of all legality' },
+];
 
 export default function Curriculum() {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const marquee = section.querySelector('.curriculum-marquee-inner');
+    if (!marquee) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        marquee.classList.toggle('marquee-paused', !entry.isIntersecting);
+      },
+      { threshold: 0 }
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="frame">
-      <span className="tag">Home · 07 · Curriculum</span>
-      <h2 style={{ fontSize: '28px' }}>The classroom: 10 live sessions.</h2>
-      <div className="disc">
-        <div className="d"><b>Marketing</b><span className="mono">× 2</span></div>
-        <div className="d"><b>Strategy</b><span class="mono">× 2</span></div>
-        <div className="d"><b>Finance</b><span class="mono">× 2</span></div>
-        <div className="d"><b>Sales</b><span class="mono">× 1</span></div>
-        <div className="d"><b>Founder Tech</b><span class="mono">× 2</span></div>
-        <div className="d"><b>Audit &amp; Legal</b><span class="mono">× 1</span></div>
+    <section className="curriculum-section" ref={sectionRef}>
+      <div className="curriculum-main-box">
+        <div className="curriculum-marquee">
+          <div className="curriculum-marquee-inner">
+            <div className="curriculum-marquee-content">
+              <span className="marquee-item">LEARN BY BUILDING</span>
+              <span className="marquee-item">✦</span>
+              <span className="marquee-item">PRACTICALITY OVER THEORY</span>
+              <span className="marquee-item">✦</span>
+              <span className="marquee-item">INDIAN CASE STUDIES</span>
+              <span className="marquee-item">✦</span>
+              <span className="marquee-item">REAL BUSINESSES</span>
+              <span className="marquee-item">✦</span>
+            </div>
+            <div className="curriculum-marquee-content" aria-hidden="true">
+              <span className="marquee-item">LEARN BY BUILDING</span>
+              <span className="marquee-item">✦</span>
+              <span className="marquee-item">PRACTICALITY OVER THEORY</span>
+              <span className="marquee-item">✦</span>
+              <span className="marquee-item">INDIAN CASE STUDIES</span>
+              <span className="marquee-item">✦</span>
+              <span className="marquee-item">REAL BUSINESSES</span>
+              <span className="marquee-item">✦</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="curriculum-container">
+          {/* Left Column: Heading and copy */}
+          <div className="curriculum-left">
+            <h2 className="curriculum-title">
+              The classroom: <span className="curriculum-highlight-box yellow-highlight">10 live sessions.</span>
+            </h2>
+            <p className="curriculum-text-box">
+              Every session is live, taught with Indian case studies and dhandha you can use the same week.
+            </p>
+            <p className="curriculum-footnote mono">
+              Full session-by-session syllabus drops before applications close.
+            </p>
+          </div>
+
+          {/* Right Column: Grid of discipline cards */}
+          <div className="curriculum-right">
+            <div className="curriculum-disc-grid">
+              {DISCIPLINES.map(({ name, count, desc }) => (
+                <div className="curriculum-disc-card" key={name}>
+                  <div className="curriculum-disc-left">
+                    <span className="curriculum-disc-num">{count}</span>
+                  </div>
+                  <div className="curriculum-disc-right">
+                    <span className="curriculum-disc-name">{name}</span>
+                    <span className="curriculum-disc-desc">{desc}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
-      <p className="sub" style={{ marginTop: '14px', fontSize: '14.5px' }}>
-        Every session is live, taught with Indian case studies and dhandha you can use the same week.
-      </p>
-      <p className="mono" style={{ fontSize: '12px', color: 'var(--ink-soft)' }}>
-        Full session-by-session syllabus drops before applications close.
-      </p>
-      <span className="note">
-        <b>NOTE</b> Sales × 1 is my addition to your 9. Marketing gets attention; sales collects money. Both tracks die without it. Session details: brainstorm parked for 24 Jul.
-      </span>
-    </div>
+    </section>
   );
 }

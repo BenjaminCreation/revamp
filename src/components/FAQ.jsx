@@ -15,7 +15,7 @@ export default function FAQ() {
       </details>
       <details>
         <summary>How much money do I need to start?</summary>
-        <p>Hunarkhana: ₹0. Karkhana: a few thousand rupees, and the playbook makes your customers fund most of it through pre-orders.</p>
+        <p>SevaDaata: ₹0. Karkhana: a few thousand rupees, and the playbook makes your customers fund most of it through pre-orders.</p>
       </details>
       <details>
         <summary>How much time does it take?</summary>
@@ -27,7 +27,7 @@ export default function FAQ() {
       </details>
       <details>
         <summary>How is the Bangalore team picked?</summary>
-        <p>Week 4 demo: real numbers, real customers, real story. The cohort watches, we decide, and we explain the choice publicly.</p>
+        <p>We evaluate teams throughout the cohort and select the finalists. The cohort watches, we decide, and we explain the choice publicly.</p>
       </details>
       <details>
         <summary>Do I get a certificate?</summary>

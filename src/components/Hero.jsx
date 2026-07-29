@@ -53,10 +53,10 @@ function ScrollDashedPath({ d, width, height, className }) {
 
 export default function Hero({ navigate }) {
   return (
-    <div className="frame">
+    <div className="frame hero-frame">
       <span className="tag">Home · 01 · Hero</span>
       <div className="hero">
-        <div>
+        <div style={{ marginLeft: '-16px' }}>
           <div className="eyebrow">Dhandha School · Cohort 1</div>
           <h2>India doesn't have an education system. It has an exam system.</h2>
           <p className="sub">You've been its customer since you were 16. Here's the receipt.</p>
@@ -84,9 +84,9 @@ export default function Hero({ navigate }) {
           </a>
         </div>
         <div className="receipt">
-          <div class="stop">
+          <div className="stop">
             <span className="dot">16</span>
-            <span className="body"><b>At 16.</b> Lakhs to a coaching institute, to crack JEE.</span>
+            <span className="body"><b>At 16.</b> Lakhs to a coaching institute, to crack JEE/NEET.</span>
           </div>
           <ScrollDashedPath 
             className="curve" 
@@ -94,7 +94,7 @@ export default function Hero({ navigate }) {
             height={46} 
             d="M20 2 C 20 26, 76 16, 76 44" 
           />
-          <div class="stop shift">
+          <div className="stop shift">
             <span className="dot">18</span>
             <span className="body"><b>At 18.</b> 9 out of 10 don't crack it. So: lakhs more, to a college you never wanted.</span>
           </div>
@@ -104,7 +104,7 @@ export default function Hero({ navigate }) {
             height={46} 
             d="M76 2 C 76 26, 20 16, 20 44" 
           />
-          <div class="stop">
+          <div className="stop">
             <span className="dot">22</span>
             <span className="body"><b>At 22.</b> A job that barely covers rent. So you buy the next exam. CAT. Or UPSC.</span>
           </div>

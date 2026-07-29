@@ -2,85 +2,130 @@ import React from 'react';
 
 export default function WeekMap() {
   return (
-    <div className="frame">
-      <span className="tag">Home · 08 · The 4-week map</span>
-      <h2 style={{ fontSize: '28px' }}>Four weeks. This is the map.</h2>
-      <div className="maphead">
-        <span>Karkhana checkpoint</span>
-        <span>Week · Sessions</span>
-        <span>Hunarkhana checkpoint</span>
-      </div>
+    <section className="weekmap-section">
+      <div className="weekmap-inner">
 
-      <div className="week">
-        <div className="cp">
-          <span className="who mono">Karkhana</span>
-          Niche picked, product idea locked, supplier shortlist. 10 customer conversations.
+        {/* Header */}
+        <div className="weekmap-header">
+          <h2 className="weekmap-title">
+            <span className="wm-highlight-box yellow-highlight">FOUR WEEKS.</span> THIS IS THE <span className="wm-highlight-box blue-highlight">MAP.</span>
+          </h2>
+          <div className="weekmap-subtitle-box">
+            Sessions run down the centre. Your track's checkpoint flanks left or right.
+          </div>
         </div>
-        <div className="wk-mid">
-          <span className="wno mono">Week 1</span>
-          <h3>Find your dhandha</h3>
-          <span className="sess mono">Strategy 1 · Marketing 1</span>
-        </div>
-        <div className="cp">
-          <span className="who mono">Hunarkhana</span>
-          Service picked, 25 target businesses listed. 10 customer conversations.
-        </div>
-      </div>
 
-      <div className="week">
-        <div className="cp">
-          <span className="who mono">Karkhana</span>
-          Final design, supplier quote, pre-order page live.
-        </div>
-        <div className="wk-mid">
-          <span className="wno mono">Week 2</span>
-          <h3>Make the offer</h3>
-          <span className="sess mono">Sales · Founder Tech 1</span>
-        </div>
-        <div className="cp">
-          <span className="who mono">Hunarkhana</span>
-          Offer packaged and priced, first 10 pitches made.
-        </div>
-      </div>
+        {/* Timeline Grid Wrapped in a Box */}
+        <div className="wm-main-box">
+          <div className="wm-timeline">
+          
+          {/* Column 1 */}
+          <div className="wm-col">
+            <div className="wm-bar wm-black">
+              <span className="wm-bar-text">Week</span>
+            </div>
+            <div className="wm-cell">
+              <div className="wm-week-box wm-week-1">
+                <span className="wm-wno">Week 1</span>
+                <strong className="wm-theme">Understand The Basics</strong>
+              </div>
+            </div>
+            <div className="wm-cell">
+              <div className="wm-week-box wm-week-2">
+                <span className="wm-wno">Week 2</span>
+                <strong className="wm-theme">Learn To Play The Game</strong>
+              </div>
+            </div>
+            <div className="wm-cell">
+              <div className="wm-week-box wm-week-3">
+                <span className="wm-wno">Week 3</span>
+                <strong className="wm-theme">Build Your Unfair Advantage</strong>
+              </div>
+            </div>
+            <div className="wm-cell">
+              <div className="wm-week-box wm-week-4">
+                <span className="wm-wno">Week 4</span>
+                <strong className="wm-theme">Get Legally Ready</strong>
+              </div>
+            </div>
+          </div>
 
-      <div className="week">
-        <div className="cp">
-          <span className="who mono">Karkhana</span>
-          Pre-order window open, first paid orders in.
-        </div>
-        <div className="wk-mid">
-          <span className="wno mono">Week 3</span>
-          <h3>Collect money</h3>
-          <span className="sess mono">Finance 1 · Marketing 2</span>
-        </div>
-        <div className="cp">
-          <span className="who mono">Hunarkhana</span>
-          First paying client closed.
-        </div>
-      </div>
+          {/* Divider 1 */}
+          <div className="wm-v-divider-wrap">
+            <div className="wm-v-divider"></div>
+          </div>
 
-      <div className="week">
-        <div className="cp">
-          <span className="who mono">Karkhana</span>
-          Deliver orders. One-page P&amp;L. Demo pitch.
-        </div>
-        <div className="wk-mid">
-          <span className="wno mono">Week 4</span>
-          <h3>Deliver and account</h3>
-          <span className="sess mono">Finance 2 · Founder Tech 2 · Audit &amp; Legal</span>
-        </div>
-        <div className="cp">
-          <span className="who mono">Hunarkhana</span>
-          Deliver the work. One-page P&amp;L. Demo pitch.
-        </div>
-      </div>
+          {/* Column 2 */}
+          <div className="wm-col">
+            <div className="wm-bar wm-blue">
+              <span className="wm-bar-text">Sessions</span>
+            </div>
+            <div className="wm-cell">
+              <span className="wm-sessions">Strategy 1 &middot; Marketing 1 &middot; Finance 1</span>
+            </div>
+            <div className="wm-cell">
+              <span className="wm-sessions">Sales 1 &middot; Founder Tech 1 &middot; Strategy 2</span>
+            </div>
+            <div className="wm-cell">
+              <span className="wm-sessions">Founder Tech 2 &middot; Marketing 2</span>
+            </div>
+            <div className="wm-cell">
+              <span className="wm-sessions">Finance 2 &middot; Audit &amp; Legal 1</span>
+            </div>
+          </div>
 
-      <p style={{ textAlign: 'center', fontFamily: '"Avenir Next Condensed", sans-serif', fontWeight: 800, fontSize: '18px', margin: '16px 0 0' }}>
-        One pitch gets picked. ↓
-      </p>
-      <span className="note">
-        <b>NOTE</b> Desktop: sessions run down the centre, track checkpoints flank left and right, so the bifurcation from section 06 visibly continues. Mobile: weeks stack vertically, checkpoints as chips. All content provisional until the session brainstorm.
-      </span>
-    </div>
+          {/* Divider 2 */}
+          <div className="wm-v-divider-wrap">
+            <div className="wm-v-divider"></div>
+          </div>
+
+          {/* Column 3 */}
+          <div className="wm-col">
+            <div className="wm-bar wm-green">
+              <span className="wm-bar-text">Karkhana Checkpoint</span>
+            </div>
+            <div className="wm-cell">
+              <p className="wm-checkpoint">Niche picked, product idea locked, supplier shortlist. <br /> 10 customer conversations.</p>
+            </div>
+            <div className="wm-cell">
+              <p className="wm-checkpoint">Final design, supplier quote, pre-order page live.</p>
+            </div>
+            <div className="wm-cell">
+              <p className="wm-checkpoint">Pre-order window open, first paid orders in.</p>
+            </div>
+            <div className="wm-cell">
+              <p className="wm-checkpoint">Deliver orders. One-page P&amp;L. Demo pitch.</p>
+            </div>
+          </div>
+
+          {/* Divider 3 */}
+          <div className="wm-v-divider-wrap">
+            <div className="wm-v-divider"></div>
+          </div>
+
+          {/* Column 4 */}
+          <div className="wm-col">
+            <div className="wm-bar wm-orange">
+              <span className="wm-bar-text">SevaDaata checkpoint</span>
+            </div>
+            <div className="wm-cell">
+              <p className="wm-checkpoint">Service picked, 25 target businesses listed. 10 customer conversations.</p>
+            </div>
+            <div className="wm-cell">
+              <p className="wm-checkpoint">Offer packaged and priced, first 10 pitches made.</p>
+            </div>
+            <div className="wm-cell">
+              <p className="wm-checkpoint">First paying client closed.</p>
+            </div>
+            <div className="wm-cell">
+              <p className="wm-checkpoint">Deliver the work. One-page P&amp;L. Demo pitch.</p>
+            </div>
+          </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
   );
 }

@@ -560,6 +560,6 @@ export default function Apply() {
           <b>NOTE</b> Multi-step form &middot; no payment on this page.
         </span>
       </div>
-    </>
+    </section>
   );
 }
