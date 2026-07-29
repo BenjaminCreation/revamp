@@ -1,565 +1,504 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import ConfettiEffect from './ConfettiEffect';
 
-// In production → absolute URL to the API worker
-// In local dev  → Vite proxies /api/* to localhost:8787 (see vite.config.js)
 const API_URL =
   import.meta.env.PROD
     ? 'https://dhandha-api.gauravkalal134.workers.dev/api/apply'
     : '/api/apply';
 
-// ─── Constants ───────────────────────────────────────────────────────────────
 
-const TRACKS = [
-  {
-    id: 'karkhana',
-    label: 'KARKHANA',
-    sub: 'Maker Track',
-    desc: 'Build a physical or digital product. Validate fast, pre-sell before you produce.',
-  },
-  {
-    id: 'sevadaata',
-    label: 'SEVADAATA',
-    sub: 'Skills Track',
-    desc: 'Sell a skill or service. Zero capital needed. Start from what you already know.',
-  },
+const HEARD_FROM_OPTIONS = [
+  { value: 'twitter',   label: 'Twitter / X' },
+  { value: 'instagram', label: 'Instagram' },
+  { value: 'linkedin',  label: 'LinkedIn' },
+  { value: 'youtube',   label: 'YouTube' },
+  { value: 'friend',    label: 'Friend / Word of mouth' },
+  { value: 'whatsapp',  label: 'WhatsApp group' },
+  { value: 'college',   label: 'College / University' },
+  { value: 'google',    label: 'Google Search' },
+  { value: 'podcast',   label: 'Podcast' },
+  { value: 'other',     label: 'Other' },
 ];
 
-const HOW_FOUND_OPTIONS = [
-  'Twitter / X',
-  'Instagram',
-  'LinkedIn',
-  'YouTube',
-  'Friend / Word of mouth',
-  'WhatsApp group',
-  'College / University',
-  'Google Search',
-  'Podcast',
-  'Other',
-];
-
-const TOTAL_STEPS = 3;
-
-// ─── Field wrapper ────────────────────────────────────────────────────────────
-
-function Field({ label, id, hint, required, error, children }) {
-  return (
-    <div className="apply-field">
-      {label && (
-        <label htmlFor={id} className="apply-label">
-          {label}
-          {required && <span className="apply-required" aria-hidden="true"> *</span>}
-        </label>
-      )}
-      {hint && <p className="apply-field-hint">{hint}</p>}
-      {children}
-      {error && (
-        <span className="apply-field-error" role="alert">{error}</span>
-      )}
-    </div>
-  );
-}
-
-// ─── Step 1 · Who You Are ─────────────────────────────────────────────────────
-
-function Step1({ data, onChange, errors }) {
-  return (
-    <div className="apply-step-body">
-      <div className="apply-step-intro">
-        <span className="apply-step-eyebrow">Step 1 of 3</span>
-        <h3 className="apply-step-title">Who You Are</h3>
-        <p className="apply-step-desc">
-          Name, age, city, WhatsApp, email, what you do right now.
-        </p>
-      </div>
-
-      <div className="apply-grid-2">
-        <Field label="Full Name" id="full_name" required error={errors.full_name}>
-          <input
-            id="full_name"
-            className={`apply-input ${errors.full_name ? 'is-error' : ''}`}
-            type="text"
-            placeholder="e.g. Arjun Sharma"
-            value={data.full_name}
-            onChange={e => onChange('full_name', e.target.value)}
-            autoComplete="name"
-          />
-        </Field>
-
-        <Field label="Age" id="age" required error={errors.age}>
-          <input
-            id="age"
-            className={`apply-input ${errors.age ? 'is-error' : ''}`}
-            type="number"
-            min="13"
-            max="60"
-            placeholder="e.g. 21"
-            value={data.age}
-            onChange={e => onChange('age', e.target.value)}
-          />
-        </Field>
-      </div>
-
-      <div className="apply-grid-2">
-        <Field label="Email Address" id="email" required error={errors.email}>
-          <input
-            id="email"
-            className={`apply-input ${errors.email ? 'is-error' : ''}`}
-            type="email"
-            placeholder="name@example.com"
-            value={data.email}
-            onChange={e => onChange('email', e.target.value)}
-            autoComplete="email"
-          />
-        </Field>
-
-        <Field label="WhatsApp Number" id="whatsapp" required error={errors.whatsapp}>
-          <input
-            id="whatsapp"
-            className={`apply-input ${errors.whatsapp ? 'is-error' : ''}`}
-            type="tel"
-            placeholder="+91 XXXXX XXXXX"
-            value={data.whatsapp}
-            onChange={e => onChange('whatsapp', e.target.value)}
-            autoComplete="tel"
-          />
-        </Field>
-      </div>
-
-      <div className="apply-grid-2">
-        <Field label="City / Town" id="city" required error={errors.city}>
-          <input
-            id="city"
-            className={`apply-input ${errors.city ? 'is-error' : ''}`}
-            type="text"
-            placeholder="e.g. Bangalore"
-            value={data.city}
-            onChange={e => onChange('city', e.target.value)}
-          />
-        </Field>
-
-        <Field label="What do you do right now?" id="current_role" required error={errors.current_role}>
-          <input
-            id="current_role"
-            className={`apply-input ${errors.current_role ? 'is-error' : ''}`}
-            type="text"
-            placeholder="e.g. Student / Working"
-            value={data.current_role}
-            onChange={e => onChange('current_role', e.target.value)}
-          />
-        </Field>
-      </div>
-    </div>
-  );
-}
-
-// ─── Step 2 · Your Mindset ────────────────────────────────────────────────────
-
-function Step2({ data, onChange, errors }) {
-  return (
-    <div className="apply-step-body">
-      <div className="apply-step-intro">
-        <span className="apply-step-eyebrow">Step 2 of 3</span>
-        <h3 className="apply-step-title">Your Mindset</h3>
-        <p className="apply-step-desc">
-          Track choice + &ldquo;sell us something you&rsquo;ve sold&rdquo; + &ldquo;what will you cut to make 10 hrs/week&rdquo;.
-        </p>
-      </div>
-
-      {/* Track selection */}
-      <Field label="Choose your track" id="track" required error={errors.track}>
-        <div className="apply-track-cards" role="radiogroup" aria-label="Track selection">
-          {TRACKS.map(t => (
-            <button
-              key={t.id}
-              type="button"
-              role="radio"
-              aria-checked={data.track === t.id}
-              id={`track-${t.id}`}
-              className={`apply-track-card ${data.track === t.id ? 'is-selected' : ''}`}
-              onClick={() => onChange('track', t.id)}
-            >
-              <strong className="apply-track-name">{t.label}</strong>
-              <span className="apply-track-sub">{t.sub}</span>
-              <span className="apply-track-desc">{t.desc}</span>
-            </button>
-          ))}
-        </div>
-      </Field>
-
-      <Field
-        label="Sell us something you've sold in the past (or explain how you would sell it)"
-        id="sold_story"
-        required
-        hint="Be honest and specific. What did you sell, to whom, and for how much?"
-        error={errors.sold_story}
-      >
-        <textarea
-          id="sold_story"
-          className={`apply-textarea ${errors.sold_story ? 'is-error' : ''}`}
-          rows={4}
-          placeholder="Be honest and specific. What did you sell, to whom, and for how much?"
-          value={data.sold_story}
-          onChange={e => onChange('sold_story', e.target.value)}
-        />
-      </Field>
-
-      <Field
-        label="What will you cut from your routine to make 10 hours/week?"
-        id="time_commitment"
-        required
-        error={errors.time_commitment}
-      >
-        <textarea
-          id="time_commitment"
-          className={`apply-textarea ${errors.time_commitment ? 'is-error' : ''}`}
-          rows={3}
-          placeholder="e.g. Reduce social media / skip college clubs / adjust weekend schedules..."
-          value={data.time_commitment}
-          onChange={e => onChange('time_commitment', e.target.value)}
-        />
-      </Field>
-
-      <Field
-        label="Tell us about your background, your life story. You can be as brief or as detailed as you want."
-        id="background_story"
-        required
-        error={errors.background_story}
-      >
-        <textarea
-          id="background_story"
-          className={`apply-textarea ${errors.background_story ? 'is-error' : ''}`}
-          rows={4}
-          placeholder="Your story..."
-          value={data.background_story}
-          onChange={e => onChange('background_story', e.target.value)}
-        />
-      </Field>
-
-      <Field
-        label="Why should you be part of the founding cohort of Dhandha School?"
-        id="why_apply"
-        required
-        error={errors.why_apply}
-      >
-        <textarea
-          id="why_apply"
-          className={`apply-textarea ${errors.why_apply ? 'is-error' : ''}`}
-          rows={4}
-          placeholder="Why you?"
-          value={data.why_apply}
-          onChange={e => onChange('why_apply', e.target.value)}
-        />
-      </Field>
-    </div>
-  );
-}
-
-// ─── Step 3 · The Handshake ───────────────────────────────────────────────────
-
-function Step3({ data, onChange, errors }) {
-  const toggleHowFound = (option) => {
-    const current = data.how_found;
-    const updated = current.includes(option)
-      ? current.filter(o => o !== option)
-      : [...current, option];
-    onChange('how_found', updated);
-  };
-
-  return (
-    <div className="apply-step-body">
-      <div className="apply-step-intro">
-        <span className="apply-step-eyebrow">Step 3 of 3</span>
-        <h3 className="apply-step-title">The Handshake</h3>
-        <p className="apply-step-desc">
-          How you found us + live-attendance and checkpoint commitments. Fee shown, payable only if selected.
-        </p>
-      </div>
-
-      {/* How found — multi-select pills */}
-      <Field
-        label="Where did you hear about Dhandha School?"
-        id="how_found"
-        hint="(tick all that apply)"
-        required
-        error={errors.how_found}
-      >
-        <div className="apply-pills" role="group" aria-label="How did you find us">
-          {HOW_FOUND_OPTIONS.map(opt => (
-            <button
-              key={opt}
-              type="button"
-              id={`how-found-${opt.replace(/\W+/g, '-').toLowerCase()}`}
-              className={`apply-pill ${data.how_found.includes(opt) ? 'is-selected' : ''}`}
-              aria-pressed={data.how_found.includes(opt)}
-              onClick={() => toggleHowFound(opt)}
-            >
-              {opt}
-            </button>
-          ))}
-        </div>
-      </Field>
-
-      {/* Commitments */}
-      <div className="apply-commitments">
-        <p className="apply-commit-title">Commitments</p>
-
-        <label className={`apply-check-row ${errors.attend_commit ? 'is-error' : ''}`}>
-          <input
-            id="attend_commit"
-            type="checkbox"
-            className="apply-checkbox"
-            checked={data.attend_commit}
-            onChange={e => onChange('attend_commit', e.target.checked)}
-          />
-          <span>
-            I commit to <strong>attending live sessions</strong> and collaborating with cohort members.
-          </span>
-        </label>
-        {errors.attend_commit && (
-          <span className="apply-field-error" role="alert">{errors.attend_commit}</span>
-        )}
-
-        <label className={`apply-check-row ${errors.checkpoint_commit ? 'is-error' : ''}`}>
-          <input
-            id="checkpoint_commit"
-            type="checkbox"
-            className="apply-checkbox"
-            checked={data.checkpoint_commit}
-            onChange={e => onChange('checkpoint_commit', e.target.checked)}
-          />
-          <span>
-            I commit to <strong>completing weekly checkpoints</strong> for my selected track alone.
-          </span>
-        </label>
-        {errors.checkpoint_commit && (
-          <span className="apply-field-error" role="alert">{errors.checkpoint_commit}</span>
-        )}
-      </div>
-
-      {/* Fee box */}
-      <div className="apply-fee-note">
-        <div className="apply-fee-inner">
-          <p className="apply-fee-label">Program Fee</p>
-          <div className="apply-fee-price">
-            <span className="apply-fee-struck">&#8377;14,999</span>
-            <span className="apply-fee-badge">Free to Apply</span>
-          </div>
-          <p className="apply-fee-sub">First Cohort is Completely Free.</p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ─── Success screen ────────────────────────────────────────────────────────────
-
-function SuccessScreen({ submissionId }) {
-  return (
-    <div className="apply-success">
-      <div className="apply-success-icon" aria-hidden="true">&#10003;</div>
-      <h3 className="apply-success-title">Application received.</h3>
-      <p className="apply-success-body">
-        We read every application personally. If you&rsquo;re a fit, we&rsquo;ll reach out on WhatsApp within 5&ndash;7 days.
-      </p>
-      <p className="apply-success-id">
-        Reference: <code>{submissionId}</code>
-      </p>
-    </div>
-  );
-}
-
-// ─── Progress bar ──────────────────────────────────────────────────────────────
-
-function ProgressBar({ step }) {
-  return (
-    <div className="apply-progress" aria-label={`Step ${step} of ${TOTAL_STEPS}`}>
-      {Array.from({ length: TOTAL_STEPS }, (_, i) => (
-        <div
-          key={i}
-          className={`apply-progress-seg ${i < step ? 'is-done' : ''}`}
-        />
-      ))}
-    </div>
-  );
-}
-
-// ─── Initial state ─────────────────────────────────────────────────────────────
-
-const INITIAL_DATA = {
-  // Step 1
-  full_name: '', age: '', email: '', whatsapp: '', city: '', current_role: '',
-  // Step 2
-  track: '', sold_story: '', time_commitment: '', background_story: '', why_apply: '',
-  // Step 3
-  how_found: [], attend_commit: false, checkpoint_commit: false,
-};
-
-// ─── Main component ────────────────────────────────────────────────────────────
-
-export default function Apply() {
-  const [step, setStep]             = useState(1);
-  const [data, setData]             = useState(INITIAL_DATA);
-  const [errors, setErrors]         = useState({});
+export default function Apply({ navigate, isStandalone = false }) {
+  const [activeStep, setActiveStep] = useState(1);
+  const [formData, setFormData] = useState({
+    name: '',
+    age: '',
+    city: '',
+    whatsapp: '',
+    email: '',
+    whatYouDo: '',
+    trackChoice: 'maker',
+    soldSomething: '',
+    whatToCut: '',
+    backgroundStory: '',
+    whyJoin: '',
+    howFound: [],
+    commitLive: false,
+    commitCheckpoint: false
+  });
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [apiError, setApiError]     = useState('');
-  const [submissionId, setSubmissionId] = useState(null);
+  const [apiError, setApiError] = useState('');
+  const [errors, setErrors] = useState({});
+  const [shakingFields, setShakingFields] = useState([]);
 
-  const onChange = (field, value) => {
-    setData(prev => ({ ...prev, [field]: value }));
-    setErrors(prev => ({ ...prev, [field]: '' }));
+  const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: null }));
+    }
   };
 
-  // ── Per-step validation ────────────────────────────────────────────────────
+  const toggleHowFound = (val) => {
+    setFormData(prev => {
+      const current = prev.howFound;
+      const updated = current.includes(val)
+        ? current.filter(v => v !== val)
+        : [...current, val];
+      return { ...prev, howFound: updated };
+    });
+    if (errors.howFound) setErrors(prev => ({ ...prev, howFound: null }));
+  };
 
-  function validateStep(s) {
-    const e = {};
-    if (s === 1) {
-      if (!data.full_name.trim())    e.full_name    = 'Please enter your name.';
-      const age = Number(data.age);
-      if (!data.age)                 e.age          = 'Please enter your age.';
-      else if (age < 13 || age > 60) e.age          = 'Age must be between 13 and 60.';
-      if (!data.email.trim())        e.email        = 'Please enter your email.';
-      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email))
-                                     e.email        = 'Please enter a valid email.';
-      if (!data.whatsapp.trim())     e.whatsapp     = 'Please enter your WhatsApp number.';
-      if (!data.city.trim())         e.city         = 'Please enter your city.';
-      if (!data.current_role.trim()) e.current_role = 'Please describe what you do.';
-    }
-    if (s === 2) {
-      if (!data.track)               e.track            = 'Please choose a track.';
-      if (!data.sold_story.trim())   e.sold_story       = 'Please answer this question.';
-      if (!data.time_commitment.trim()) e.time_commitment = 'Please answer this question.';
-      if (!data.background_story.trim()) e.background_story = 'Please tell us your story.';
-      if (!data.why_apply.trim())    e.why_apply        = 'Please answer this question.';
-    }
-    if (s === 3) {
-      if (data.how_found.length === 0) e.how_found    = 'Please select at least one option.';
-      if (!data.attend_commit)          e.attend_commit = 'Please confirm this commitment.';
-      if (!data.checkpoint_commit)      e.checkpoint_commit = 'Please confirm this commitment.';
-    }
-    return e;
-  }
+  const triggerShake = useCallback((fieldNames) => {
+    setShakingFields(fieldNames);
+    setTimeout(() => setShakingFields([]), 500);
+  }, []);
 
-  const next = () => {
-    const errs = validateStep(step);
-    if (Object.keys(errs).length) { setErrors(errs); return; }
+  const goToStep = (step) => {
     setErrors({});
-    setStep(s => s + 1);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setShakingFields([]);
+    setActiveStep(step);
   };
 
-  const back = () => {
-    setErrors({});
-    setStep(s => s - 1);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const validateStep = (step) => {
+    const newErrors = {};
+    if (step === 1) {
+      if (!formData.name.trim()) newErrors.name = true;
+      if (!formData.age.trim()) newErrors.age = true;
+      if (!formData.city.trim()) newErrors.city = true;
+      if (!formData.whatsapp.trim()) newErrors.whatsapp = true;
+      if (!formData.email.trim()) newErrors.email = true;
+      if (!formData.whatYouDo.trim()) newErrors.whatYouDo = true;
+    } else if (step === 2) {
+      if (!formData.soldSomething.trim()) newErrors.soldSomething = true;
+      if (!formData.whatToCut.trim()) newErrors.whatToCut = true;
+      if (!formData.backgroundStory.trim()) newErrors.backgroundStory = true;
+      if (!formData.whyJoin.trim()) newErrors.whyJoin = true;
+    } else if (step === 3) {
+      if (formData.howFound.length === 0) newErrors.howFound = true;
+      if (!formData.commitLive) newErrors.commitLive = true;
+      if (!formData.commitCheckpoint) newErrors.commitCheckpoint = true;
+    }
+    setErrors(newErrors);
+    const invalidFields = Object.keys(newErrors);
+    if (invalidFields.length > 0) triggerShake(invalidFields);
+    return invalidFields.length === 0;
   };
 
-  const submit = async () => {
-    const errs = validateStep(3);
-    if (Object.keys(errs).length) { setErrors(errs); return; }
+  const fieldClass = (name) => {
+    const classes = [];
+    if (errors[name]) classes.push('error');
+    if (shakingFields.includes(name)) classes.push('shake');
+    return classes.join(' ');
+  };
 
-    setSubmitting(true);
-    setApiError('');
+  const handleNext = () => {
+    if (validateStep(activeStep)) {
+      setActiveStep(prev => prev + 1);
+    }
+  };
 
-    try {
-      const res = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...data,
-          age: Number(data.age),
-          // how_found is already an array — pass as-is
-        }),
-      });
+  const handleBack = () => {
+    goToStep(activeStep - 1);
+  };
 
-      const result = await res.json();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (validateStep(3)) {
+      setSubmitting(true);
+      setApiError('');
+      try {
+        const res = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            full_name: formData.name,
+            age: Number(formData.age),
+            email: formData.email,
+            whatsapp: formData.whatsapp,
+            city: formData.city,
+            current_role: formData.whatYouDo,
+            track: formData.trackChoice === 'maker' ? 'karkhana' : 'sevadaata',
+            sold_story: formData.soldSomething,
+            time_commitment: formData.whatToCut,
+            background_story: formData.backgroundStory,
+            why_apply: formData.whyJoin,
+            how_found: formData.howFound,
+            attend_commit: formData.commitLive,
+            checkpoint_commit: formData.commitCheckpoint,
+          }),
+        });
 
-      if (!res.ok || !result.ok) {
-        throw new Error(
-          result.error ||
-          (Array.isArray(result.errors) ? result.errors.join(', ') : 'Something went wrong.'),
-        );
+        const result = await res.json();
+        if (!res.ok || !result.ok) {
+          throw new Error(result.error || 'Failed to submit application.');
+        }
+
+        setIsSubmitted(true);
+      } catch (err) {
+        setApiError(err.message || 'Something went wrong.');
+      } finally {
+        setSubmitting(false);
       }
-
-      setSubmissionId(result.submission_id);
-    } catch (err) {
-      setApiError(err.message);
-    } finally {
-      setSubmitting(false);
     }
   };
-
-  // ── Render ────────────────────────────────────────────────────────────────
 
   return (
-    <>
-      <p className="pagebreak-label">Separate page &middot; /apply</p>
-      <div className="frame pagebreak" style={{ marginTop: '12px' }}>
-        <span className="tag">/apply &middot; Application</span>
+    <section className={`apply-section ${isStandalone ? 'standalone' : ''}`} id="apply">
+      <div className="apply-body">
+        {/* Header Text */}
+        <div className="apply-header">
+          <h2 className="apply-title">
+            <span className="apply-highlight-box">Apply for Cohort 1</span>
+          </h2>
+          <p className="apply-sub">
+            This is an application, not a checkout. We read every answer personally. About 5 minutes. Honest and specific beats polished and vague.
+          </p>
+        </div>
 
-        <h2 style={{ fontSize: '28px' }}>Apply for Cohort 1</h2>
-        <p className="sub" style={{ marginTop: '10px' }}>
-          This is an application, not a checkout. We read every answer personally. About 5 minutes.
-          Honest and specific beats polished and vague.
-        </p>
+        {/* Main Content Area */}
+        <div className="apply-content-container">
+          {/* Left Step Cards */}
+          <div className="apply-sidebar-steps">
+            <div
+              className={`apply-card card-1 ${activeStep === 1 ? 'active' : 'inactive'}`}
+              onClick={() => goToStep(1)}
+            >
+              <span className="apply-step-num">Step 1</span>
+              <h3>Who you are</h3>
+              <p>Name, age, city, WhatsApp, email, what you do right now.</p>
+            </div>
 
-        {submissionId ? (
-          <SuccessScreen submissionId={submissionId} />
-        ) : (
-          <div className="apply-form">
-            <ProgressBar step={step} />
+            <div
+              className={`apply-card card-2 ${activeStep === 2 ? 'active' : 'inactive'}`}
+              onClick={() => goToStep(2)}
+            >
+              <span className="apply-step-num">Step 2</span>
+              <h3>Your mindset</h3>
+              <p>Track choice + &ldquo;sell us something you&rsquo;ve sold&rdquo; + &ldquo;what will you cut to make 10 hrs/week&rdquo;.</p>
+            </div>
 
-            <form onSubmit={e => e.preventDefault()} noValidate aria-label="Cohort 1 application form">
-              {step === 1 && <Step1 data={data} onChange={onChange} errors={errors} />}
-              {step === 2 && <Step2 data={data} onChange={onChange} errors={errors} />}
-              {step === 3 && <Step3 data={data} onChange={onChange} errors={errors} />}
-
-              {apiError && (
-                <div className="apply-api-error" role="alert">{apiError}</div>
-              )}
-
-              <div className="apply-nav">
-                {step > 1 && (
-                  <button
-                    type="button"
-                    id="apply-back-btn"
-                    className="apply-btn-back"
-                    onClick={back}
-                    disabled={submitting}
-                  >
-                    Back
-                  </button>
-                )}
-
-                {step < TOTAL_STEPS ? (
-                  <button
-                    type="button"
-                    id="apply-next-btn"
-                    className="apply-btn-next"
-                    onClick={next}
-                  >
-                    Next Step &rarr;
-                  </button>
-                ) : (
-                  <button
-                    type="button"
-                    id="apply-submit-btn"
-                    className="apply-btn-submit"
-                    onClick={submit}
-                    disabled={submitting}
-                  >
-                    {submitting ? 'Submitting\u2026' : 'Submit Application'}
-                  </button>
-                )}
-              </div>
-            </form>
+            <div
+              className={`apply-card card-3 ${activeStep === 3 ? 'active' : 'inactive'}`}
+              onClick={() => goToStep(3)}
+            >
+              <span className="apply-step-num">Step 3</span>
+              <h3>The handshake</h3>
+              <p>How you found us + live-attendance and checkpoint commitments. Fee shown, payable only if selected.</p>
+            </div>
           </div>
-        )}
 
-        <span className="note">
-          <b>NOTE</b> Multi-step form &middot; no payment on this page.
-        </span>
+          {/* Right Purple Rectangle Box with Form inside */}
+          <div className="apply-purple-box">
+            {isSubmitted ? (
+              <div className="apply-success">
+                <ConfettiEffect />
+                <div className="apply-success-header">
+                  <span className="success-highlight-box">Application Received!</span>
+                </div>
+                <p className="success-thanks">Thank you, <strong>{formData.name}</strong>.</p>
+                <p className="success-tagline">We read every answer personally. Honest and specific beats polished and vague.</p>
+                <div className="success-contact-grid">
+                  <div className="success-contact-card">
+                    <span className="success-contact-label">WhatsApp</span>
+                    <span className="success-contact-value">{formData.whatsapp}</span>
+                  </div>
+                  <div className="success-contact-card">
+                    <span className="success-contact-label">Email</span>
+                    <span className="success-contact-value">{formData.email}</span>
+                  </div>
+                </div>
+                <div className="success-next-box">
+                  <p>We will review your answers for <span className="success-em">Cohort 1</span> and reach out within <span className="success-em">48 hours</span>.</p>
+                </div>
+                <button type="button" className="success-home-btn" onClick={() => { if (isStandalone) { window.location.href = '/'; } else { navigate('/'); } }}>
+                  ← Back to Homepage
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="purple-form-inner">
+
+                {/* ── STEP 1 ── */}
+                {activeStep === 1 && (
+                  <div className="purple-form-step">
+                    <h3 className="purple-step-title"><span className="step-highlight-box">Step 1: Who You Are</span></h3>
+                    <div className="purple-form-grid">
+                      <div className="purple-form-group">
+                        <label htmlFor="name">Full Name</label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          placeholder="e.g. Arjun Sharma"
+                          className={fieldClass('name')}
+                        />
+                      </div>
+
+                      <div className="purple-form-group">
+                        <label htmlFor="age">Age</label>
+                        <input
+                          type="number"
+                          id="age"
+                          name="age"
+                          value={formData.age}
+                          onChange={handleInputChange}
+                          placeholder="e.g. 21"
+                          className={fieldClass('age')}
+                        />
+                      </div>
+
+                      <div className="purple-form-group">
+                        <label htmlFor="email">Email Address</label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          placeholder="name@example.com"
+                          className={fieldClass('email')}
+                        />
+                      </div>
+
+                      <div className="purple-form-group">
+                        <label htmlFor="whatsapp">WhatsApp Number</label>
+                        <input
+                          type="tel"
+                          id="whatsapp"
+                          name="whatsapp"
+                          value={formData.whatsapp}
+                          onChange={handleInputChange}
+                          placeholder="+91 XXXXX XXXXX"
+                          className={fieldClass('whatsapp')}
+                        />
+                      </div>
+
+                      <div className="purple-form-group">
+                        <label htmlFor="city">City / Town</label>
+                        <input
+                          type="text"
+                          id="city"
+                          name="city"
+                          value={formData.city}
+                          onChange={handleInputChange}
+                          placeholder="e.g. Bangalore"
+                          className={fieldClass('city')}
+                        />
+                      </div>
+
+                      <div className="purple-form-group">
+                        <label htmlFor="whatYouDo">What do you do right now?</label>
+                        <input
+                          type="text"
+                          id="whatYouDo"
+                          name="whatYouDo"
+                          value={formData.whatYouDo}
+                          onChange={handleInputChange}
+                          placeholder="e.g. Student / Working"
+                          className={fieldClass('whatYouDo')}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* ── STEP 2 ── */}
+                {activeStep === 2 && (
+                  <div className="purple-form-step step2-layout">
+                    <div className="step2-body">
+                      {/* Left: Track Image Selector */}
+                      <div className="track-image-selector">
+                        <h3 className="purple-step-title" style={{ marginTop: 0, marginBottom: '1.5rem' }}><span className="step-highlight-box">Step 2: Your Mindset</span></h3>
+                        <p className="track-choose-prompt">Choose your track</p>
+                        <div className="track-image-cards">
+                          <div
+                            className={`track-image-card ${formData.trackChoice === 'maker' ? 'selected' : 'dimmed'}`}
+                            onClick={() => setFormData(prev => ({ ...prev, trackChoice: 'maker' }))}
+                          >
+                            <img src="/karkhana.jpg" alt="Karkhana" className="track-img" />
+                            <span className="track-img-label">KARKHANA</span>
+                            <span className="track-img-sublabel">Maker Track</span>
+                          </div>
+                          <div
+                            className={`track-image-card ${formData.trackChoice === 'skills' ? 'selected' : 'dimmed'}`}
+                            onClick={() => setFormData(prev => ({ ...prev, trackChoice: 'skills' }))}
+                          >
+                            <img src="/hunarkhana.jpg" alt="SevaDaata" className="track-img" />
+                            <span className="track-img-label">SEVADAATA</span>
+                            <span className="track-img-sublabel">Skills Track</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Right: Textareas */}
+                      <div className="step2-textareas">
+                        <div className="purple-form-group">
+                          <label htmlFor="soldSomething">Sell us something you&rsquo;ve sold in the past (or explain how you would sell it)</label>
+                          <textarea
+                            id="soldSomething"
+                            name="soldSomething"
+                            value={formData.soldSomething}
+                            onChange={handleInputChange}
+                            placeholder="Be honest and specific. What did you sell, to whom, and for how much?"
+                            className={fieldClass('soldSomething')}
+                            rows={3}
+                          />
+                        </div>
+
+                        <div className="purple-form-group">
+                          <label htmlFor="whatToCut">What will you cut from your routine to make 10 hours/week?</label>
+                          <textarea
+                            id="whatToCut"
+                            name="whatToCut"
+                            value={formData.whatToCut}
+                            onChange={handleInputChange}
+                            placeholder="e.g. Reduce social media / skip college clubs / adjust weekend schedules..."
+                            className={fieldClass('whatToCut')}
+                            rows={3}
+                          />
+                        </div>
+
+                        <div className="purple-form-group">
+                          <label htmlFor="backgroundStory">Tell us about your background, your life story. You can be as brief or as detailed as you want.</label>
+                          <textarea
+                            id="backgroundStory"
+                            name="backgroundStory"
+                            value={formData.backgroundStory}
+                            onChange={handleInputChange}
+                            placeholder="Your story..."
+                            className={fieldClass('backgroundStory')}
+                            rows={4}
+                          />
+                        </div>
+
+                        <div className="purple-form-group">
+                          <label htmlFor="whyJoin">Why should you be part of the founding cohort of Dhandha School?</label>
+                          <textarea
+                            id="whyJoin"
+                            name="whyJoin"
+                            value={formData.whyJoin}
+                            onChange={handleInputChange}
+                            placeholder="Why you?"
+                            className={fieldClass('whyJoin')}
+                            rows={4}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* ── STEP 3 ── */}
+                {activeStep === 3 && (
+                  <div className="purple-form-step step3-layout">
+                    <h3 className="purple-step-title"><span className="step-highlight-box">Step 3: The Handshake</span></h3>
+
+                    <div className="step3-body">
+                      {/* Left: Multi-select pills */}
+                      <div className="step3-left">
+                        <div className={`purple-form-group ${shakingFields.includes('howFound') ? 'shake' : ''}`}>
+                          <label>Where did you hear about Dhandha School? <span className="label-hint">(tick all that apply)</span></label>
+                          <div className={`howfound-pill-grid ${errors.howFound ? 'error-border' : ''}`}>
+                            {HEARD_FROM_OPTIONS.map(opt => (
+                              <button
+                                key={opt.value}
+                                type="button"
+                                className={`howfound-pill ${formData.howFound.includes(opt.value) ? 'selected' : ''}`}
+                                onClick={() => toggleHowFound(opt.value)}
+                              >
+                                {formData.howFound.includes(opt.value) && <span className="pill-tick">✓ </span>}
+                                {opt.label}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Right: Commitments + Fee */}
+                      <div className="step3-right">
+                        {/* Commitments */}
+                        <div className="step3-commitments">
+                          <p className="step3-section-label">Commitments</p>
+                          <label className={`checkbox-label ${shakingFields.includes('commitLive') ? 'shake' : ''}`}>
+                            <input
+                              type="checkbox"
+                              name="commitLive"
+                              checked={formData.commitLive}
+                              onChange={handleInputChange}
+                              className={errors.commitLive ? 'error' : ''}
+                            />
+                            <span className={`checkbox-text ${errors.commitLive ? 'text-error' : ''}`}>I commit to attending live sessions and collaborating with cohort members.</span>
+                          </label>
+                          <label className={`checkbox-label ${shakingFields.includes('commitCheckpoint') ? 'shake' : ''}`}>
+                            <input
+                              type="checkbox"
+                              name="commitCheckpoint"
+                              checked={formData.commitCheckpoint}
+                              onChange={handleInputChange}
+                              className={errors.commitCheckpoint ? 'error' : ''}
+                            />
+                            <span className={`checkbox-text ${errors.commitCheckpoint ? 'text-error' : ''}`}>I commit to completing weekly checkpoints for my selected track alone.</span>
+                          </label>
+                        </div>
+
+                        {/* Fee */}
+                        <div className="step3-fee-block">
+                          <div className="step3-fee-left">
+                            <p className="step3-section-label">Program Fee</p>
+                            <div className="step3-fee-amount">
+                              <span className="step3-fee-crossed">₹14,999</span>
+                              <span className="step-highlight-box free-to-apply-badge">Free to Apply</span>
+                            </div>
+                            <p className="step3-fee-note">First Cohort Is Completely Free.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+
+                {/* Controls */}
+                <div className="purple-form-actions">
+                  {activeStep > 1 && (
+                    <button type="button" onClick={handleBack} className="purple-btn back-btn">
+                      Back
+                    </button>
+                  )}
+                  {activeStep < 3 ? (
+                    <button type="button" onClick={handleNext} className="purple-btn next-btn">
+                      Next Step &rarr;
+                    </button>
+                  ) : (
+                    <button type="submit" className="purple-btn submit-btn">
+                      Submit Application
+                    </button>
+                  )}
+                </div>
+              </form>
+            )}
+          </div>
+        </div>
       </div>
-    </>
+    </section>
   );
 }
