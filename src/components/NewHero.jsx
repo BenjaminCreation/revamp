@@ -100,7 +100,7 @@ export default function NewHero({ navigate }) {
             <span className="exam-highlight-box">It has an exam system.</span>
           </h1>
           <p className="new-hero-subtitle">
-            You've been its customer since you were 16. Here's the receipt.
+            You've been our customer since you were 16. Here's the receipt.
           </p>
           <div className="new-hero-actions">
             <a
