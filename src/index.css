@@ -4403,13 +4403,14 @@ h3,
     line-height: 1 !important;
   }
 
-  /* Lower Detail Card */
+  /* Lower Detail Card (Trimmed empty space) */
   .beliefs-content-card {
     border: 2.5px solid #1C1B17 !important;
     box-shadow: 4px 4px 0 #1C1B17 !important;
     border-radius: 6px !important;
-    padding: 24px 20px !important;
-    min-height: 180px !important;
+    padding: 16px 18px !important;
+    min-height: auto !important;
+    height: auto !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: flex-start !important;
@@ -4419,9 +4420,9 @@ h3,
   .beliefs-content-num {
     font-family: 'Poppins', sans-serif !important;
     font-weight: 900 !important;
-    font-size: 1.6rem !important;
+    font-size: 1.5rem !important;
     color: #f97316 !important;
-    margin-bottom: 12px !important;
+    margin-bottom: 6px !important;
     display: block !important;
     text-align: left !important;
   }
@@ -4429,8 +4430,8 @@ h3,
   .beliefs-content-text {
     font-family: 'Satoshi', sans-serif !important;
     font-weight: 800 !important;
-    font-size: 1.05rem !important;
-    line-height: 1.45 !important;
+    font-size: 1.02rem !important;
+    line-height: 1.42 !important;
     color: #1C1B17 !important;
     margin: 0 !important;
     text-align: left !important;
@@ -4438,8 +4439,8 @@ h3,
 
   .beliefs-segue {
     border-top: 1.5px dashed #C9C4B6 !important;
-    padding-top: 16px !important;
-    margin-top: 20px !important;
+    padding-top: 14px !important;
+    margin-top: 16px !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: flex-start !important;
@@ -4456,5 +4457,196 @@ h3,
     color: #f97316 !important;
     font-weight: 800 !important;
     text-decoration: underline !important;
+  }
+
+  /* ==========================================================================
+     Mobile Offer Section Redesign (Exact Screenshot Spec)
+     ========================================================================== */
+
+  .offer-section {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 24px 14px 40px !important;
+    background-color: #FAD06B !important;
+  }
+
+  .offer-main-box {
+    width: 100% !important;
+    max-width: 440px !important;
+    padding: 24px 18px !important;
+    border: 2.5px solid #1C1B17 !important;
+    box-shadow: 6px 6px 0 #1C1B17 !important;
+    background: #ffffff !important;
+    border-radius: 4px;
+    box-sizing: border-box !important;
+  }
+
+  .offer-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+
+  .offer-left, .offer-right {
+    width: 100% !important;
+  }
+
+  .offer-header {
+    text-align: left !important;
+  }
+
+  .offer-title {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: clamp(26px, 7.5vw, 36px) !important;
+    line-height: 1.15 !important;
+    color: #1C1B17 !important;
+    text-transform: uppercase !important;
+    margin: 0 0 14px 0 !important;
+  }
+
+  .offer-highlight-box {
+    border: 2px solid #1C1B17 !important;
+    box-shadow: 3px 3px 0 #1C1B17 !important;
+    padding: 2px 8px !important;
+    display: inline-block !important;
+    color: #1C1B17 !important;
+  }
+
+  .offer-highlight-box.blue-highlight {
+    background: #B4D5FE !important;
+    transform: rotate(-1.5deg) !important;
+  }
+
+  .offer-highlight-box.green-highlight {
+    background: #C2F5E9 !important;
+    transform: rotate(1.5deg) !important;
+  }
+
+  .offer-subheading-box {
+    background: #1C1B17 !important;
+    color: #FAF8F2 !important;
+    font-family: 'Satoshi', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.88rem !important;
+    padding: 6px 14px !important;
+    border-radius: 4px !important;
+    display: inline-block !important;
+    margin-bottom: 20px !important;
+  }
+
+  .offer-text {
+    display: none !important;
+  }
+
+  /* 2x2 Grid of Feature Metric Cards */
+  .offer-metrics-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .offer-metric-card {
+    background: #ffffff !important;
+    border: 2px solid #1C1B17 !important;
+    box-shadow: 3.5px 3.5px 0 #1C1B17 !important;
+    padding: 16px 12px !important;
+    border-radius: 4px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    text-align: left !important;
+    box-sizing: border-box !important;
+  }
+
+  .offer-metric-num {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: 2.2rem !important;
+    line-height: 1 !important;
+    color: #1C1B17 !important;
+    text-shadow: 2.5px 2.5px 0 #FFD166 !important;
+    margin-bottom: 4px !important;
+  }
+
+  .offer-metric-label {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 0.78rem !important;
+    letter-spacing: 0.05em !important;
+    color: #1C1B17 !important;
+    text-transform: uppercase !important;
+  }
+
+  /* Full-width Highlight Card 5 (Free Flight to Bangalore with Airplane image) */
+  .offer-metric-card.highlight {
+    grid-column: span 2 !important;
+    background: #FFB3D9 !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 14px 16px !important;
+  }
+
+  .offer-metric-card.highlight .offer-metric-card-content {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+  }
+
+  .offer-metric-card.highlight .offer-metric-num {
+    margin-bottom: 0 !important;
+    font-size: 2.2rem !important;
+  }
+
+  .offer-metric-card.highlight .offer-metric-label {
+    font-size: 0.85rem !important;
+    color: #1C1B17 !important;
+  }
+
+  .offer-metric-card.highlight .offer-metric-card-icon {
+    width: 3.5rem !important;
+    height: 2.5rem !important;
+  }
+
+  .airplane-img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
+  /* Mobile Summary Paragraph */
+  .offer-mobile-text {
+    display: block !important;
+    font-family: 'Satoshi', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    line-height: 1.48 !important;
+    color: #1C1B17 !important;
+    margin: 16px 0 20px 0 !important;
+    text-align: left !important;
+  }
+
+  /* Full-width Yellow CTA Button */
+  .offer-cta-button {
+    width: 100% !important;
+    background: #FFD166 !important;
+    color: #1C1B17 !important;
+    border: 2.5px solid #1C1B17 !important;
+    box-shadow: 4px 4px 0 #1C1B17 !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: 1.05rem !important;
+    letter-spacing: 0.05em !important;
+    padding: 14px 20px !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    transition: transform 0.15s ease !important;
+  }
+
+  .offer-cta-button:active {
+    transform: scale(0.97) !important;
   }
 }
