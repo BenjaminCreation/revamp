@@ -19,7 +19,7 @@ export default function InvestorDay() {
   }, []);
 
   return (
-    <section className="investor-section" ref={sectionRef}>
+    <section className="investor-section" id="investor" ref={sectionRef}>
       {/* Top Marquee */}
       <div className="investor-marquee top-marquee">
         <div className="investor-marquee-inner">

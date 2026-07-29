@@ -45,7 +45,7 @@ export default function Beliefs({ navigate }) {
   }, []);
 
   return (
-    <section className="beliefs-section" ref={sectionRef}>
+    <section className="beliefs-section" id="beliefs" ref={sectionRef}>
       <div className="beliefs-main-box">
         {/* Marquee at the top of the box */}
         <div className="beliefs-marquee">

@@ -70,7 +70,7 @@ export default function Tracks() {
 
 
   return (
-    <div className="tracks-section">
+    <div className="tracks-section" id="tracks">
       <div className="tracks-container">
         <h2 className="tracks-title">
           One school. <span className="tracks-highlight-box yellow-highlight">Two tracks.</span> Pick yours.

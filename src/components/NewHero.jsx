@@ -97,7 +97,7 @@ export default function NewHero({ navigate }) {
           <h1 className="new-hero-title">
             India doesn't have an <br />
             education system. <br />
-            <span className="accent-text">It has an exam system.</span>
+            <span className="exam-highlight-box">It has an exam system.</span>
           </h1>
           <p className="new-hero-subtitle">
             You've been its customer since you were 16. Here's the receipt.
