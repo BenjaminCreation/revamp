@@ -49,7 +49,7 @@ export default function BottomSection({ navigate }) {
               },
               {
                 q: "How is the Bangalore team picked?",
-                a: "Week 4 demo: real numbers, real customers, real story. The cohort watches, we decide, and we explain the choice publicly."
+                a: "We evaluate teams throughout the cohort and select the finalists. The cohort watches, we decide, and we explain the choice publicly."
               },
               {
                 q: "Do I get a certificate?",

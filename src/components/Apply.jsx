@@ -422,11 +422,11 @@ export default function Apply({ navigate, isStandalone = false }) {
                         <div className="step3-fee-block">
                           <div className="step3-fee-left">
                             <p className="step3-section-label">Program Fee</p>
-                            <div className="step3-fee-amount">₹999</div>
-                            <p className="step3-fee-note">Payable only if accepted into Cohort 1.</p>
-                          </div>
-                          <div className="step3-free-badge">
-                            <span className="step-highlight-box free-to-apply-badge">Free to Apply</span>
+                            <div className="step3-fee-amount">
+                              <span className="step3-fee-crossed">₹14,999</span>
+                              <span className="step-highlight-box free-to-apply-badge">Free to Apply</span>
+                            </div>
+                            <p className="step3-fee-note">First Cohort Is Completely Free.</p>
                           </div>
                         </div>
                       </div>

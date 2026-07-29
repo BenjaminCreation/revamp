@@ -168,6 +168,13 @@ export default function Tracks() {
           </div>
 
           <div className="track skills-track">
+            <div className="kk-hover-corners" aria-hidden="true">
+              <img src="/SD_frame_1.png" alt="Sevadaata 1" className="kk-hover-corner corner-tl" />
+              <img src="/SD_frame_2.png" alt="Sevadaata 2" className="kk-hover-corner corner-tr" />
+              <img src="/SD_frame_3.png" alt="Sevadaata 3" className="kk-hover-corner corner-br" />
+              <img src="/SD_frame_4.png" alt="Sevadaata 4" className="kk-hover-corner corner-bl" />
+            </div>
+
             <h3>
               <span className="tracks-highlight-box pink-highlight">SEVADAATA</span>
             </h3>
@@ -175,7 +182,7 @@ export default function Tracks() {
             <span className="cap mono">Capital: ₹0</span>
           </div>
         </div>
-        <p className="join-line">Sessions are combined across tracks. Checkpoints are separate. You learn together; you build alone.</p>
+        <p className="join-line">Sessions are combined across tracks. Checkpoints are separate.</p>
       </div>
     </div>
   );

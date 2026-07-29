@@ -7,7 +7,7 @@ export default function ReadThis({ navigate, isStandalone = false }) {
         <div className="readthis-header">
           <h2 className="readthis-title">
             Still not convinced? <br />
-            Good. <span className="readthis-highlight-box">Check our homework.</span>
+            Check Our <span className="readthis-highlight-box">Facts.</span>
           </h2>
         </div>
 
@@ -15,14 +15,14 @@ export default function ReadThis({ navigate, isStandalone = false }) {
           <div className="readthis-card card-1">
             <span className="readthis-stat">29.1%</span>
             <h3>The more degrees, the more unemployment.</h3>
-            <p>29.1% of Indian graduates are unemployed. Among those who never went to school: 3.4%.</p>
+            <p>29.1% of Indian graduates are unemployed. Among those who never went to school: only 3.4%.</p>
             <span className="src">India Employment Report 2024 &middot; ILO + IHD</span>
             <p className="means">The exam ladder gets more crowded at every rung, and the top rung doesn't pay.</p>
           </div>
 
           <div className="readthis-card card-2">
             <span className="readthis-stat">&minus;13%</span>
-            <h3>Legal / AI is pulling up the ladder's bottom rung.</h3>
+            <h3>AI will effect entry level jobs the hardest.</h3>
             <p>
               Stanford economists tracked millions of payroll records: employment for 22-25 year olds in AI-exposed jobs fell 13% after generative AI arrived. Older workers held steady.
             </p>
@@ -34,10 +34,10 @@ export default function ReadThis({ navigate, isStandalone = false }) {
             <span className="readthis-stat">6.3 Cr+</span>
             <h3>India already runs on dhandha. Untrained dhandha.</h3>
             <p>
-              India has over 6.3 crore MSMEs; Udyam registrations crossed 7.8 crore in Feb 2026. Almost all are first-generation owners with zero formal business training.
+              India has over 6.3 crore MSMEs; Udyam registrations crossed 7.8 crore in Feb 2026. A lot of them are first-generation owners with zero formal business training.
             </p>
             <span className="src">Ministry of MSME &middot; PIB &middot; Feb 2026</span>
-            <p className="means">That's not a statistic. That's a customer list.</p>
+            <p className="means">That's not a statistic, that's a customer list.</p>
           </div>
 
           <div className="readthis-card card-4">

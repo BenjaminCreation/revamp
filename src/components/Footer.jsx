@@ -73,7 +73,7 @@ export default function Footer({ navigate }) {
               <span className="brand-school">school</span>
             </div>
             <p className="brand-desc">
-              Real business education taught with Indian case studies and practical frameworks you can deploy the same week.
+              A new kind of business school: practical, affordable, built for the people actually building things.
             </p>
           </div>
 

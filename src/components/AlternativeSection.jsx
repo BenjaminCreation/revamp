@@ -6,7 +6,7 @@ export default function AlternativeSection() {
       <div className="alt-container">
         {/* Left Column: Heading with highlighted word */}
         <h2 className="alt-title">
-          So what's the <br /> <span className="alt-highlight-box">alternative</span>?
+          So what's the <br /> <span className="alt-highlight-box">alternative</span><span className="alt-qmark">?</span>
         </h2>
         
         {/* Right Column: Description text */}

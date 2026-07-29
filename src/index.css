@@ -529,7 +529,8 @@ h3,
 }
 
 /* Karkhana Corner Hover Interaction Styles */
-.track.maker-track {
+.track.maker-track,
+.track.skills-track {
   position: relative;
   overflow: visible !important;
 }
@@ -578,22 +579,26 @@ h3,
 }
 
 /* Hover Trigger States */
-.track.maker-track:hover .kk-hover-corner.corner-tl {
+.track.maker-track:hover .kk-hover-corner.corner-tl,
+.track.skills-track:hover .kk-hover-corner.corner-tl {
   opacity: 1;
   transform: translate(0, 0) scale(1) rotate(-8deg);
 }
 
-.track.maker-track:hover .kk-hover-corner.corner-tr {
+.track.maker-track:hover .kk-hover-corner.corner-tr,
+.track.skills-track:hover .kk-hover-corner.corner-tr {
   opacity: 1;
   transform: translate(0, 0) scale(1) rotate(8deg);
 }
 
-.track.maker-track:hover .kk-hover-corner.corner-br {
+.track.maker-track:hover .kk-hover-corner.corner-br,
+.track.skills-track:hover .kk-hover-corner.corner-br {
   opacity: 1;
   transform: translate(0, 0) scale(1) rotate(-6deg);
 }
 
-.track.maker-track:hover .kk-hover-corner.corner-bl {
+.track.maker-track:hover .kk-hover-corner.corner-bl,
+.track.skills-track:hover .kk-hover-corner.corner-bl {
   opacity: 1;
   transform: translate(0, 0) scale(1) rotate(8deg);
 }
@@ -1204,8 +1209,8 @@ h3,
 }
 
 .new-hero-title .accent-text {
-  color: #f88976;
-  background: linear-gradient(180deg, transparent 65%, rgba(248, 137, 118, 0.2) 65%);
+  color: #C84B31;
+  background: linear-gradient(180deg, transparent 65%, rgba(200, 75, 49, 0.2) 65%);
 }
 
 .new-hero-subtitle {
@@ -1526,9 +1531,9 @@ h3,
 }
 
 .new-hero-section .accent-text {
-  color: #f88976 !important;
-  /* Orange-red for text contrast */
-  background: linear-gradient(180deg, transparent 65%, rgba(248, 137, 118, 0.2) 65%) !important;
+  color: #C84B31 !important;
+  /* Darker terracotta red-orange for sharp text contrast */
+  background: linear-gradient(180deg, transparent 65%, rgba(200, 75, 49, 0.2) 65%) !important;
 }
 
 .new-hero-section .new-hero-subtitle {
@@ -1758,6 +1763,12 @@ h3,
   display: inline-block;
   transform: rotate(-3deg);
   margin-top: 0.5rem;
+  margin-right: 0.6rem;
+}
+
+.alt-qmark {
+  display: inline-block;
+  margin-left: 0.2rem;
 }
 
 .alt-text-box {
@@ -2724,7 +2735,7 @@ h3,
   font-weight: 900;
   text-decoration: none;
   cursor: pointer;
-  transform: rotate(2deg);
+  transform: none;
 }
 
 .readthis-subtitle {
@@ -3317,11 +3328,21 @@ h3,
 }
 
 .step3-fee-amount {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
   font-family: 'Poppins', sans-serif;
   font-weight: 900;
-  font-size: 2.8rem;
-  color: #1C1B17;
   line-height: 1;
+  margin: 0.4rem 0;
+  flex-wrap: wrap;
+}
+
+.step3-fee-crossed {
+  text-decoration: line-through;
+  color: #888;
+  font-size: 2.4rem;
+  font-weight: 800;
 }
 
 .step3-fee-note {
@@ -3343,12 +3364,12 @@ h3,
 .free-to-apply-badge {
   font-family: 'Poppins', sans-serif;
   font-weight: 900;
-  font-size: 1.6rem;
+  font-size: 2.2rem;
   background: #FDE68A;
   color: #000 !important;
-  border: 2px solid #000;
-  box-shadow: 5px 5px 0px #000;
-  padding: 0.25rem 1rem;
+  border: 3px solid #000;
+  box-shadow: 6px 6px 0px #000;
+  padding: 0.4rem 1.5rem;
   display: inline-block;
   transform: rotate(-2deg);
   white-space: nowrap;

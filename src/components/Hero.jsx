@@ -86,7 +86,7 @@ export default function Hero({ navigate }) {
         <div className="receipt">
           <div className="stop">
             <span className="dot">16</span>
-            <span className="body"><b>At 16.</b> Lakhs to a coaching institute, to crack JEE.</span>
+            <span className="body"><b>At 16.</b> Lakhs to a coaching institute, to crack JEE/NEET.</span>
           </div>
           <ScrollDashedPath 
             className="curve" 

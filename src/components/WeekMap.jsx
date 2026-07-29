@@ -11,7 +11,7 @@ export default function WeekMap() {
             <span className="wm-highlight-box yellow-highlight">FOUR WEEKS.</span> THIS IS THE <span className="wm-highlight-box blue-highlight">MAP.</span>
           </h2>
           <div className="weekmap-subtitle-box">
-            Sessions run down the centre. Your track's checkpoint flanks left or right. You learn together; you build alone.
+            Sessions run down the centre. Your track's checkpoint flanks left or right.
           </div>
         </div>
 
@@ -27,25 +27,25 @@ export default function WeekMap() {
             <div className="wm-cell">
               <div className="wm-week-box wm-week-1">
                 <span className="wm-wno">Week 1</span>
-                <strong className="wm-theme">Find Your Dhandha</strong>
+                <strong className="wm-theme">Understand The Basics</strong>
               </div>
             </div>
             <div className="wm-cell">
               <div className="wm-week-box wm-week-2">
                 <span className="wm-wno">Week 2</span>
-                <strong className="wm-theme">Make The Offer</strong>
+                <strong className="wm-theme">Learn To Play The Game</strong>
               </div>
             </div>
             <div className="wm-cell">
               <div className="wm-week-box wm-week-3">
                 <span className="wm-wno">Week 3</span>
-                <strong className="wm-theme">Collect The Money</strong>
+                <strong className="wm-theme">Build Your Unfair Advantage</strong>
               </div>
             </div>
             <div className="wm-cell">
               <div className="wm-week-box wm-week-4">
                 <span className="wm-wno">Week 4</span>
-                <strong className="wm-theme">Deliver And Account</strong>
+                <strong className="wm-theme">Get Legally Ready</strong>
               </div>
             </div>
           </div>
@@ -61,16 +61,16 @@ export default function WeekMap() {
               <span className="wm-bar-text">Sessions</span>
             </div>
             <div className="wm-cell">
-              <span className="wm-sessions">Strategy 1 &middot; Marketing 1</span>
+              <span className="wm-sessions">Strategy 1 &middot; Marketing 1 &middot; Finance 1</span>
             </div>
             <div className="wm-cell">
-              <span className="wm-sessions">Sales &middot; Founder Tech 1</span>
+              <span className="wm-sessions">Sales 1 &middot; Founder Tech 1 &middot; Strategy 2</span>
             </div>
             <div className="wm-cell">
-              <span className="wm-sessions">Finance 1 &middot; Marketing 2</span>
+              <span className="wm-sessions">Founder Tech 2 &middot; Marketing 2</span>
             </div>
             <div className="wm-cell">
-              <span className="wm-sessions">Finance 2 &middot; Founder Tech 2 &middot; <br /> Audit &amp; Legal</span>
+              <span className="wm-sessions">Finance 2 &middot; Audit &amp; Legal 1</span>
             </div>
           </div>
 

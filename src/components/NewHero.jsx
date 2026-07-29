@@ -3,7 +3,6 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
-import BoyFace from './BoyFace';
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, MotionPathPlugin);
 
@@ -138,7 +137,7 @@ export default function NewHero({ navigate }) {
           <div className="hero-road-graphic" style={{ position: 'relative', margin: '0 auto', width: '100%', maxWidth: '350px' }}>
             <div className="hero-event-boxes">
               <div className="hero-event-box box-16" ref={box16Ref}>
-                <p className="hero-event-text">Lakhs to a coaching institute to crack JEE.</p>
+                <p className="hero-event-text">Lakhs to a coaching institute to crack JEE/NEET.</p>
               </div>
               <div className="hero-event-box box-18" ref={box18Ref}>
                 <p className="hero-event-text">9 out of 10 don't crack it. So: lakhs more, to a college you never wanted.</p>
@@ -172,11 +171,7 @@ export default function NewHero({ navigate }) {
                     <text x="0" y="0" textAnchor="middle" dy=".35em" fontSize="15" fontWeight="800" fill="#1C1B17">16</text>
                   </g>
                   <g ref={boy1FaceRef} style={{ opacity: 0 }}>
-                    <foreignObject x="-18" y="-18" width="36" height="36" overflow="visible">
-                      <div style={{ width: '150px', height: '150px', transform: 'scale(0.24)', transformOrigin: 'top left' }}>
-                        <BoyFace />
-                      </div>
-                    </foreignObject>
+                    <image href="/boy16.png" x="-24" y="-24" width="48" height="48" preserveAspectRatio="xMidYMid meet" />
                   </g>
                 </g>
 
@@ -187,11 +182,7 @@ export default function NewHero({ navigate }) {
                     <text x="0" y="0" textAnchor="middle" dy=".35em" fontSize="15" fontWeight="800" fill="#1C1B17">18</text>
                   </g>
                   <g ref={boy2FaceRef} style={{ opacity: 0 }}>
-                    <foreignObject x="-18" y="-18" width="36" height="36" overflow="visible">
-                      <div style={{ width: '150px', height: '150px', transform: 'scale(0.24)', transformOrigin: 'top left' }}>
-                        <BoyFace glasses expression="straight" />
-                      </div>
-                    </foreignObject>
+                    <image href="/boy18.png" x="-24" y="-24" width="48" height="48" preserveAspectRatio="xMidYMid meet" />
                   </g>
                 </g>
 
@@ -202,11 +193,7 @@ export default function NewHero({ navigate }) {
                     <text x="0" y="0" textAnchor="middle" dy=".35em" fontSize="15" fontWeight="800" fill="#1C1B17">22</text>
                   </g>
                   <g ref={boy3FaceRef} style={{ opacity: 0 }}>
-                    <foreignObject x="-18" y="-18" width="36" height="36" overflow="visible">
-                      <div style={{ width: '150px', height: '150px', transform: 'scale(0.24)', transformOrigin: 'top left' }}>
-                        <BoyFace glasses expression="sad" beard />
-                      </div>
-                    </foreignObject>
+                    <image href="/boy22.png" x="-24" y="-24" width="48" height="48" preserveAspectRatio="xMidYMid meet" />
                   </g>
                 </g>
               </g>

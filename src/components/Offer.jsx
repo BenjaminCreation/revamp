@@ -20,7 +20,7 @@ export default function Offer({ navigate }) {
               </div>
             </div>
             <p className="offer-text">
-              Dhandha School is a 4-week cohort. You pick a track, you get live sessions with real Indian case studies, and every week you clear a checkpoint on a real business with your name on it. By Day 30 you haven't "learnt entrepreneurship". You've started.
+              Dhandha School is a 4-week cohort. You pick a track, you get live sessions with real Indian case studies, and every week you clear an entrepreneurial checkpoint with a real business. By Day 30, top performers will be flown to Bangalore to meet founders and leading VCs.
             </p>
           </div>
 
