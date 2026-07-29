@@ -4102,4 +4102,150 @@ h3,
     letter-spacing: 6px;
     margin-top: 6px;
   }
+
+  /* Mobile Offer Body Text */
+  .offer-mobile-text {
+    display: block;
+    font-family: 'Satoshi', sans-serif;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--ink-soft, #55524A);
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  /* Mobile Apply Form Styling */
+  .apply-content-container {
+    flex-direction: column;
+    padding-left: 0;
+    margin-top: 1rem;
+    gap: 0.75rem;
+  }
+
+  .apply-sidebar-steps {
+    width: 100%;
+    flex-direction: column;
+    overflow: visible;
+    gap: 0.65rem;
+    padding-bottom: 0;
+  }
+
+  .apply-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 44px;
+    padding: 0.85rem 1rem !important;
+    box-sizing: border-box;
+    box-shadow: 4px 4px 0px;
+  }
+
+  .apply-card.card-1 { box-shadow: 4px 4px 0px #2A75D3; }
+  .apply-card.card-2 { box-shadow: 4px 4px 0px #D9381E; }
+  .apply-card.card-3 { box-shadow: 4px 4px 0px #0E7A4A; }
+
+  .apply-card.active {
+    display: flex;
+    opacity: 1;
+    transform: translate(-2px, -2px);
+    width: 100%;
+  }
+
+  .apply-card.inactive {
+    opacity: 0.7;
+    transform: none;
+  }
+
+  .apply-card::after {
+    content: '›';
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: inherit;
+    flex-shrink: 0;
+    margin-left: 0.5rem;
+  }
+
+  .apply-purple-box {
+    margin-right: 0;
+    height: auto;
+    min-height: auto;
+    padding: 1.25rem 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 4px 4px 0px #C084FC;
+  }
+
+  .purple-step-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .purple-form-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem 0.75rem;
+    margin-top: 0.85rem;
+  }
+
+  .purple-form-group input[type="text"],
+  .purple-form-group input[type="email"],
+  .purple-form-group input[type="number"],
+  .purple-form-group input[type="tel"],
+  .purple-form-group textarea {
+    padding: 11px 10px;
+    font-size: 0.88rem;
+    min-height: 44px;
+    box-sizing: border-box;
+  }
+
+  .step2-layout .step2-body {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .track-image-selector,
+  .step2-textareas {
+    width: 100%;
+  }
+
+  .step3-layout .step3-body {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .step3-left, .step3-right {
+    width: 100%;
+    flex-basis: auto;
+  }
+
+  .howfound-pill {
+    padding: 8px 14px;
+    min-height: 44px;
+    font-size: 0.85rem;
+  }
+
+  .checkbox-label {
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .checkbox-label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+  }
+
+  .purple-form-actions {
+    justify-content: stretch;
+    margin-top: 1rem;
+    gap: 0.75rem;
+  }
+
+  .purple-btn {
+    flex: 1;
+    padding: 14px 16px;
+    font-size: 1rem;
+    min-height: 48px;
+    text-align: center;
+  }
 }

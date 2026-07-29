@@ -71,6 +71,10 @@ export default function Offer({ navigate }) {
             <button className="offer-cta-button" onClick={(e) => { e.preventDefault(); navigate('/apply'); }}>
               APPLY NOW →
             </button>
+            {/* Mobile-only body text: appears below CTA per screenshot */}
+            <p className="offer-mobile-text">
+              Dhandha School is a 4-week cohort. You pick a track, you get live sessions with real Indian case studies, and every week you clear an entrepreneurial checkpoint with a real business. By Day 30, top performers will be flown to Bangalore to meet founders and leading VCs.
+            </p>
           </div>
         </div>
       </div>
