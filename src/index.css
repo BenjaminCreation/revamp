@@ -4657,12 +4657,17 @@ h3,
   .tracks-section {
     padding: 24px 14px 40px !important;
     background-color: #FAF8F2 !important;
+    border: none !important;
+    box-shadow: none !important;
   }
 
   .tracks-container {
     max-width: 440px !important;
     margin: 0 auto !important;
     padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
   }
 
   .tracks-title {
@@ -4699,13 +4704,16 @@ h3,
     gap: 16px !important;
     margin-top: 0 !important;
     width: 100% !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
   }
 
   .track {
     background: #ffffff !important;
     border: 2.5px solid #1C1B17 !important;
     box-shadow: 6px 6px 0 #1C1B17 !important;
-    border-radius: 8px !important;
+    border-radius: 4px !important;
     padding: 22px 18px !important;
     min-height: auto !important;
     box-sizing: border-box !important;
