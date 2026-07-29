@@ -95,6 +95,7 @@ export default function Beliefs({ navigate }) {
                 >
                   <span className="beliefs-btn-num">{item.num}</span>
                   <span className="beliefs-btn-text">{item.title}</span>
+                  <span className="beliefs-plus-icon">+</span>
                 </button>
               ))}
             </div>
