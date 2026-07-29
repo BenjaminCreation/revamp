@@ -151,24 +151,83 @@
 /* Responsive */
 @media (max-width: 1180px) {
   .sec8-footer-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 48px;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 32px;
   }
   
   .sec8-col-backtop {
     align-items: flex-start;
+    grid-column: 1 / -1;
   }
 }
 
 @media (max-width: 768px) {
   .sec8-footer-bottom {
-    padding: 60px 24px 30px;
+    padding: 40px 20px 24px;
+    height: auto;       /* Let content determine height, not a fixed 50vh */
+    min-height: 0;
   }
-  
+
+  .sec8-footer-inner {
+    gap: 32px;
+  }
+
+  /* Compact 2-column grid on mobile, matching desktop spirit */
+  .sec8-footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 24px;
+  }
+
+  /* Brand column spans full width at top */
+  .sec8-col-brand {
+    grid-column: 1 / -1;
+  }
+
+  .sec8-col-brand .brand-logo {
+    margin-bottom: 10px;
+  }
+
+  .brand-dhandha {
+    font-size: 22px;
+  }
+
+  .brand-school {
+    font-size: 26px;
+  }
+
+  .brand-desc {
+    font-size: 13.5px;
+    max-width: 100%;
+  }
+
+  .sec8-col-title {
+    font-size: 11px;
+    margin-bottom: 14px;
+    letter-spacing: 0.1em;
+  }
+
+  .footer-links {
+    gap: 12px;
+  }
+
+  .footer-links a {
+    font-size: 13.5px;
+  }
+
+  /* Back to top button — right-aligned on its own row */
+  .sec8-col-backtop {
+    grid-column: 1 / -1;
+    align-items: flex-end;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 20px;
+  }
+
   .sec8-footer-bottom-bar {
     flex-direction: column;
-    gap: 16px;
+    gap: 10px;
     align-items: flex-start;
+    padding-top: 20px;
+    font-size: 12px;
   }
 }
