@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import PillNav from './components/PillNav';
 import NewHero from './components/NewHero';
 import AlternativeSection from './components/AlternativeSection';
-import ScrollFloat from './components/ScrollFloat';
-import Hero from './components/Hero';
 import Beliefs from './components/Beliefs';
 import Offer from './components/Offer';
 import Tracks from './components/Tracks';
@@ -35,39 +33,50 @@ export default function App() {
 
   const [smootherReady, setSmootherReady] = useState(false);
 
-  // Initialize GSAP ScrollSmoother ONLY ONCE on mount using useLayoutEffect
-  // This ensures it wraps the DOM before children create their ScrollTriggers.
+  // Initialize GSAP ScrollSmoother ONLY on homepage ('/')
   React.useLayoutEffect(() => {
-    const smoother = ScrollSmoother.create({
-      smooth: 1.2,
-      effects: true,
-      smoothTouch: 0.1
-    });
-    window.__smoother = smoother;
-    setSmootherReady(true);
+    let smoother = null;
+    
+    if (path === '/') {
+      window.scrollTo(0, 0);
+      smoother = ScrollSmoother.create({
+        smooth: 0.8,
+        effects: false,
+        smoothTouch: 0.1
+      });
+      window.__smoother = smoother;
+      setSmootherReady(true);
+    } else {
+      if (window.__smoother) {
+        try {
+          window.__smoother.kill();
+        } catch (e) {}
+        window.__smoother = null;
+      }
+      // Clear all GSAP inline styles (transform, height, position) from wrappers
+      gsap.set(['#smooth-wrapper', '#smooth-content'], { clearProps: 'all' });
+
+      // Kill all active homepage ScrollTriggers & pin spacers
+      ScrollTrigger.getAll().forEach(st => {
+        try {
+          st.kill(true);
+        } catch (e) {}
+      });
+      document.querySelectorAll('.pin-spacer').forEach(el => {
+        try {
+          el.remove();
+        } catch (e) {}
+      });
+      window.scrollTo(0, 0);
+      setSmootherReady(true);
+    }
 
     return () => {
-      window.__smoother = null;
-      smoother.kill();
+      if (smoother) {
+        smoother.kill();
+        window.__smoother = null;
+      }
     };
-  }, []); // Empty dependency array means it only runs once
-
-  // Handle route changes
-  useEffect(() => {
-    // Reset native scroll
-    window.scrollTo(0, 0);
-    
-    // If smoother exists, tell it to reset its position to 0
-    if (window.__smoother) {
-      window.__smoother.scrollTop(0);
-    }
-    
-    // Give React a tick to mount new route DOM, then refresh GSAP
-    const timer = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 50);
-
-    return () => clearTimeout(timer);
   }, [path]);
 
   // Prevent and correct browser zoom levels to preserve 100% layout proportions
@@ -116,7 +125,13 @@ export default function App() {
       }
     };
 
-    window.addEventListener('resize', correctZoom);
+    let resizeTimer;
+    const debouncedCorrectZoom = () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(correctZoom, 100);
+    };
+
+    window.addEventListener('resize', debouncedCorrectZoom);
     // Double trigger to ensure layout finishes rendering before sizing check
     correctZoom();
     const t = setTimeout(correctZoom, 150);
@@ -124,12 +139,33 @@ export default function App() {
     return () => {
       window.removeEventListener('keydown', handleZoomPrevention, { capture: true });
       window.removeEventListener('wheel', handleWheelPrevention, { capture: true });
-      window.removeEventListener('resize', correctZoom);
+      window.removeEventListener('resize', debouncedCorrectZoom);
       clearTimeout(t);
+      clearTimeout(resizeTimer);
     };
   }, []);
 
   const navigate = (to, options = {}) => {
+    // Revert and kill all active ScrollTriggers (unpins hero section synchronously)
+    ScrollTrigger.getAll().forEach(st => {
+      try {
+        st.revert();
+        st.kill();
+      } catch (e) {}
+    });
+
+    if (window.__smoother) {
+      try {
+        window.__smoother.kill();
+      } catch (e) {}
+      window.__smoother = null;
+    }
+
+    gsap.set(['#smooth-wrapper', '#smooth-content'], { clearProps: 'all' });
+    document.querySelectorAll('.pin-spacer').forEach(el => {
+      try { el.remove(); } catch (e) {}
+    });
+
     window.history.pushState({}, '', to);
     setPath(to);
     if (!options.skipScroll) {
@@ -166,7 +202,7 @@ export default function App() {
                   <NewHero navigate={navigate} />
                   <AlternativeSection />
                   <Beliefs navigate={navigate} />
-                  <Offer />
+                  <Offer navigate={navigate} />
                   <Tracks />
                   <Curriculum />
                   <WeekMap />

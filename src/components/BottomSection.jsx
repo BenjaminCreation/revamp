@@ -1,7 +1,18 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 
 export default function BottomSection({ navigate }) {
-  const [openFaq, setOpenFaq] = useState(null);
+  const faqRefs = useRef([]);
+
+  const handleFaqToggle = (i) => {
+    const el = faqRefs.current[i];
+    if (!el) return;
+    if (el.open) {
+      faqRefs.current.forEach((other, idx) => {
+        if (idx !== i && other) other.open = false;
+      });
+    }
+  };
+
   return (
     <>
       {/* FAQ Section: Viewport Sized, White Background */}
@@ -21,8 +32,8 @@ export default function BottomSection({ navigate }) {
                 a: "Anyone from 16 to 45. Student, employee, in-between. We select on hunger, not marks. This is an application, not a checkout."
               },
               {
-                q: "I don’t have a business idea. Is that a problem?",
-                a: "No. The tracks exist so you don’t need one. You need the willingness to talk to strangers and ask for money."
+                q: "I don't have a business idea. Is that a problem?",
+                a: "No. The tracks exist so you don't need one. You need the willingness to talk to strangers and ask for money."
               },
               {
                 q: "How much money do I need to start?",
@@ -30,11 +41,11 @@ export default function BottomSection({ navigate }) {
               },
               {
                 q: "How much time does it take?",
-                a: "Around 10 hours a week. 2–3 live sessions, the rest is fieldwork. The fieldwork is the course."
+                a: "Around 10 hours a week. 2\u20133 live sessions, the rest is fieldwork. The fieldwork is the course."
               },
               {
                 q: "What if I miss a live session?",
-                a: "Recordings exist so you can revise, not so you can skip. Checkpoints don’t move."
+                a: "Recordings exist so you can revise, not so you can skip. Checkpoints don't move."
               },
               {
                 q: "How is the Bangalore team picked?",
@@ -47,11 +58,8 @@ export default function BottomSection({ navigate }) {
             ].map((faq, i) => (
               <details
                 key={i}
-                open={openFaq === i}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setOpenFaq(openFaq === i ? -1 : i);
-                }}
+                ref={el => { faqRefs.current[i] = el; }}
+                onToggle={() => handleFaqToggle(i)}
               >
                 <summary>{faq.q}</summary>
                 <p>{faq.a}</p>
@@ -68,7 +76,7 @@ export default function BottomSection({ navigate }) {
             Stop preparing. Start <span className="cta-highlight-box yellow-highlight">building.</span>
           </h2>
           <p className="bottom-cta-sub">
-            Applications for Cohort 1 close [date]. Seats are capped and we read every application personally.
+            Applications for Cohort 1 close 15 September. Seats are capped and we read every application personally.
           </p>
           <a
             className="bottom-cta-btn"

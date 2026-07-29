@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 export default function Beliefs({ navigate }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const sectionRef = useRef(null);
 
   const data = [
     {
@@ -28,8 +29,23 @@ export default function Beliefs({ navigate }) {
 
   const cardColors = ['#FFD166', '#B4D5FF', '#FFB3D9', '#C2F5E9']; // Yellow, Blue, Pink, Mint
 
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const marquee = section.querySelector('.beliefs-marquee-inner');
+    if (!marquee) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        marquee.classList.toggle('marquee-paused', !entry.isIntersecting);
+      },
+      { threshold: 0 }
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="beliefs-section">
+    <section className="beliefs-section" ref={sectionRef}>
       <div className="beliefs-main-box">
         {/* Marquee at the top of the box */}
         <div className="beliefs-marquee">

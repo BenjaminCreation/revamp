@@ -186,7 +186,7 @@ export default function Apply({ navigate, isStandalone = false }) {
                 <div className="success-next-box">
                   <p>We will review your answers for <span className="success-em">Cohort 1</span> and reach out within <span className="success-em">48 hours</span>.</p>
                 </div>
-                <button type="button" className="success-home-btn" onClick={() => { isStandalone ? window.location.href = '/' : navigate('/') }}>
+                <button type="button" className="success-home-btn" onClick={() => { if (isStandalone) { window.location.href = '/'; } else { navigate('/'); } }}>
                   ← Back to Homepage
                 </button>
               </div>
@@ -318,7 +318,7 @@ export default function Apply({ navigate, isStandalone = false }) {
                             onChange={handleInputChange}
                             placeholder="Be honest and specific. What did you sell, to whom, and for how much?"
                             className={fieldClass('soldSomething')}
-                            rows={1}
+                            rows={3}
                           />
                         </div>
 
@@ -331,7 +331,7 @@ export default function Apply({ navigate, isStandalone = false }) {
                             onChange={handleInputChange}
                             placeholder="e.g. Reduce social media / skip college clubs / adjust weekend schedules..."
                             className={fieldClass('whatToCut')}
-                            rows={1}
+                            rows={3}
                           />
                         </div>
 
@@ -344,7 +344,7 @@ export default function Apply({ navigate, isStandalone = false }) {
                             onChange={handleInputChange}
                             placeholder="Your story..."
                             className={fieldClass('backgroundStory')}
-                            rows={1}
+                            rows={4}
                           />
                         </div>
 
@@ -357,7 +357,7 @@ export default function Apply({ navigate, isStandalone = false }) {
                             onChange={handleInputChange}
                             placeholder="Why you?"
                             className={fieldClass('whyJoin')}
-                            rows={1}
+                            rows={4}
                           />
                         </div>
                       </div>

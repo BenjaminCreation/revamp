@@ -4,8 +4,8 @@ import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import './PillNav.css';
 
 const PillNav = ({
-  logo,
-  logoAlt = 'Logo',
+  logo: _logo,
+  logoAlt: _logoAlt = 'Logo',
   items,
   activeHref,
   navigate,
@@ -142,7 +142,7 @@ const PillNav = ({
     });
   };
 
-  const handleLogoEnter = () => {
+  const _handleLogoEnter = () => {
     const img = logoImgRef.current;
     if (!img) return;
     logoTweenRef.current?.kill();
