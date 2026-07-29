@@ -215,3 +215,429 @@ footer.colophon { margin-top: 46px; border-top: 2px solid var(--ink); padding-to
   .kicker { margin-left: 24px; }
   .fork-svg { display: none; }
 }
+
+/* ─── Apply Form ─────────────────────────────────────────────────────────── */
+
+.apply-form {
+  margin-top: 28px;
+}
+
+/* Progress bar */
+.apply-progress {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 28px;
+}
+.apply-progress-seg {
+  flex: 1;
+  height: 3px;
+  border-radius: 99px;
+  background: var(--line);
+  transition: background 0.3s ease;
+}
+.apply-progress-seg.is-done {
+  background: var(--money);
+}
+
+/* Step intro */
+.apply-step-intro {
+  margin-bottom: 24px;
+}
+.apply-step-eyebrow {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.apply-step-title {
+  font-family: "Avenir Next Condensed", "Arial Narrow", "Helvetica Neue", sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1.1;
+  margin: 6px 0 4px;
+}
+.apply-step-desc {
+  color: var(--ink-soft);
+  font-size: 15px;
+  margin: 0;
+}
+
+/* Field wrapper */
+.apply-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 18px;
+}
+.apply-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.apply-required {
+  color: var(--money);
+}
+.apply-field-hint {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: 0 0 6px;
+  line-height: 1.5;
+}
+.apply-field-error {
+  font-size: 12.5px;
+  color: #c0392b;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+/* 2-column grid */
+.apply-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 16px;
+}
+@media (max-width: 540px) {
+  .apply-grid-2 { grid-template-columns: 1fr; }
+}
+
+/* Inputs & select */
+.apply-input,
+.apply-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  font-size: 15px;
+  font-family: inherit;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.18s, box-shadow 0.18s;
+  -webkit-appearance: none;
+}
+.apply-input:focus,
+.apply-textarea:focus {
+  border-color: var(--money);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--money) 15%, transparent);
+}
+.apply-input.is-error,
+.apply-textarea.is-error {
+  border-color: #c0392b;
+}
+.apply-textarea {
+  resize: vertical;
+  min-height: 90px;
+  line-height: 1.55;
+}
+.apply-select {
+  cursor: pointer;
+}
+
+/* Track cards */
+.apply-track-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 4px;
+}
+@media (max-width: 480px) {
+  .apply-track-cards { grid-template-columns: 1fr; }
+}
+.apply-track-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px;
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: 4px;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
+}
+.apply-track-card:hover {
+  border-color: var(--money);
+}
+.apply-track-card.is-selected {
+  border-color: var(--money);
+  background: color-mix(in srgb, var(--money) 8%, var(--surface));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--money) 15%, transparent);
+}
+.apply-track-name {
+  font-family: "Avenir Next Condensed", "Arial Narrow", sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--ink);
+}
+.apply-track-desc {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+
+/* Commitment checkboxes */
+.apply-commitments {
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: 4px;
+  padding: 18px;
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.apply-commit-title {
+  font-weight: 600;
+  font-size: 14px;
+  margin: 0;
+}
+.apply-check-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+.apply-check-row.is-error {
+  color: #c0392b;
+}
+.apply-checkbox {
+  margin-top: 3px;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--money);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Fee note */
+.apply-fee-note {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 12px 16px;
+  background: color-mix(in srgb, var(--money) 8%, var(--surface));
+  border: 1.5px solid color-mix(in srgb, var(--money) 30%, transparent);
+  border-radius: 4px;
+  margin-bottom: 18px;
+}
+.apply-fee-label {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 10.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--money);
+  white-space: nowrap;
+  font-weight: 700;
+}
+.apply-fee-note p {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Navigation buttons */
+.apply-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+.apply-btn-back {
+  background: transparent;
+  border: 1.5px solid var(--line);
+  color: var(--ink-soft);
+  font-family: "Avenir Next Condensed", "Arial Narrow", sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 9px 20px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+.apply-btn-back:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+.apply-btn-next,
+.apply-btn-submit {
+  background: var(--money);
+  color: var(--money-ink);
+  border: none;
+  font-family: "Avenir Next Condensed", "Arial Narrow", sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 0.3px;
+  padding: 10px 28px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s;
+}
+.apply-btn-next:hover,
+.apply-btn-submit:hover {
+  opacity: 0.88;
+}
+.apply-btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* API error */
+.apply-api-error {
+  background: #fdf2f2;
+  border: 1.5px solid #e74c3c;
+  border-radius: 4px;
+  padding: 10px 14px;
+  font-size: 14px;
+  color: #c0392b;
+  margin-top: 14px;
+}
+
+/* Success screen */
+.apply-success {
+  text-align: center;
+  padding: 48px 20px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.apply-success-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--money);
+  color: var(--money-ink);
+  font-size: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+.apply-success-title {
+  font-family: "Avenir Next Condensed", "Arial Narrow", sans-serif;
+  font-weight: 800;
+  font-size: 24px;
+  margin: 0;
+}
+.apply-success-body {
+  font-size: 15.5px;
+  color: var(--ink-soft);
+  max-width: 44ch;
+  line-height: 1.55;
+  margin: 0;
+}
+.apply-success-id {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin: 0;
+}
+.apply-success-id code {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 11px;
+  background: var(--surface);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+/* ─── Multi-select pills (Step 3 how_found) ─────────────────────────────── */
+
+.apply-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+.apply-pill {
+  padding: 7px 15px;
+  border-radius: 999px;
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 13.5px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.apply-pill:hover {
+  border-color: var(--money);
+}
+.apply-pill.is-selected {
+  border-color: var(--money);
+  background: var(--money);
+  color: var(--money-ink);
+}
+
+/* ─── Track card sub-label ───────────────────────────────────────────────── */
+
+.apply-track-sub {
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  letter-spacing: 0.5px;
+}
+.apply-track-card.is-selected .apply-track-sub {
+  color: color-mix(in srgb, var(--money) 70%, var(--ink));
+}
+
+/* ─── Fee box (Step 3) ───────────────────────────────────────────────────── */
+
+.apply-fee-note {
+  border: 1.5px solid var(--line);
+  border-radius: 6px;
+  padding: 18px 20px;
+  margin-top: 18px;
+  background: var(--surface);
+}
+.apply-fee-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.apply-fee-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  margin: 0;
+}
+.apply-fee-price {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+.apply-fee-struck {
+  font-size: 20px;
+  color: var(--ink-soft);
+  text-decoration: line-through;
+  font-family: "Avenir Next Condensed", "Arial Narrow", sans-serif;
+  font-weight: 700;
+}
+.apply-fee-badge {
+  background: var(--money);
+  color: var(--money-ink);
+  font-family: "Avenir Next Condensed", "Arial Narrow", sans-serif;
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: 0.3px;
+  padding: 4px 14px;
+  border-radius: 3px;
+}
+.apply-fee-sub {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin: 2px 0 0;
+}
+
+
