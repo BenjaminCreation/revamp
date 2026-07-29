@@ -77,23 +77,26 @@ export default function Footer({ navigate }) {
             </p>
           </div>
 
-          {/* Column 2 (Masterclass) */}
+          {/* Column 2 (PROGRAM) */}
           <div className="sec8-col">
-            <span className="sec8-col-title">MASTERCLASS</span>
+            <span className="sec8-col-title">PROGRAM</span>
             <ul className="footer-links">
-              <li><a href="/read-this" onClick={(e) => handleNavClick(e, '/read-this')}>Curriculum</a></li>
-              <li><a href="/apply" onClick={(e) => handleNavClick(e, '/apply')}>Pricing</a></li>
-              <li><a href="#faq" onClick={(e) => handleScrollTo(e, '#faq')}>FAQ</a></li>
+              <li><a href="#tracks" onClick={(e) => handleScrollTo(e, '#tracks')}>Tracks</a></li>
+              <li><a href="#curriculum" onClick={(e) => handleScrollTo(e, '#curriculum')}>Curriculum</a></li>
+              <li><a href="#weekmap" onClick={(e) => handleScrollTo(e, '#weekmap')}>4-Week Map</a></li>
+              <li><a href="#investor" onClick={(e) => handleScrollTo(e, '#investor')}>Finale / VCs</a></li>
             </ul>
           </div>
 
-          {/* Column 3 (About) */}
+          {/* Column 3 (ABOUT) */}
           <div className="sec8-col">
             <span className="sec8-col-title">ABOUT</span>
             <ul className="footer-links">
-              <li><a href="/read-this" onClick={(e) => handleNavClick(e, '/read-this')}>Instructor</a></li>
-              <li><a href="#alt" onClick={(e) => handleScrollTo(e, '#alt')}>Why we exist</a></li>
-              <li><a href="/read-this" onClick={(e) => handleNavClick(e, '/read-this')}>Masterclass</a></li>
+              <li><a href="#alt" onClick={(e) => handleScrollTo(e, '#alt')}>Why We Exist</a></li>
+              <li><a href="#beliefs" onClick={(e) => handleScrollTo(e, '#beliefs')}>Our Beliefs</a></li>
+              <li><a href="/read-this" onClick={(e) => handleNavClick(e, '/read-this')}>Check Our Facts</a></li>
+              <li><a href="#faq" onClick={(e) => handleScrollTo(e, '#faq')}>FAQ</a></li>
+              <li><a href="/apply" onClick={(e) => handleNavClick(e, '/apply')}>Apply</a></li>
             </ul>
           </div>
 

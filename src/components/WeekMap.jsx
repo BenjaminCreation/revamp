@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function WeekMap() {
   return (
-    <section className="weekmap-section">
+    <section className="weekmap-section" id="weekmap">
       <div className="weekmap-inner">
 
         {/* Header */}

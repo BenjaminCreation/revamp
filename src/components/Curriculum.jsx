@@ -28,7 +28,7 @@ export default function Curriculum() {
   }, []);
 
   return (
-    <section className="curriculum-section" ref={sectionRef}>
+    <section className="curriculum-section" id="curriculum" ref={sectionRef}>
       <div className="curriculum-main-box">
         <div className="curriculum-marquee">
           <div className="curriculum-marquee-inner">

@@ -1224,6 +1224,18 @@ h3,
   background: linear-gradient(180deg, transparent 65%, rgba(200, 75, 49, 0.2) 65%);
 }
 
+.new-hero-title .exam-highlight-box,
+.new-hero-section .exam-highlight-box {
+  background: #FFD166 !important;
+  color: #000 !important;
+  border: 2px solid #000 !important;
+  box-shadow: 4px 4px 0px #000 !important;
+  padding: 0.1rem 0.5rem !important;
+  display: inline-block !important;
+  transform: rotate(-1deg) !important;
+  margin-top: 0.4rem !important;
+}
+
 .new-hero-subtitle {
   font-family: 'Satoshi', sans-serif;
   font-weight: 500;
@@ -1485,7 +1497,7 @@ h3,
   .new-hero-section {
     padding: 100px 24px 40px;
     text-align: left;
-    background: url('/Mobile_bg.png') center/cover no-repeat !important;
+    background: #FAF8F2 url('/Mobile_bg.png') center/cover no-repeat !important;
   }
 
   .new-hero-content {
@@ -1648,6 +1660,248 @@ h3,
   /* Golden Amber hover fill */
   text-decoration: none !important;
   /* Remove underline */
+}
+
+/* ==========================================
+   Mobile Receipt Timeline Styles (Hero Section)
+   ========================================== */
+.mobile-receipt-timeline {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 2rem;
+}
+
+.mobile-timeline-step {
+  position: relative;
+  width: 100%;
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+  background: transparent;
+  z-index: 2;
+}
+
+.mobile-step-desc {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #55524A;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.mobile-event-card {
+  position: relative;
+  width: 100%;
+  max-width: 90%;
+  margin: 1rem auto 2rem;
+  padding: 1.25rem 1.5rem;
+  border: 2px solid #000;
+  border-radius: 4px;
+  box-shadow: 4px 4px 0px #000;
+  box-sizing: border-box;
+  opacity: 0;
+  z-index: 10;
+  transform: scale(0.95) translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.mobile-event-card p {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #000;
+  margin: 0;
+}
+
+.mobile-event-card.card-16 {
+  background: #B4D5FF;
+  transform: rotate(-1deg);
+}
+
+.mobile-event-card.card-18 {
+  background: #FFD166;
+  transform: rotate(1deg);
+}
+
+.mobile-event-card.card-22 {
+  background: #FFB3D9;
+  transform: rotate(-1deg);
+}
+
+.mobile-s-path-svg {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  margin: 0 auto 1rem;
+}
+
+/* Mobile Hero CTA & Navigation */
+.mobile-subnav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.plus-symbol {
+  font-size: 1.5rem;
+  color: #55524A;
+  font-weight: 300;
+}
+
+.mobile-subnav-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.mobile-subnav-box a {
+  color: #1C1B17;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.mobile-subnav-box a:hover {
+  color: #d97706;
+}
+
+.subnav-divider {
+  color: #C9C4B6;
+}
+
+.mobile-hero-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 2rem;
+  padding: 1.5rem 0;
+}
+
+.mobile-apply-black-btn {
+  display: inline-block;
+  background: #1C1B17;
+  color: #FAF8F2;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  padding: 14px 32px;
+  border-radius: 99px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+  width: auto;
+}
+
+.mobile-apply-black-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-alt-text-link {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: #55524A;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.mobile-alt-text-link:hover {
+  color: #d97706;
+}
+
+.plus-hint {
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+.mobile-pagebreak-dots {
+  font-size: 1rem;
+  color: #C9C4B6;
+  letter-spacing: 0.3rem;
+  margin-top: 0.5rem;
+}
+
+/* Mobile-only display utilities */
+.mobile-only {
+  display: none;
+}
+
+.desktop-only {
+  display: block;
+}
+
+.mobile-block-highlight {
+  background: #FFD166 !important;
+  color: #000 !important;
+  border: 2px solid #000 !important;
+  box-shadow: 4px 4px 0px #000 !important;
+  padding: 0.1rem 0.5rem !important;
+  display: inline-block !important;
+  transform: rotate(-1deg) !important;
+}
+
+@media (max-width: 768px) {
+  .mobile-only {
+    display: flex;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-subnav-wrapper {
+    flex-direction: row;
+  }
+
+  .mobile-receipt-timeline {
+    margin-top: 1.5rem;
+  }
+
+  .mobile-timeline-step {
+    padding: 1.25rem 1rem;
+  }
+
+  .mobile-event-card {
+    margin: 0.75rem auto 1.5rem;
+    max-width: 95%;
+    padding: 1rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .mobile-event-card p {
+    font-size: 0.9rem;
+  }
+
+  .mobile-hero-cta {
+    margin-top: 1.5rem;
+    padding: 1rem 0;
+  }
+
+  .mobile-apply-black-btn {
+    width: 100%;
+    max-width: 280px;
+  }
 }
 
 /* New Hero Receipt (All Black) */
@@ -2102,12 +2356,29 @@ h3,
   .alt-section {
     height: auto;
     min-height: auto;
-    padding: 4rem 1.5rem;
+    padding: 3rem 1.25rem;
   }
 
   .alt-container {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .alt-title {
+    font-size: 2.1rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .alt-highlight-box {
+    margin-right: 0;
+    margin-top: 0.5rem;
+    transform: rotate(-2deg);
+  }
+
+  .alt-text-box {
+    padding: 1.25rem 1.25rem;
+    transform: rotate(1deg);
     text-align: left;
   }
 
@@ -2343,19 +2614,11 @@ h3,
    GSAP ScrollSmoother Styles
    ========================================== */
 #smooth-wrapper {
-  overflow: hidden;
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  /* ScrollSmoother sets these inline automatically. Hardcoding them breaks native scrolling on other pages. */
 }
 
 #smooth-content {
-  overflow: visible;
-  width: 100%;
+  /* ScrollSmoother sets these inline automatically. */
 }
 
 /* ==========================================
@@ -2768,7 +3031,7 @@ h3,
   background: #fff;
   border: 3px solid #1C1B17;
   box-shadow: 6px 6px 0px #1C1B17;
-  padding: 1.25rem;
+  padding: 1rem;
   border-radius: 8px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   color: #1C1B17 !important;
@@ -2877,6 +3140,26 @@ h3,
 .readthis-cta-container {
   text-align: center;
   margin-bottom: 20px;
+}
+
+@media (max-width: 860px) {
+  .readthis-section {
+    padding: 75px 1.25rem 4rem;
+  }
+  .readthis-section.standalone {
+    padding-bottom: 2rem;
+  }
+  .readthis-title {
+    font-size: 2.1rem !important;
+    line-height: 1.25 !important;
+  }
+  .readthis-grid {
+    grid-template-columns: 1fr; /* Force vertical stacking on mobile */
+    gap: 1.5rem;
+  }
+  .readthis-card {
+    padding: 0.85rem 1rem;
+  }
 }
 
 /* Apply Section */
@@ -3048,20 +3331,22 @@ h3,
   flex: 1;
   width: 100%;
   max-width: 100%;
-  height: 470px;
+  height: auto;
+  min-height: auto;
   margin-right: 45px;
   box-sizing: border-box;
   padding: 1.5rem 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .purple-form-inner {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+  height: auto;
+  min-height: 100%;
   flex: 1;
 }
 
@@ -3183,12 +3468,12 @@ h3,
 }
 
 .step2-textareas .purple-form-group textarea {
-  flex: 1;
+  height: 50px;
   resize: none;
-  min-height: 35px;
   padding: 8px 10px;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   width: 100%;
+  box-sizing: border-box;
 }
 
 
@@ -3836,11 +4121,11 @@ h3,
 
 @media (max-width: 768px) {
   .new-hero-section {
-    padding: 50px 18px 40px !important;
+    padding: 75px 18px 40px !important;
     background: url('/Mobile_bg.png') center/cover no-repeat !important;
     text-align: center !important;
     overflow-x: hidden;
-    margin-bottom: 48px !important;
+    margin-bottom: 0 !important;
   }
 
   .new-hero-container {
@@ -3936,143 +4221,88 @@ h3,
     line-height: 1.5 !important;
   }
 
-  /* Mobile Receipt Timeline (40px before timeline, 450px height for zero overlap) */
-  .mobile-receipt-timeline {
-    position: relative;
+  /* Clean Website Receipt Column */
+  .hero-receipt-column {
     width: 100%;
-    max-width: 320px;
-    height: 450px;
-    margin: 40px auto 0 !important;
+    max-width: 380px;
+    margin: 28px auto 0;
   }
 
-  .mobile-s-path-svg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  .mobile-timeline-step {
-    position: absolute;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .mobile-node-circle {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #FFFFFF;
-    border: 3.5px solid #f97316;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 800;
-    font-size: 15px;
-    color: #1C1B17;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-  }
-
-  .mobile-step-desc {
-    font-family: 'Satoshi', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    color: #1C1B17;
-    margin: 6px 0 0;
-    line-height: 1.3;
-    white-space: nowrap;
-  }
-
-  .mobile-timeline-step.step-16 {
-    top: 10px;
-    left: 10px;
-  }
-
-  .mobile-timeline-step.step-18 {
-    top: 190px;
-    right: 10px;
-  }
-
-  .mobile-timeline-step.step-22 {
-    top: 370px;
-    left: 10px;
-  }
-
-  /* Popup Event Cards for Mobile Storytelling (Pastel Sticky Note Cards) */
-  .mobile-event-card {
-    position: absolute;
+  .hero-receipt-card {
+    background: #FAF8F2;
     border: 2px solid #1C1B17;
-    border-radius: 4px;
-    padding: 10px 14px;
-    font-size: 13px;
-    font-weight: 700;
-    color: #1C1B17;
-    box-shadow: 4px 4px 0 #1C1B17;
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 0.35s ease, transform 0.35s ease;
-    pointer-events: none;
-    z-index: 12;
-    text-align: left;
-    line-height: 1.35;
+    border-radius: 8px;
+    box-shadow: 5px 5px 0px #1C1B17;
+    padding: 24px 18px;
+    position: relative;
     box-sizing: border-box;
   }
 
-  .mobile-event-card strong {
-    display: none;
+  .receipt-stop {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    position: relative;
+    z-index: 2;
   }
 
-  .mobile-event-card p {
-    margin: 0;
+  .receipt-stop.shift-right {
+    padding-left: 48px;
+  }
+
+  .receipt-dot {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    border: 2.5px solid #f97316;
+    color: #1C1B17;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .receipt-body {
     font-family: 'Satoshi', sans-serif;
+    font-size: 13.5px;
+    line-height: 1.45;
+    color: #1C1B17;
+    margin: 0;
+  }
+
+  .receipt-body strong {
+    font-weight: 800;
+  }
+
+  .receipt-curve {
+    display: block;
+    margin: 4px 0;
+  }
+
+  .receipt-kicker {
+    font-family: 'Satoshi', sans-serif;
+    font-style: italic;
     font-size: 13px;
     font-weight: 700;
-    color: #1C1B17;
-    line-height: 1.35;
+    color: #777368;
+    margin: 18px 0 0;
+    padding-top: 12px;
+    border-top: 1.5px dashed #C9C4B6;
+    text-align: center;
   }
 
-  /* Card 16: Light Blue Pastel Sticky Note (-3deg tilt) */
-  .mobile-event-card.card-16 {
-    background: #B4D5FE;
-    top: 15px;
-    left: 95px;
-    width: 195px;
-    transform: rotate(-3deg);
-  }
-
-  /* Card 18: Yellow Pastel Sticky Note (+2.5deg tilt) */
-  .mobile-event-card.card-18 {
-    background: #FFD966;
-    top: 185px;
-    left: 25px;
-    width: 210px;
-    transform: rotate(2.5deg);
-  }
-
-  /* Card 22: Pink Pastel Sticky Note (-2deg tilt, overlaps CTA below) */
-  .mobile-event-card.card-22 {
-    background: #FFB3D9;
-    top: 355px;
-    left: 48px;
-    width: 225px;
-    transform: rotate(-2deg);
-    z-index: 25;
-  }
-
-  /* Mobile Hero CTA Block (Card 22 overlaps top edge of CTA block) */
+  /* Mobile Hero CTA Block — clean separation below receipt card */
   .mobile-hero-cta {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 12px;
-    margin-top: -15px !important;
+    margin-top: 24px !important;
     position: relative;
     z-index: 10;
     width: 100%;
@@ -4153,12 +4383,22 @@ h3,
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 12px;
     width: 100%;
-    min-height: 44px;
-    padding: 0.85rem 1rem !important;
+    min-height: 48px;
+    padding: 0.75rem 1rem !important;
     box-sizing: border-box;
     box-shadow: 4px 4px 0px;
+  }
+
+  .apply-card p {
+    display: none; /* Hide description on mobile to save vertical space */
+  }
+
+  .apply-card h3 {
+    margin: 0;
+    font-size: 1.05rem;
   }
 
   .apply-card.card-1 { box-shadow: 4px 4px 0px #2A75D3; }
@@ -4183,7 +4423,7 @@ h3,
     font-weight: 700;
     color: inherit;
     flex-shrink: 0;
-    margin-left: 0.5rem;
+    margin-left: auto; /* Push arrow to the right */
   }
 
   .apply-purple-box {
@@ -4202,8 +4442,8 @@ h3,
   }
 
   .purple-form-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 0.85rem 0.75rem;
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 0.85rem 0;
     margin-top: 0.85rem;
   }
 
@@ -5342,3 +5582,150 @@ h3,
     text-align: center !important;
   }
 }
+
+/* ==========================================================================
+   Mobile Highlight Box Spacing Fix
+   ========================================================================== */
+@media (max-width: 860px) {
+  .offer-highlight-box,
+  .exam-highlight-box,
+  .beliefs-highlight-box,
+  .tracks-highlight-box,
+  .faq-highlight-box,
+  .cta-highlight-box,
+  .alt-highlight-box,
+  .readthis-highlight-box {
+    display: inline-block !important;
+    margin-bottom: 0.25rem !important;
+  }
+}
+
+/* ==========================================================================
+   Clean Un-boxed Hero Receipt Column with Scroll-Activated Highlights
+   ========================================================================== */
+.hero-receipt-column {
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.hero-receipt-card.unboxed {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  position: relative;
+}
+
+.receipt-stop {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.receipt-stop.shift-right {
+  padding-left: 54px;
+}
+
+.receipt-dot {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 2.5px solid #f97316;
+  color: #1C1B17;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.receipt-body-box {
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  padding: 10px 14px;
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: inline-block;
+}
+
+.receipt-body {
+  font-family: 'Satoshi', sans-serif !important;
+  font-size: clamp(1.02rem, 1.8vw, 1.15rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.5 !important;
+  color: #1C1B17 !important;
+  margin: 0;
+}
+
+.receipt-body strong {
+  font-weight: 800;
+  color: #1C1B17;
+}
+
+.receipt-curve {
+  display: block;
+  margin: 8px 0;
+}
+
+.receipt-kicker {
+  font-family: 'Satoshi', sans-serif !important;
+  font-style: italic;
+  font-size: 1.02rem !important;
+  font-weight: 700 !important;
+  color: #55524A !important;
+  margin: 28px 0 0;
+  padding-top: 16px;
+  border-top: 2px dashed #C9C4B6;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* Dynamic Scroll Highlight States for Step Boxes */
+.receipt-stop.is-active .receipt-dot {
+  transform: scale(1.15);
+  border-color: #1C1B17 !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.receipt-stop.step-16-active .receipt-dot {
+  background: #B4D5FE !important;
+}
+
+.receipt-stop.step-18-active .receipt-dot {
+  background: #FFD966 !important;
+}
+
+.receipt-stop.step-22-active .receipt-dot {
+  background: #FFB3D9 !important;
+}
+
+.receipt-stop.step-16-active .receipt-body-box {
+  background: #B4D5FE !important;
+  border: 2.5px solid #1C1B17 !important;
+  box-shadow: 4px 4px 0px #1C1B17 !important;
+  transform: rotate(-1deg) scale(1.02);
+}
+
+.receipt-stop.step-18-active .receipt-body-box {
+  background: #FFD966 !important;
+  border: 2.5px solid #1C1B17 !important;
+  box-shadow: 4px 4px 0px #1C1B17 !important;
+  transform: rotate(1deg) scale(1.02);
+}
+
+.receipt-stop.step-22-active .receipt-body-box {
+  background: #FFB3D9 !important;
+  border: 2.5px solid #1C1B17 !important;
+  box-shadow: 4px 4px 0px #1C1B17 !important;
+  transform: rotate(-1deg) scale(1.02);
+}
+

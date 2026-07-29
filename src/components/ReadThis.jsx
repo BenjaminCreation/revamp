@@ -58,7 +58,8 @@ export default function ReadThis({ navigate, isStandalone = false }) {
               navigate('/apply');
             }}
           >
-            Convinced? Apply for Cohort 1
+            Convinced? <br />
+            Apply for Cohort 1
           </a>
         </div>
       </div>

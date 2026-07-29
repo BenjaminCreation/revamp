@@ -45,7 +45,7 @@ export default function Beliefs({ navigate }) {
   }, []);
 
   return (
-    <section className="beliefs-section" ref={sectionRef}>
+    <section className="beliefs-section" id="beliefs" ref={sectionRef}>
       <div className="beliefs-main-box">
         {/* Marquee at the top of the box */}
         <div className="beliefs-marquee">
@@ -99,21 +99,6 @@ export default function Beliefs({ navigate }) {
                 </button>
               ))}
             </div>
-            
-            {/* Inline Segue Link Block */}
-            <div className="beliefs-segue">
-              <span className="beliefs-segue-label">Still not convinced? Fair.</span>
-              <a
-                className="beliefs-segue-link"
-                href="/read-this"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate('/read-this');
-                }}
-              >
-                Read this →
-              </a>
-            </div>
           </div>
           
           {/* Right Column: Revealed Text Card */}
@@ -128,6 +113,21 @@ export default function Beliefs({ navigate }) {
               </p>
             </div>
           </div>
+        </div>
+
+        {/* Inline Segue Link Block */}
+        <div className="beliefs-segue">
+          <span className="beliefs-segue-label">Still not convinced? Fair.</span>
+          <a
+            className="beliefs-segue-link"
+            href="/read-this"
+            onClick={(e) => {
+              e.preventDefault();
+              navigate('/read-this');
+            }}
+          >
+            Read this →
+          </a>
         </div>
       </div>
     </section>
