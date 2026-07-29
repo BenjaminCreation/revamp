@@ -92,17 +92,58 @@ export default function NewHero({ navigate }) {
   return (
     <section className="new-hero-section" ref={heroRef}>
       <div className="new-hero-container">
-        {/* Left Column: Heading and CTA */}
-        <div className="new-hero-content" style={{ marginLeft: '32px' }}>
+        {/* Mobile Sub-Nav Box */}
+        <div className="mobile-subnav-wrapper mobile-only">
+          <span className="plus-symbol">+</span>
+          <div className="mobile-subnav-box">
+            <a
+              href="/read-this"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate('/read-this');
+              }}
+            >
+              READ THIS
+            </a>
+            <span className="subnav-divider">|</span>
+            <a
+              href="#faq"
+              onClick={(e) => {
+                e.preventDefault();
+                const smoother = ScrollSmoother.get();
+                if (smoother) smoother.scrollTo('#faq', true);
+                else document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              FAQ
+            </a>
+            <span className="subnav-divider">|</span>
+            <a
+              href="/apply"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate('/apply');
+              }}
+            >
+              APPLY
+            </a>
+          </div>
+          <span className="plus-symbol">+</span>
+        </div>
+
+        {/* Headline and Subtitle */}
+        <div className="new-hero-content">
           <h1 className="new-hero-title">
-            India doesn't have an <br />
-            education system. <br />
-            <span className="accent-text">It has an exam system.</span>
+            INDIA DOESN&rsquo;T HAVE AN <br />
+            EDUCATION SYSTEM. <br />
+            <span className="accent-text mobile-block-highlight">IT HAS AN EXAM SYSTEM.</span>
           </h1>
           <p className="new-hero-subtitle">
-            You've been its customer since you were 16. Here's the receipt.
+            You&rsquo;ve been our customer since you were 16. Here&rsquo;s the receipt.
           </p>
-          <div className="new-hero-actions">
+
+          {/* Desktop Actions */}
+          <div className="new-hero-actions desktop-only">
             <a
               className="btn btn-primary"
               href="/apply"
@@ -127,13 +168,13 @@ export default function NewHero({ navigate }) {
                 }
               }}
             >
-              So what's the alternative?
+              So what&rsquo;s the alternative?
             </a>
           </div>
         </div>
 
-        {/* Right Column: Pastel Event Boxes */}
-        <div className="new-hero-receipt-col">
+        {/* Right Column: Desktop Pinned Road Graphic */}
+        <div className="new-hero-receipt-col desktop-only">
           <div className="hero-road-graphic" style={{ position: 'relative', margin: '0 auto', width: '100%', maxWidth: '350px' }}>
             <div className="hero-event-boxes">
               <div className="hero-event-box box-16" ref={box16Ref}>
@@ -148,8 +189,6 @@ export default function NewHero({ navigate }) {
             </div>
             
             <svg viewBox="0 0 200 300" className="road-svg">
-
-              {/* Dashed Center Line (Used as Motion Path) */}
               <path 
                 id="road-path"
                 d="M 10 10 L 190 10 L 190 150 L 10 150 L 10 290 L 190 290" 
@@ -160,11 +199,7 @@ export default function NewHero({ navigate }) {
                 strokeLinecap="round" 
                 className="road-dashed-line"
               />
-              
-              {/* Animated Marker Groups */}
               <g style={{ fontFamily: 'Poppins, sans-serif' }}>
-                
-                {/* Boy 1 Group */}
                 <g ref={boy1GroupRef}>
                   <g ref={boy1CircleRef}>
                     <circle cx="0" cy="0" r="18" fill="#ffffff" stroke="#f97316" strokeWidth="3.5" />
@@ -175,7 +210,6 @@ export default function NewHero({ navigate }) {
                   </g>
                 </g>
 
-                {/* Boy 2 Group */}
                 <g ref={boy2GroupRef}>
                   <g ref={boy2CircleRef}>
                     <circle cx="0" cy="0" r="18" fill="#ffffff" stroke="#f97316" strokeWidth="3.5" />
@@ -186,7 +220,6 @@ export default function NewHero({ navigate }) {
                   </g>
                 </g>
 
-                {/* Boy 3 Group */}
                 <g ref={boy3GroupRef}>
                   <g ref={boy3CircleRef}>
                     <circle cx="0" cy="0" r="18" fill="#ffffff" stroke="#f97316" strokeWidth="3.5" />
@@ -199,6 +232,62 @@ export default function NewHero({ navigate }) {
               </g>
             </svg>
           </div>
+        </div>
+
+        {/* Mobile Vertical S-Curve Timeline (Design Spec) */}
+        <div className="mobile-receipt-timeline mobile-only">
+          <div className="mobile-timeline-step step-16">
+            <div className="mobile-badge-circle">16</div>
+            <p className="mobile-step-desc">You enter the system.</p>
+          </div>
+
+          <div className="mobile-timeline-step step-18">
+            <div className="mobile-badge-circle">18</div>
+            <p className="mobile-step-desc">You prepare for the exam.</p>
+          </div>
+
+          <div className="mobile-timeline-step step-22">
+            <div className="mobile-badge-circle">22</div>
+            <p className="mobile-step-desc">You get a degree.<br />Not a skill.</p>
+          </div>
+
+          <svg className="mobile-s-path-svg" viewBox="0 0 280 240" preserveAspectRatio="none">
+            <path
+              d="M 60 25 H 220 V 105 H 60 V 185 H 220"
+              fill="none"
+              stroke="#1C1B17"
+              strokeWidth="3"
+              strokeDasharray="6 6"
+              strokeLinecap="round"
+            />
+          </svg>
+        </div>
+
+        {/* Mobile Bottom CTA Block (Design Spec) */}
+        <div className="mobile-hero-cta mobile-only">
+          <a
+            className="mobile-apply-black-btn"
+            href="/apply"
+            onClick={(e) => {
+              e.preventDefault();
+              navigate('/apply');
+            }}
+          >
+            Apply For Cohort 1
+          </a>
+          <a
+            className="mobile-alt-text-link"
+            href="#alt"
+            onClick={(e) => {
+              e.preventDefault();
+              const smoother = ScrollSmoother.get();
+              if (smoother) smoother.scrollTo('#alt', true);
+              else document.getElementById('alt')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            so what&rsquo;s the alternative? <span className="plus-hint">+</span>
+          </a>
+          <div className="mobile-pagebreak-dots">&bull; &bull; &bull;</div>
         </div>
       </div>
     </section>

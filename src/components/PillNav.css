@@ -243,15 +243,39 @@
 @media (max-width: 768px) {
   .mobile-menu-button {
     display: flex;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 6px;
+    width: auto;
+    height: auto;
+  }
+
+  .mobile-top-apply-btn {
+    border: 2px solid #1C1B17;
+    background: #FAF8F2;
+    color: #1C1B17;
+    font-family: 'Poppins', 'Satoshi', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    padding: 0.4rem 0.95rem;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .mobile-top-apply-btn:active {
+    transform: scale(0.96);
   }
 }
 
 .hamburger-line {
-  width: 1rem;
-  height: 0.12rem;
-  background: var(--pill-bg, #fff);
+  width: 1.25rem;
+  height: 0.15rem;
+  background: #1C1B17;
   border-radius: 0.06rem;
-  transition: all 0.01s ease;
+  transition: all 0.2s ease;
   transform-origin: center;
 }
 
