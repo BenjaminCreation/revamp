@@ -32,26 +32,18 @@ export default function Curriculum() {
       <div className="curriculum-main-box">
         <div className="curriculum-marquee">
           <div className="curriculum-marquee-inner">
-            <div className="curriculum-marquee-content">
-              <span className="marquee-item">LEARN BY BUILDING</span>
-              <span className="marquee-item">✦</span>
-              <span className="marquee-item">PRACTICALITY OVER THEORY</span>
-              <span className="marquee-item">✦</span>
-              <span className="marquee-item">INDIAN CASE STUDIES</span>
-              <span className="marquee-item">✦</span>
-              <span className="marquee-item">REAL BUSINESSES</span>
-              <span className="marquee-item">✦</span>
-            </div>
-            <div className="curriculum-marquee-content" aria-hidden="true">
-              <span className="marquee-item">LEARN BY BUILDING</span>
-              <span className="marquee-item">✦</span>
-              <span className="marquee-item">PRACTICALITY OVER THEORY</span>
-              <span className="marquee-item">✦</span>
-              <span className="marquee-item">INDIAN CASE STUDIES</span>
-              <span className="marquee-item">✦</span>
-              <span className="marquee-item">REAL BUSINESSES</span>
-              <span className="marquee-item">✦</span>
-            </div>
+            {[...Array(4)].map((_, i) => (
+              <div className="curriculum-marquee-content" key={i} aria-hidden={i > 0 ? "true" : undefined}>
+                <span className="marquee-item">LEARN BY BUILDING</span>
+                <span className="marquee-item">✦</span>
+                <span className="marquee-item">PRACTICALITY OVER THEORY</span>
+                <span className="marquee-item">✦</span>
+                <span className="marquee-item">INDIAN CASE STUDIES</span>
+                <span className="marquee-item">✦</span>
+                <span className="marquee-item">REAL BUSINESSES</span>
+                <span className="marquee-item">✦</span>
+              </div>
+            ))}
           </div>
         </div>
 

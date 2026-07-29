@@ -50,26 +50,18 @@ export default function Beliefs({ navigate }) {
         {/* Marquee at the top of the box */}
         <div className="beliefs-marquee">
           <div className="beliefs-marquee-inner">
-            <div className="beliefs-marquee-content">
-              <span className="marquee-item">BUILD YOUR BUSINESS</span>
-              <span className="marquee-item">✦</span>
-              <span className="marquee-item">NO RIGHT AGE</span>
-              <span className="marquee-item">✦</span>
-              <span className="marquee-item">OWNERSHIP IS FREEDOM</span>
-              <span className="marquee-item">✦</span>
-              <span className="marquee-item">YOUR NETWORK IS THE MOAT</span>
-              <span className="marquee-item">✦</span>
-            </div>
-            <div className="beliefs-marquee-content" aria-hidden="true">
-              <span className="marquee-item">BUILD YOUR BUSINESS</span>
-              <span className="marquee-item">✦</span>
-              <span className="marquee-item">NO RIGHT AGE</span>
-              <span className="marquee-item">✦</span>
-              <span className="marquee-item">OWNERSHIP IS FREEDOM</span>
-              <span className="marquee-item">✦</span>
-              <span className="marquee-item">YOUR NETWORK IS THE MOAT</span>
-              <span className="marquee-item">✦</span>
-            </div>
+            {[...Array(4)].map((_, i) => (
+              <div className="beliefs-marquee-content" key={i} aria-hidden={i > 0 ? "true" : undefined}>
+                <span className="marquee-item">BUILD YOUR BUSINESS</span>
+                <span className="marquee-item">✦</span>
+                <span className="marquee-item">NO RIGHT AGE</span>
+                <span className="marquee-item">✦</span>
+                <span className="marquee-item">OWNERSHIP IS FREEDOM</span>
+                <span className="marquee-item">✦</span>
+                <span className="marquee-item">YOUR NETWORK IS THE MOAT</span>
+                <span className="marquee-item">✦</span>
+              </div>
+            ))}
           </div>
         </div>
 

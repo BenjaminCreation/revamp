@@ -100,7 +100,7 @@ export default function NewHero({ navigate }) {
             <span className="exam-highlight-box">It has an exam system.</span>
           </h1>
           <p className="new-hero-subtitle">
-            You've been our customer since you were 16. Here's the receipt.
+            You've been its customer since you were 16.
           </p>
           <div className="new-hero-actions">
             <a
@@ -119,6 +119,7 @@ export default function NewHero({ navigate }) {
               onClick={(e) => {
                 e.preventDefault();
                 const smoother = ScrollSmoother.get();
+                if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
                 if (smoother) {
                   smoother.scrollTo('#alt', true);
                 } else {

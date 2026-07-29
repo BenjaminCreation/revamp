@@ -59,7 +59,7 @@ export default function Hero({ navigate }) {
         <div style={{ marginLeft: '-16px' }}>
           <div className="eyebrow">Dhandha School · Cohort 1</div>
           <h2>India doesn't have an education system. It has an exam system.</h2>
-          <p className="sub">You've been our customer since you were 16. Here's the receipt.</p>
+          <p className="sub">You've been its customer since you were 16.</p>
           <a 
             className="btn" 
             href="/apply" 

@@ -1,6 +1,21 @@
 import React from 'react';
+import { ScrollSmoother } from 'gsap/ScrollSmoother';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export default function Navbar({ navigate }) {
+  const scrollToFaq = (smooth = true) => {
+    const el = document.getElementById('faq');
+    const smoother = ScrollSmoother.get();
+    if (typeof ScrollTrigger !== 'undefined') {
+      ScrollTrigger.refresh();
+    }
+    if (smoother && el) {
+      smoother.scrollTo(el, smooth);
+    } else if (el) {
+      el.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto' });
+    }
+  };
+
   return (
     <header className="global-navbar">
       <div className="navbar-container">
@@ -21,22 +36,29 @@ export default function Navbar({ navigate }) {
             className="nav-link mono" 
             onClick={() => {
               if (window.location.pathname === '/') {
-                if (window.__smoother) {
-                  window.__smoother.scrollTo('#faq', true, 'top top');
-                } else {
-                  const el = document.getElementById('faq');
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }
+                scrollToFaq(true);
               } else {
-                navigate('/');
-                setTimeout(() => {
-                  if (window.__smoother) {
-                    window.__smoother.scrollTo('#faq', true, 'top top');
-                  } else {
-                    const el = document.getElementById('faq');
-                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                navigate('/', { skipScroll: true });
+                const waitForFaq = setInterval(() => {
+                  const el = document.getElementById('faq');
+                  const smoother = ScrollSmoother.get();
+                  if (el && smoother) {
+                    clearInterval(waitForFaq);
+                    if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+                    smoother.scrollTo(el, false);
+
+                    setTimeout(() => {
+                      if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+                      smoother.scrollTo(el, true);
+                    }, 300);
+
+                    setTimeout(() => {
+                      if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+                      smoother.scrollTo(el, true);
+                    }, 750);
                   }
-                }, 100);
+                }, 50);
+                setTimeout(() => clearInterval(waitForFaq), 5000);
               }
             }}
           >

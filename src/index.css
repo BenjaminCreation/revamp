@@ -165,7 +165,7 @@ h3,
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
   display: flex;
   flex-direction: column;
-  min-height: 18rem;
+  box-sizing: border-box;
 }
 
 .track:hover {
@@ -209,12 +209,12 @@ h3,
 
 .join-line {
   text-align: center;
-  margin-top: auto;
+  margin-top: 2rem;
   font-size: 13.5px;
   color: #55524A;
   font-style: italic;
   font-weight: 500;
-  margin-bottom: -1.5rem;
+  margin-bottom: 0;
 }
 
 /* ==========================================
@@ -248,10 +248,9 @@ h3,
   background: #ffffff;
   border: 2px solid #000;
   box-shadow: 10px 10px 0px #000;
-  padding: 4rem 4rem 2rem 4rem;
-  /* Halved bottom padding */
+  padding: 4.5rem 4rem 2rem 4rem;
   overflow: hidden;
-  /* For marquee */
+  position: relative;
 }
 
 .curriculum-container {
@@ -305,6 +304,11 @@ h3,
 }
 
 .curriculum-marquee {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
   background-color: #000;
   color: #fff;
   overflow: hidden;
@@ -314,20 +318,22 @@ h3,
   height: 40px;
   box-sizing: border-box;
   padding: 0;
-  margin: -4rem -4rem 2rem -4rem;
-  /* Halved bottom margin */
+  margin: 0;
   border-bottom: 2px solid #000;
+  z-index: 5;
 }
 
 .curriculum-marquee-inner {
   display: flex;
   width: max-content;
+  will-change: transform;
   animation: marqueeLoop 20s linear infinite;
 }
 
 .curriculum-marquee-content {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
   gap: 2rem;
   padding-right: 2rem;
 }
@@ -981,12 +987,14 @@ h3,
 .investor-marquee-inner {
   display: flex;
   width: max-content;
+  will-change: transform;
   animation: marqueeLoop 25s linear infinite;
 }
 
 .investor-marquee-content {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
   gap: 2rem;
   padding-right: 2rem;
 }
@@ -1842,18 +1850,22 @@ h3,
   /* Fill the section */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   box-sizing: border-box;
   background: #ffffff;
   border: 2px solid #000;
   box-shadow: 10px 10px 0px #000;
-  padding: 4rem 4rem 2rem 4rem;
-  /* Halved bottom padding */
+  padding: 4.5rem 4rem 2rem 4rem;
   overflow: hidden;
-  /* Ensure marquee doesn't spill out horizontally */
+  position: relative;
 }
 
 .beliefs-marquee {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
   background-color: #000;
   color: #fff;
   overflow: hidden;
@@ -1863,20 +1875,22 @@ h3,
   height: 40px;
   box-sizing: border-box;
   padding: 0;
-  margin: -4rem -4rem 2rem -4rem;
-  /* Halved bottom margin */
+  margin: 0;
   border-bottom: 2px solid #000;
+  z-index: 5;
 }
 
 .beliefs-marquee-inner {
   display: flex;
   width: max-content;
+  will-change: transform;
   animation: marqueeLoop 20s linear infinite;
 }
 
 .beliefs-marquee-content {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
   gap: 2rem;
   padding-right: 2rem;
 }
@@ -1890,11 +1904,11 @@ h3,
 
 @keyframes marqueeLoop {
   0% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
 
   100% {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
@@ -1914,7 +1928,7 @@ h3,
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .beliefs-title {
@@ -1944,11 +1958,14 @@ h3,
   grid-template-columns: 1.2fr 1fr;
   gap: 3rem;
   align-items: stretch;
+  flex: 1;
+  margin-bottom: 0.5rem;
 }
 
 .beliefs-left {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 1.5rem;
 }
 
@@ -1958,11 +1975,13 @@ h3,
   box-shadow: 6px 6px 0px #000;
   display: flex;
   flex-direction: column;
+  flex: 1;
+  justify-content: space-evenly;
 }
 
 .beliefs-segue {
   margin-top: 1.5rem;
-  padding: 1.25rem 1.25rem 0.5rem;
+  padding: 1rem 1.25rem 0.25rem;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
@@ -2008,7 +2027,7 @@ h3,
   border: none;
   border-bottom: 1.5px solid var(--line, #eaeaea);
   border-left: 4px solid transparent;
-  padding: 1.2rem 1.25rem;
+  padding: 1.1rem 1.25rem;
   margin: 0;
   text-align: left;
   cursor: pointer;
@@ -2017,6 +2036,7 @@ h3,
   gap: 1.25rem;
   transition: all 0.2s ease;
   width: 100%;
+  flex: 1;
   box-sizing: border-box;
 }
 
@@ -2038,7 +2058,7 @@ h3,
 .beliefs-btn-num {
   font-family: 'Poppins', sans-serif !important;
   font-weight: 800;
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 0.4vw + 0.5rem, 1.5rem);
   color: var(--ink-soft, #5a574f);
   transition: color 0.2s ease;
   min-width: 1.5rem;
@@ -2052,7 +2072,7 @@ h3,
 .beliefs-btn-text {
   font-family: 'Poppins', sans-serif !important;
   font-weight: 700;
-  font-size: clamp(1rem, 0.8vw + 0.4rem, 1.2rem);
+  font-size: clamp(1rem, 0.6vw + 0.45rem, 1.65rem);
   color: #1C1B17;
   line-height: 1.3;
   transition: all 0.2s ease;
@@ -2065,13 +2085,13 @@ h3,
 
 .beliefs-content-card {
   border: 2px solid #000;
-  padding: 2.5rem;
+  padding: clamp(2rem, 2.5vw, 3.5rem);
   box-shadow: 6px 6px 0px #000;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 21rem;
-  /* Fixed height to prevent layout shifting on text toggle */
+  min-height: 21rem;
+  height: 100%;
   box-sizing: border-box;
   transition: background-color 0.3s ease;
 }
@@ -2079,7 +2099,7 @@ h3,
 .beliefs-content-num {
   font-family: 'Poppins', sans-serif !important;
   font-weight: 800;
-  font-size: 1.8rem;
+  font-size: clamp(1.7rem, 0.8vw + 0.8rem, 2.7rem);
   color: #d97706;
   margin-bottom: 0.75rem;
 }
@@ -2087,7 +2107,7 @@ h3,
 .beliefs-content-text {
   font-family: 'Poppins', sans-serif !important;
   font-weight: 500;
-  font-size: clamp(1.1rem, 1.2vw + 0.6rem, 1.45rem);
+  font-size: clamp(1.1rem, 0.4vw + 0.8rem, 1.85rem);
   color: #1C1B17 !important;
   line-height: 1.5;
   margin: 0;
@@ -2616,9 +2636,9 @@ h3,
    ========================================== */
 .tracks-section {
   width: 100%;
-  height: 100vh;
-  /* Viewport sized */
-  min-height: 720px;
+  height: auto;
+  min-height: auto;
+  padding: 3.5rem 1.5rem;
   background-color: #FFEAD2 !important;
   /* Soft light pastel peach/apricot */
   color: #1C1B17 !important;
@@ -2626,22 +2646,21 @@ h3,
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  padding: 3rem 1.5rem;
 }
 
 .tracks-container {
   max-width: 95rem;
   width: 98%;
-  height: 100%;
+  height: auto;
   background: #ffffff !important;
   border: 2px solid #000 !important;
   box-shadow: 10px 10px 0px #000;
-  padding: 4rem !important;
+  padding: 3.5rem 4rem 2.5rem 4rem !important;
   box-sizing: border-box;
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  align-items: center;
 }
 
 .tracks-title {
@@ -2672,9 +2691,25 @@ h3,
   transform: rotate(1.5deg);
 }
 
-.tracks-highlight-box.blue-highlight {
-  background: #B4D5FF;
-  transform: rotate(-1.5deg);
+@media (min-width: 1921px), (min-height: 1081px) {
+  .tracks-section {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 4rem 1.5rem !important;
+  }
+  .tracks-title {
+    font-size: clamp(2.3rem, 2vw + 1rem, 3.2rem) !important;
+  }
+  .track h3 {
+    font-size: clamp(26px, 1.8vw + 10px, 34px);
+  }
+  .track p {
+    font-size: clamp(14.5px, 0.5vw + 10px, 18px);
+    line-height: 1.6;
+  }
+  .track .cap {
+    font-size: clamp(12.5px, 0.4vw + 9px, 15px);
+  }
 }
 
 @media (max-width: 860px) {
@@ -2699,7 +2734,8 @@ h3,
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 100px 24px 0;
+  justify-content: space-between;
+  padding: 5rem 24px 0;
   background-color: #4A3B45;
   /* Dark dusty mauve */
   background-image:
@@ -2724,7 +2760,7 @@ h3,
 
 .readthis-header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .readthis-title {
@@ -2772,7 +2808,7 @@ h3,
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 16px;
   max-width: 1100px;
-  margin: 0 auto 2rem;
+  margin: 0 auto 1rem;
 }
 
 .readthis-card {
@@ -2887,7 +2923,7 @@ h3,
 
 .readthis-cta-container {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
 }
 
 /* Apply Section */
