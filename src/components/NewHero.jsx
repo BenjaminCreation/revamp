@@ -28,6 +28,9 @@ export default function NewHero({ navigate }) {
     let ctx;
     
     const initHeroAnimation = () => {
+      // Skip GSAP animation entirely on mobile — static CSS layout handles it
+      if (window.innerWidth <= 860) return;
+
       ctx = gsap.context(() => {
         // Initial positioning along the path
         gsap.set(boy1GroupRef.current, { motionPath: { path: "#road-path", align: "#road-path", alignOrigin: [0.5, 0.5], start: 0, end: 0 } });
@@ -93,7 +96,7 @@ export default function NewHero({ navigate }) {
     <section className="new-hero-section" ref={heroRef}>
       <div className="new-hero-container">
         {/* Left Column: Heading and CTA */}
-        <div className="new-hero-content" style={{ marginLeft: '32px' }}>
+        <div className="new-hero-content">
           <h1 className="new-hero-title">
             India doesn't have an <br />
             education system. <br />
@@ -136,12 +139,15 @@ export default function NewHero({ navigate }) {
         <div className="new-hero-receipt-col">
           <div className="hero-road-graphic" style={{ position: 'relative', margin: '0 auto', width: '100%', maxWidth: '350px' }}>
             <div className="hero-event-boxes">
+              <div className="hero-event-age-row"><span className="hero-event-age-circle">16</span></div>
               <div className="hero-event-box box-16" ref={box16Ref}>
                 <p className="hero-event-text">Lakhs to a coaching institute to crack JEE/NEET.</p>
               </div>
+              <div className="hero-event-age-row"><span className="hero-event-age-circle">18</span></div>
               <div className="hero-event-box box-18" ref={box18Ref}>
                 <p className="hero-event-text">9 out of 10 don't crack it. So: lakhs more, to a college you never wanted.</p>
               </div>
+              <div className="hero-event-age-row"><span className="hero-event-age-circle">22</span></div>
               <div className="hero-event-box box-22" ref={box22Ref}>
                 <p className="hero-event-text">A job that barely covers living expenses. So you buy the next exam, CAT or UPSC.</p>
               </div>
@@ -200,6 +206,31 @@ export default function NewHero({ navigate }) {
             </svg>
           </div>
         </div>
+      </div>
+
+      {/* Mobile-only CTA block — hidden on desktop via CSS */}
+      <div className="new-hero-mobile-actions">
+        <a
+          className="btn btn-primary"
+          href="/apply"
+          onClick={(e) => {
+            e.preventDefault();
+            navigate('/apply');
+          }}
+        >
+          Apply For Cohort 1
+        </a>
+        <a
+          className="hero-alt-link"
+          href="#alt"
+          onClick={(e) => {
+            e.preventDefault();
+            const el = document.getElementById('alt');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }}
+        >
+          So what's the alternative?
+        </a>
       </div>
     </section>
   );

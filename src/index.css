@@ -90,6 +90,12 @@ body {
   font-family: 'Poppins', sans-serif;
   line-height: 1.55;
   margin: 0;
+  /* Prevent any section from causing horizontal scroll */
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
 }
 
 .sheet {
@@ -154,6 +160,13 @@ h3,
   max-width: 82rem;
   width: 100%;
   margin: -4px auto 0;
+}
+
+@media (max-width: 860px) {
+  .tracks {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
 
 .track {
@@ -435,21 +448,91 @@ h3,
 
 /* Responsive */
 @media (max-width: 860px) {
+  /* ---- Curriculum Section: Mobile-only overrides (screenshot faithful) ---- */
   .curriculum-section {
     height: auto;
-    min-height: 100vh;
-    padding: 4rem 1.5rem;
+    min-height: auto;
+    padding: 0.75rem 0.6rem 1.5rem;
+  }
+
+  .curriculum-main-box {
+    padding: 0 1rem 1.5rem 1rem;
+    box-shadow: 5px 5px 0px #000;
+  }
+
+  /* Marquee: bleed to edges of the tighter box */
+  .curriculum-marquee {
+    margin: 0 -1rem 1.5rem -1rem;
+    height: 36px;
   }
 
   .curriculum-container {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
+    flex-direction: column;
+    gap: 1rem;
   }
-}
 
-@media (max-width: 520px) {
+  /* Title: "THE CLASSROOM:" then "10 LIVE SESSIONS." on its own line */
+  .curriculum-title {
+    font-size: clamp(1.9rem, 8vw, 2.6rem) !important;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+    text-align: left;
+  }
+
+  /* Highlight box: display-block so it fills its own line */
+  .curriculum-highlight-box {
+    display: block;
+    box-shadow: 5px 5px 0px #000;
+    padding: 0.2rem 0.6rem;
+  }
+
+  /* Text box: no rotation on mobile, full width */
+  .curriculum-text-box {
+    display: block;
+    transform: none;
+    font-size: 1rem !important;
+    padding: 0.85rem 1rem;
+    margin-bottom: 0.75rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Footnote: green mono, uppercase, 2 lines */
+  .curriculum-footnote {
+    font-size: 0.68rem;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Discipline grid: 1-column list matching screenshot */
   .curriculum-disc-grid {
     grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+
+  /* Discipline cards: tighter padding */
+  .curriculum-disc-card {
+    padding: 1rem 0.85rem;
+    gap: 1rem;
+    box-shadow: 4px 4px 0px #000;
+  }
+
+  /* Big number: slightly smaller on mobile */
+  .curriculum-disc-num {
+    font-size: 3rem;
+    letter-spacing: -1px;
+    text-shadow: 1px 1px 0px #B4D5FF;
+  }
+
+  /* Discipline name: uppercase bold */
+  .curriculum-disc-name {
+    font-size: 1.1rem;
+  }
+
+  /* Description text */
+  .curriculum-disc-desc {
+    font-size: 0.9rem;
   }
 }
 
@@ -902,7 +985,12 @@ h3,
 /* Mobile: stack vertically (keep basic block display for mobile fallback) */
 @media (max-width: 700px) {
   .weekmap-section {
-    padding: 3.5rem 1rem;
+    padding: 1rem 0.5rem;
+    min-height: auto;
+  }
+
+  .wm-main-box {
+    padding: 1.5rem 1rem;
   }
 
   .weekmap-title {
@@ -911,7 +999,7 @@ h3,
 
   .wm-timeline {
     flex-direction: column;
-    margin-top: 24px;
+    gap: 1rem;
   }
 
   .wm-v-divider-wrap {
@@ -1112,16 +1200,97 @@ h3,
   justify-content: center;
 }
 
+.offer-mobile-text {
+  display: none;
+}
+
 @media (max-width: 860px) {
+  /* ---- InvestorDay Section: Mobile-only overrides (screenshot faithful) ---- */
+
+  /* Enough padding to clear top & bottom marquee bars (40px each) */
   .investor-section {
     height: auto;
     min-height: 100vh;
-    padding: 4rem 1.5rem;
+    padding: 56px 1.25rem 56px;
+    align-items: flex-start;
   }
 
+  .investor-inner {
+    width: 100%;
+    padding-top: 1rem;
+  }
+
+  /* Single column: copy above card */
   .investor-grid {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2rem;
+  }
+
+  /* "THE FINALE" label: no rotation, compact */
+  .investor-subheading-box {
+    font-size: 0.95rem;
+    padding: 0.5rem 0.85rem;
+    transform: none;
+    margin-bottom: 1.25rem;
+    letter-spacing: 1.5px;
+  }
+
+  /* Title: large, tight line-height */
+  .investor-title {
+    font-size: clamp(2.2rem, 9vw, 3rem);
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    margin-bottom: 1.25rem;
+  }
+
+  /* Highlight boxes: slightly tighter on mobile */
+  .investor-highlight-box {
+    padding: 0.1rem 0.6rem;
+  }
+
+  /* Description: grey, readable */
+  .investor-desc {
+    font-size: 16px;
+    color: #B0B0B0;
+    line-height: 1.65;
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Orange punch: bold, slightly smaller */
+  .investor-punch {
+    font-size: 17px;
+    line-height: 1.45;
+  }
+
+  /* Landing card: keep horizontal layout, show airplane */
+  .investor-landing-card {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1rem;
+    gap: 0.75rem;
+  }
+
+  /* Show airplane on mobile per screenshot */
+  #plane-end-marker {
+    display: flex !important;
+    width: 6rem !important;
+    height: auto !important;
+    flex-shrink: 0;
+  }
+
+  #plane-end-img {
+    opacity: 1 !important;
+    width: 5.5rem !important;
+  }
+
+  .landing-card-content h3 {
+    font-size: 1.1rem;
+  }
+
+  .landing-card-content p {
+    font-size: 0.82rem !important;
   }
 }
 
@@ -1168,6 +1337,7 @@ h3,
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
+  margin-left: 32px;
 }
 
 .new-hero-badge {
@@ -1466,42 +1636,142 @@ h3,
 
 /* Responsive constraints */
 @media (max-width: 860px) {
+  /* ---- NewHero Section: Mobile-only overrides ---- */
+
+  /* Ensure navbar always sits above everything on mobile */
+  .pill-nav-container {
+    z-index: 1000 !important;
+  }
+
+  /* True flex column — no grid, no scaling */
   .new-hero-container {
-    grid-template-columns: 1fr;
-    gap: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 120px 1.25rem 0;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .new-hero-section {
-    padding: 100px 24px 40px;
-    text-align: left;
+    min-height: auto;
+    align-items: flex-start;
+    overflow-x: hidden;
     background: url('/Mobile_bg.png') center/cover no-repeat !important;
   }
 
   .new-hero-content {
     align-items: flex-start;
     text-align: left;
+    margin-left: 0;
+    width: 100%;
   }
 
+  /* Title: large, uppercase, bold */
+  .new-hero-title {
+    font-size: clamp(2rem, 9vw, 2.8rem) !important;
+    line-height: 1.08;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Subtitle */
   .new-hero-subtitle {
+    font-size: 15px;
     margin-left: 0;
     margin-right: 0;
+    margin-bottom: 0;
+    max-width: 100%;
   }
 
-  .new-hero-actions {
+  /* Hide desktop-only elements */
+  .new-hero-features { display: none; }
+  .new-hero-actions  { display: none; }
+
+  /* Receipt column: full width below content */
+  .new-hero-receipt-col {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  /* Road graphic wrapper: column, no overflow */
+  .hero-road-graphic {
+    position: relative !important;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 !important;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    overflow: hidden;
+  }
+
+  /* HIDE the desktop road SVG on mobile — we show the card list instead */
+  .road-svg {
+    display: none !important;
+  }
+
+  /* Event boxes container: true block flow */
+  .hero-event-boxes {
+    position: static !important;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 1rem 0 0.5rem;
+    overflow: hidden;
+  }
+
+  /* Age circle rows: shown on mobile */
+  .hero-event-age-row {
+    display: flex;
     justify-content: flex-start;
+    padding: 0.75rem 0 0.25rem;
   }
 
-  .new-hero-features {
-    justify-content: center;
-    gap: 20px;
+  /* Every event box: fully visible, static, full width */
+  .hero-event-box {
+    opacity: 1 !important;       /* override GSAP inline opacity:0 */
+    position: static !important; /* override GSAP absolute positioning */
+    transform: none !important;  /* remove desktop rotation/translate */
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 0.85rem 1rem;
+    border: 2px solid #000;
+    box-shadow: 4px 4px 0px #000;
+    margin: 0;
   }
 
-  .new-hero-visual {
-    height: 380px;
+  .hero-event-box.box-16 {
+    background: #B4D5FF;
+    transform: rotate(-1deg) !important;
+  }
+  .hero-event-box.box-18 {
+    background: #FFD166;
+    transform: rotate(1deg) !important;
+  }
+  .hero-event-box.box-22 {
+    background: #FFB3D9;
+    transform: rotate(-1deg) !important;
   }
 
-  .sticker-stack {
-    transform: scale(0.9);
+  .hero-event-text {
+    font-size: 0.88rem;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  /* Mobile CTA block: shown below timeline */
+  .new-hero-mobile-actions {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.5rem 1.25rem 2rem;
+    width: 100%;
+    box-sizing: border-box;
   }
 }
 
@@ -2091,7 +2361,7 @@ h3,
   .alt-section {
     height: auto;
     min-height: auto;
-    padding: 4rem 1.5rem;
+    padding: 1rem 0.5rem;
   }
 
   .alt-container {
@@ -2103,7 +2373,11 @@ h3,
   .beliefs-section {
     height: auto;
     min-height: auto;
-    padding: 4rem 1.5rem;
+    padding: 1rem 0.5rem;
+  }
+
+  .beliefs-main-box {
+    padding: 1.5rem 1rem;
   }
 
   .beliefs-split {
@@ -2221,6 +2495,11 @@ h3,
   gap: 1rem;
 }
 
+/* Hidden on desktop, shown on mobile via media query */
+.offer-mobile-text {
+  display: none;
+}
+
 .offer-metric-card {
   border: 2px solid #000;
   padding: 1.5rem;
@@ -2314,15 +2593,98 @@ h3,
 }
 
 @media (max-width: 860px) {
+  /* ---- Offer Section: Mobile-only overrides (screenshot faithful) ---- */
   .offer-section {
     height: auto;
-    min-height: 100vh;
-    padding: 4rem 1.5rem;
+    min-height: auto;
+    padding: 0.75rem 0.6rem 1.5rem;
   }
 
+  .offer-main-box {
+    padding: 1.25rem 1rem 1.5rem;
+    box-shadow: 5px 5px 0px #000;
+  }
+
+  /* Stack left (heading) above right (metrics) */
   .offer-container {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 1.25rem;
+  }
+
+  /* Title: bold, uppercase, large — matches screenshot headline */
+  .offer-title {
+    font-size: clamp(1.8rem, 8vw, 2.4rem) !important;
+    line-height: 1.15;
+    margin-bottom: 0.6rem;
+  }
+
+  /* Subheading tag: slightly smaller on mobile */
+  .offer-subheading-box {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.75rem;
+    margin-bottom: 0;
+  }
+
+  /* Hide paragraph from left column — it shows below CTA on mobile */
+  .offer-left .offer-text {
+    display: none;
+  }
+
+  /* Keep 2-column metrics grid to match screenshot */
+  .offer-metrics-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+  }
+
+  /* Metric cards: tighter padding on mobile */
+  .offer-metric-card {
+    padding: 0.9rem 0.75rem;
+    gap: 0.5rem;
+    box-shadow: 4px 4px 0px #000;
+  }
+
+  /* Number size on mobile */
+  .offer-metric-num {
+    font-size: 2.4rem;
+    text-shadow: 1px 1px 0px #FAD06B;
+  }
+
+  /* Label size on mobile */
+  .offer-metric-label {
+    font-size: 0.8rem;
+    letter-spacing: 0;
+  }
+
+  /* Pink highlight card: full width, no airplane icon */
+  .offer-metric-card.highlight {
+    grid-column: span 2;
+    padding: 1rem 1rem;
+    box-shadow: 4px 4px 0px #000;
+  }
+
+  /* Hide airplane icon on mobile (not in screenshot) */
+  .offer-metric-card-icon,
+  #floating-scroll-plane {
+    display: none !important;
+  }
+
+  /* CTA button: full width, slightly smaller */
+  .offer-cta-button {
+    font-size: 1.1rem;
+    padding: 1rem 1.5rem;
+    margin-top: 0.85rem;
+    box-shadow: 4px 4px 0px #000;
+  }
+
+  /* Body text: show BELOW the CTA as a sibling after offer-right */
+  .offer-mobile-text {
+    display: block !important;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #1C1B17;
+    margin-top: 1.25rem;
   }
 }
 
@@ -2580,12 +2942,12 @@ h3,
 @media (max-width: 860px) {
   .faq-section {
     height: auto;
-    min-height: 100vh;
-    padding: 3.5rem 1.5rem;
+    min-height: auto;
+    padding: 1rem 0.5rem;
   }
 
   .cta-section {
-    padding: 4.5rem 1.5rem;
+    padding: 1rem 0.5rem;
   }
 }
 
@@ -2656,19 +3018,84 @@ h3,
 }
 
 @media (max-width: 860px) {
+  /* ---- Tracks Section: Mobile-only overrides (screenshot faithful) ---- */
   .tracks-section {
     height: auto;
     min-height: auto;
-    padding: 4rem 1.5rem;
+    padding: 0.75rem 0.6rem 1.5rem;
   }
 
   .tracks-container {
     height: auto !important;
-    padding: 2rem 1.5rem !important;
+    padding: 1.25rem 1rem 1.5rem !important;
+    box-shadow: 5px 5px 0px #000;
   }
 
+  /* Title: big, bold, centered — "ONE SCHOOL. TWO TRACKS. PICK YOURS." */
+  .tracks-title {
+    font-size: clamp(1.9rem, 8vw, 2.5rem) !important;
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+    text-align: center;
+  }
+
+  /* Fork SVG: shrink to fit mobile width */
+  .fork-svg {
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto 0.5rem;
+    display: block;
+  }
+
+  /* Tracks grid: 1 column stacked */
+  .tracks {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 0;
+  }
+
+  /* Track cards: tighter padding */
   .track {
+    padding: 1.25rem 1rem;
     min-height: auto !important;
+    box-shadow: 5px 5px 0px #000;
+  }
+
+  /* Track heading: match screenshot size */
+  .track h3 {
+    font-size: 22px;
+    margin: 0 0 0.75rem 0;
+  }
+
+  /* Track body text: bold, slightly larger per screenshot */
+  .track p {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1C1B17;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  /* Capital line: green mono, dashed top */
+  .track .cap {
+    font-size: 12px;
+    padding-top: 12px;
+  }
+
+  /* Hide hover-corner decorations on mobile (no hover on touch) */
+  .kk-hover-corners {
+    display: none !important;
+  }
+
+  /* Join line: centered italic at bottom */
+  .join-line {
+    font-size: 12.5px;
+    font-weight: 700;
+    font-style: italic;
+    margin-top: 1rem;
+    margin-bottom: 0;
+    text-align: center;
+    color: #55524A;
   }
 }
 
@@ -2866,6 +3293,102 @@ h3,
 .readthis-cta-container {
   text-align: center;
   margin-bottom: 20px;
+}
+
+@media (max-width: 860px) {
+  /* ---- ReadThis Section: Mobile-only overrides (screenshot faithful) ---- */
+
+  /* Enough top padding for stacked nav (logo + pills ≈ 100px) */
+  .readthis-section {
+    padding: 110px 0.75rem 0;
+    min-height: auto;
+  }
+
+  .readthis-header {
+    text-align: center;
+    margin-bottom: 1.25rem;
+    padding: 0 0.5rem;
+  }
+
+  /* Title: large, centered */
+  .readthis-title {
+    font-size: clamp(1.75rem, 7vw, 2.25rem);
+    line-height: 1.15;
+  }
+
+  /* Cards: vertical stacked list (not horizontal scroll) */
+  .readthis-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    overflow: visible;
+    padding: 0 0 1rem;
+    margin: 0 0 1rem 0;
+    max-width: 100%;
+  }
+
+  .readthis-card {
+    min-width: unset;
+    width: 100%;
+    scroll-snap-align: unset;
+    flex-shrink: unset;
+    padding: 1rem 1rem 1rem;
+    border-radius: 6px;
+    box-shadow: 5px 5px 0px;
+  }
+
+  /* Card-specific shadow colors matching borders */
+  .readthis-card.card-1 { box-shadow: 5px 5px 0px #0E7A4A; }
+  .readthis-card.card-2 { box-shadow: 5px 5px 0px #D9381E; }
+  .readthis-card.card-3 { box-shadow: 5px 5px 0px #2A75D3; }
+  .readthis-card.card-4 { box-shadow: 5px 5px 0px #EA580C; }
+
+  /* Stat number: large */
+  .readthis-stat {
+    font-size: 2rem;
+  }
+
+  /* Heading */
+  .readthis-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  /* Body text */
+  .readthis-card p {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin-bottom: 0.6rem;
+  }
+
+  /* Source tag: smaller, inline */
+  .readthis-card .src {
+    font-size: 0.65rem;
+    padding: 3px 6px;
+    margin-bottom: 0.65rem;
+    display: inline-block;
+  }
+
+  /* "Means" italic line: slightly smaller */
+  .readthis-card .means {
+    font-size: 0.85rem;
+    padding-top: 0.6rem;
+  }
+
+  /* CTA: full width, centered */
+  .readthis-cta-container {
+    text-align: center;
+    padding: 0 0 1.25rem;
+  }
+
+  .readthis-cta-box {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    box-shadow: 4px 4px 0px #000;
+  }
 }
 
 /* Apply Section */
@@ -3690,6 +4213,49 @@ h3,
   padding: 2rem 0;
 }
 
+/* Mobile-only CTA block: hidden on desktop */
+.new-hero-mobile-actions {
+  display: none;
+}
+
+/* Age circle rows: hidden on desktop (the SVG handles age display there) */
+.hero-event-age-row {
+  display: none;
+}
+
+@media (max-width: 860px) {
+  /* Show age circles on mobile */
+  .hero-event-age-row {
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 0.25rem;
+  }
+
+  .hero-event-age-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2.5px solid #f97316;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    color: #1C1B17;
+    box-shadow: 2px 2px 0px #f97316;
+  }
+
+  /* Alt link: centered below button */
+  .new-hero-mobile-actions .hero-alt-link {
+    margin-left: 0;
+    font-size: 13.5px;
+    color: #55524A !important;
+    text-align: center;
+  }
+}
+
 .road-svg {
   width: 100%;
   max-width: 320px;
@@ -3722,5 +4288,207 @@ h3,
 .curriculum-marquee-inner,
 .investor-marquee-inner {
   will-change: transform;
+}
+
+/* ==========================================
+   Apply Section Mobile Overrides
+   ========================================== */
+@media (max-width: 860px) {
+  /* ---- Apply Section: Mobile-only overrides (screenshot faithful) ---- */
+
+  /* Enough top padding for stacked pill-nav */
+  .apply-section {
+    padding: 110px 16px 40px;
+    min-height: auto;
+  }
+
+  .apply-body {
+    align-items: stretch;
+  }
+
+  .apply-header {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .apply-title {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+  }
+
+  /* Subtitle: smaller, centered */
+  .apply-sub {
+    font-size: 0.95rem;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  /* Content: stack sidebar above form box */
+  .apply-content-container {
+    flex-direction: column;
+    padding-left: 0;
+    margin-top: 1rem;
+    gap: 0.75rem;
+  }
+
+  /* Sidebar: vertical stack, full width */
+  .apply-sidebar-steps {
+    width: 100%;
+    flex-direction: column;
+    overflow: visible;
+    gap: 0.65rem;
+    padding-bottom: 0;
+    scrollbar-width: unset;
+  }
+
+  /* ALL 3 step cards visible — active gets full opacity+lift, inactive slightly dimmed */
+  .apply-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 44px;
+    padding: 0.85rem 1rem !important;
+    box-sizing: border-box;
+    box-shadow: 4px 4px 0px;
+  }
+
+  .apply-card.card-1 { box-shadow: 4px 4px 0px #2A75D3; }
+  .apply-card.card-2 { box-shadow: 4px 4px 0px #D9381E; }
+  .apply-card.card-3 { box-shadow: 4px 4px 0px #0E7A4A; }
+
+  .apply-card.active {
+    display: flex;
+    opacity: 1;
+    transform: translate(-2px, -2px);
+    width: 100%;
+  }
+
+  .apply-card.inactive {
+    opacity: 0.7;
+    transform: none;
+  }
+
+  /* Add chevron arrow to each card like screenshot */
+  .apply-card::after {
+    content: '›';
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: inherit;
+    flex-shrink: 0;
+    margin-left: 0.5rem;
+  }
+
+  .apply-step-num {
+    font-size: 1rem !important;
+    margin-bottom: 0.1rem;
+  }
+
+  .apply-card h3 {
+    font-size: 0.95rem !important;
+    margin-bottom: 0.2rem;
+  }
+
+  .apply-card p {
+    font-size: 0.82rem !important;
+    line-height: 1.35;
+  }
+
+  /* Purple form box: full width, auto height */
+  .apply-purple-box {
+    margin-right: 0;
+    height: auto;
+    min-height: auto;
+    padding: 1.25rem 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 4px 4px 0px #C084FC;
+  }
+
+  .purple-step-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Form grid: KEEP 2 columns as screenshot shows — Name+Age, Email+WhatsApp, City+WhatYouDo */
+  .purple-form-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem 0.75rem;
+    margin-top: 0.85rem;
+  }
+
+  /* Inputs: 44px+ touch targets */
+  .purple-form-group label {
+    font-size: 0.82rem;
+  }
+
+  .purple-form-group input[type="text"],
+  .purple-form-group input[type="email"],
+  .purple-form-group input[type="number"],
+  .purple-form-group input[type="tel"],
+  .purple-form-group textarea {
+    padding: 11px 10px;
+    font-size: 0.88rem;
+    min-height: 44px;
+    box-sizing: border-box;
+  }
+
+  /* Step 2: stack track selector above textareas */
+  .step2-layout .step2-body {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .track-image-selector {
+    width: 100%;
+  }
+
+  .step2-textareas {
+    width: 100%;
+  }
+
+  /* Step 3: stack left/right */
+  .step3-layout .step3-body {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .step3-left, .step3-right {
+    width: 100%;
+    flex-basis: auto;
+  }
+
+  /* How-found pills: wrap naturally */
+  .howfound-pill {
+    padding: 8px 14px;
+    min-height: 44px;
+    font-size: 0.85rem;
+  }
+
+  /* Checkbox: 44px touch targets */
+  .checkbox-label {
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .checkbox-label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Actions bar: full-width next button */
+  .purple-form-actions {
+    justify-content: stretch;
+    margin-top: 1rem;
+    gap: 0.75rem;
+  }
+
+  .purple-btn {
+    flex: 1;
+    padding: 14px 16px;
+    font-size: 1rem;
+    min-height: 48px;
+    text-align: center;
+  }
 }
 

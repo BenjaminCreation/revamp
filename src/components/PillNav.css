@@ -24,13 +24,16 @@
     left: 0;
     transform: none;
     padding: 0;
+    top: 0.75rem;
   }
   .pill-nav-wrapper {
     width: 100%;
-    justify-content: space-between;
-    padding: 0.75rem 1.5rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem 0.25rem;
     box-sizing: border-box;
-    gap: 0;
+    gap: 0.5rem;
   }
 }
 
@@ -210,16 +213,27 @@
   display: flex;
 }
 
+/* Hamburger hidden globally — pills always inline per design */
 .mobile-only {
   display: none;
 }
 
 @media (max-width: 768px) {
+  /* Show pill items inline on mobile to match the screenshot exactly */
   .desktop-only {
+    display: flex;
+  }
+  /* Keep hamburger hidden on mobile too */
+  .mobile-only {
     display: none;
   }
-  .mobile-only {
-    display: flex;
+  /* Tighter pill sizing on small screens */
+  .pill {
+    font-size: 0.7rem;
+    padding: 0 0.75rem;
+  }
+  .pill-nav-items {
+    box-shadow: none;
   }
 }
 
@@ -276,20 +290,29 @@
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  align-items: stretch !important;
+  gap: 0.5rem;
+}
+
+.mobile-menu-list li {
+  width: 100%;
+  display: block;
 }
 
 .mobile-menu-popover .mobile-menu-link {
   display: block;
-  padding: 0.85rem 1.25rem;
+  width: 100% !important;
+  box-sizing: border-box;
+  text-align: center;
+  padding: 1rem 1.25rem;
   color: var(--pill-text, #fff);
   background-color: var(--pill-bg, #fff);
   text-decoration: none;
   font-family: 'Poppins', sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.02rem;
+  letter-spacing: 0.05rem;
   border-radius: 0;
   transition: all 0.2s ease;
 }
