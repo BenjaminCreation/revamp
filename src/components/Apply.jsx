@@ -125,22 +125,27 @@ export default function Apply({ navigate, isStandalone = false }) {
       setSubmitting(true);
       setApiError('');
       try {
+        const howFoundLabels = formData.howFound.map(v => {
+          const found = HEARD_FROM_OPTIONS.find(o => o.value === v);
+          return found ? found.label : v;
+        });
+
         const res = await fetch(API_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            full_name: formData.name,
+            full_name: formData.name.trim(),
             age: Number(formData.age),
-            email: formData.email,
-            whatsapp: formData.whatsapp,
-            city: formData.city,
-            current_role: formData.whatYouDo,
+            email: formData.email.trim(),
+            whatsapp: formData.whatsapp.trim(),
+            city: formData.city.trim(),
+            current_role: formData.whatYouDo.trim(),
             track: formData.trackChoice === 'maker' ? 'karkhana' : 'sevadaata',
-            sold_story: formData.soldSomething,
-            time_commitment: formData.whatToCut,
-            background_story: formData.backgroundStory,
-            why_apply: formData.whyJoin,
-            how_found: formData.howFound,
+            sold_story: formData.soldSomething.trim(),
+            time_commitment: formData.whatToCut.trim(),
+            background_story: formData.backgroundStory.trim(),
+            why_apply: formData.whyJoin.trim(),
+            how_found: howFoundLabels,
             attend_commit: formData.commitLive,
             checkpoint_commit: formData.commitCheckpoint,
           }),
@@ -148,7 +153,7 @@ export default function Apply({ navigate, isStandalone = false }) {
 
         const result = await res.json();
         if (!res.ok || !result.ok) {
-          throw new Error(result.error || 'Failed to submit application.');
+          throw new Error(result.error || (Array.isArray(result.errors) ? result.errors.join(', ') : 'Failed to submit application.'));
         }
 
         setIsSubmitted(true);
@@ -478,9 +483,14 @@ export default function Apply({ navigate, isStandalone = false }) {
 
 
                 {/* Controls */}
+                {apiError && (
+                  <p className="apply-api-error" style={{ color: '#ef4444', textAlign: 'center', margin: '12px 0 0', fontWeight: 600 }}>
+                    {apiError}
+                  </p>
+                )}
                 <div className="purple-form-actions">
                   {activeStep > 1 && (
-                    <button type="button" onClick={handleBack} className="purple-btn back-btn">
+                    <button type="button" onClick={handleBack} className="purple-btn back-btn" disabled={submitting}>
                       Back
                     </button>
                   )}
@@ -489,8 +499,8 @@ export default function Apply({ navigate, isStandalone = false }) {
                       Next Step &rarr;
                     </button>
                   ) : (
-                    <button type="submit" className="purple-btn submit-btn">
-                      Submit Application
+                    <button type="submit" className="purple-btn submit-btn" disabled={submitting}>
+                      {submitting ? 'Submitting...' : 'Submit Application'}
                     </button>
                   )}
                 </div>
