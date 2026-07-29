@@ -25,6 +25,7 @@ export default function NewHero({ navigate }) {
   const box22Ref = useRef(null);
 
   // Mobile MotionPath & Avatar Refs
+  const mobTimelineRef = useRef(null);
   const mobBoyGroupRef = useRef(null);
   const mobFace16Ref = useRef(null);
   const mobFace18Ref = useRef(null);
@@ -82,17 +83,17 @@ export default function NewHero({ navigate }) {
             tl.to(box22Ref.current, { opacity: 1, duration: 0.05 }, 0.98);
           }
         } else {
-          // Mobile Pinned MotionPath Timeline (Single Boy Cartoon Character)
-          if (mobBoyGroupRef.current) {
+          // Mobile Pinned MotionPath Timeline (Starts when user scrolls down to racetrack view)
+          if (mobBoyGroupRef.current && mobTimelineRef.current) {
             gsap.set(mobBoyGroupRef.current, {
               motionPath: { path: "#mobile-road-path", align: "#mobile-road-path", alignOrigin: [0.5, 0.5], start: 0, end: 0 }
             });
 
             const mobTl = gsap.timeline({
               scrollTrigger: {
-                trigger: heroRef.current,
-                start: "top top+=20",
-                end: "+=1200",
+                trigger: mobTimelineRef.current,
+                start: "center center",
+                end: "+=1000",
                 scrub: 1,
                 pin: true,
                 pinSpacing: true
@@ -293,7 +294,7 @@ export default function NewHero({ navigate }) {
         </div>
 
         {/* Mobile Vertical S-Curve Timeline with Single Moving Boy Cartoon */}
-        <div className="mobile-receipt-timeline mobile-only">
+        <div className="mobile-receipt-timeline mobile-only" ref={mobTimelineRef}>
           {/* Static Stage Markers (16, 18, 22) */}
           <div className="mobile-timeline-step step-16">
             <div className="mobile-node-circle">16</div>
