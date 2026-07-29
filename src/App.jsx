@@ -39,13 +39,23 @@ export default function App() {
     
     if (path === '/') {
       window.scrollTo(0, 0);
-      smoother = ScrollSmoother.create({
-        smooth: 0.8,
-        effects: false,
-        smoothTouch: 0.1
-      });
-      window.__smoother = smoother;
-      setSmootherReady(true);
+      try {
+        if (typeof ScrollSmoother !== 'undefined' && ScrollSmoother.create) {
+          smoother = ScrollSmoother.create({
+            smooth: 0.8,
+            effects: false,
+            smoothTouch: 0.1
+          });
+          window.__smoother = smoother;
+        }
+      } catch (err) {
+        console.warn('ScrollSmoother initialization skipped:', err);
+      }
+      setTimeout(() => {
+        try {
+          ScrollTrigger.refresh();
+        } catch (e) {}
+      }, 100);
     } else {
       if (window.__smoother) {
         try {
@@ -68,12 +78,13 @@ export default function App() {
         } catch (e) {}
       });
       window.scrollTo(0, 0);
-      setSmootherReady(true);
     }
 
     return () => {
       if (smoother) {
-        smoother.kill();
+        try {
+          smoother.kill();
+        } catch (e) {}
         window.__smoother = null;
       }
     };
@@ -197,36 +208,36 @@ export default function App() {
         <div id="smooth-content">
 
           {/* Full-bleed New Hero Section at the top of homepage */}
-          {smootherReady && path === '/' && (
+          {path === '/' && (
             <>
-                  <NewHero navigate={navigate} />
-                  <AlternativeSection />
-                  <Beliefs navigate={navigate} />
-                  <Offer navigate={navigate} />
-                  <Tracks />
-                  <Curriculum />
-                  <WeekMap />
-                  <InvestorDay />
-                </>
-              )}
+              <NewHero navigate={navigate} />
+              <AlternativeSection />
+              <Beliefs navigate={navigate} />
+              <Offer navigate={navigate} />
+              <Tracks />
+              <Curriculum />
+              <WeekMap />
+              <InvestorDay />
+            </>
+          )}
 
           {/* Full-bleed ReadThis Section */}
-          {smootherReady && path === '/read-this' && (
+          {path === '/read-this' && (
             <ReadThis navigate={navigate} isStandalone={true} />
           )}
 
           {/* Full-bleed Apply Section */}
-          {smootherReady && path === '/apply' && (
+          {path === '/apply' && (
             <Apply navigate={navigate} isStandalone={true} />
           )}
 
           {/* Main Content Bounded Sheet */}
-          {smootherReady && path !== '/' && path !== '/read-this' && path !== '/apply' && (
+          {path !== '/' && path !== '/read-this' && path !== '/apply' && (
             <div className="sheet">
             </div>
           )}
 
-          {smootherReady && path === '/' && (
+          {path === '/' && (
             <>
               <BottomSection navigate={navigate} />
               <Footer navigate={navigate} />
@@ -236,7 +247,7 @@ export default function App() {
         </div>
       </div>
 
-      {smootherReady && path === '/' && <ScrollPlane />}
+      {path === '/' && <ScrollPlane />}
     </div>
   );
 }
