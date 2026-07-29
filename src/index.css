@@ -5000,11 +5000,11 @@ h3,
     max-width: 380px !important;
   }
 
-  /* Mobile Vertical Timeline (No outer box container, 0 horizontal scroll) */
+  /* Mobile Vertical Timeline (Exact Design System Colors & Fonts) */
   .wm-mobile-timeline {
     display: flex !important;
     flex-direction: column !important;
-    gap: 18px !important;
+    gap: 20px !important;
     width: 100% !important;
     max-width: 440px !important;
     margin: 0 auto !important;
@@ -5013,19 +5013,19 @@ h3,
   .wm-mobile-week-card {
     background: #ffffff !important;
     border: 2.5px solid #1C1B17 !important;
-    box-shadow: 5px 5px 0 #1C1B17 !important;
-    border-radius: 8px !important;
+    box-shadow: 6px 6px 0 #1C1B17 !important;
+    border-radius: 4px !important;
     overflow: hidden !important;
     box-sizing: border-box !important;
   }
 
   .wm-mobile-week-header {
-    padding: 14px 16px !important;
+    padding: 16px 18px !important;
     border-bottom: 2.5px solid #1C1B17 !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: flex-start !important;
-    gap: 2px !important;
+    gap: 4px !important;
   }
 
   .wm-mobile-week-header.wm-week-1 { background: #FFD166 !important; }
@@ -5033,8 +5033,30 @@ h3,
   .wm-mobile-week-header.wm-week-3 { background: #FFB3D9 !important; }
   .wm-mobile-week-header.wm-week-4 { background: #C2F5E9 !important; }
 
+  .wm-mobile-week-header .wm-wno {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: 0.78rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    color: #1C1B17 !important;
+    margin-bottom: 2px !important;
+    display: block !important;
+    opacity: 0.85 !important;
+  }
+
+  .wm-mobile-week-header .wm-theme {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: 1.15rem !important;
+    line-height: 1.2 !important;
+    color: #1C1B17 !important;
+    text-transform: uppercase !important;
+    display: block !important;
+  }
+
   .wm-mobile-week-body {
-    padding: 16px !important;
+    padding: 18px 16px !important;
     display: flex !important;
     flex-direction: column !important;
     gap: 16px !important;
@@ -5052,34 +5074,37 @@ h3,
   .wm-mobile-pill {
     font-family: 'Poppins', sans-serif !important;
     font-weight: 900 !important;
-    font-size: 0.7rem !important;
+    font-size: 0.75rem !important;
     text-transform: uppercase !important;
     letter-spacing: 0.05em !important;
-    padding: 3px 8px !important;
-    border-radius: 4px !important;
-    border: 1.5px solid #1C1B17 !important;
+    padding: 4px 10px !important;
+    border-radius: 3px !important;
+    border: 2px solid #1C1B17 !important;
     color: #ffffff !important;
-    box-shadow: 2px 2px 0 #1C1B17 !important;
+    box-shadow: 2.5px 2.5px 0 #1C1B17 !important;
+    display: inline-block !important;
   }
 
-  .wm-blue-pill { background: #6CA6F1 !important; }
-  .wm-green-pill { background: #3BB481 !important; }
-  .wm-orange-pill { background: #ECAE64 !important; }
+  .wm-blue-pill { background: #6CA6F1 !important; color: #ffffff !important; }
+  .wm-green-pill { background: #3BB481 !important; color: #ffffff !important; }
+  .wm-orange-pill { background: #ECAE64 !important; color: #ffffff !important; }
 
   .wm-mobile-sessions-text {
     font-family: 'Satoshi', sans-serif !important;
     font-weight: 800 !important;
-    font-size: 0.92rem !important;
+    font-size: 0.96rem !important;
     color: #0E7A4A !important;
-    line-height: 1.4 !important;
+    line-height: 1.45 !important;
+    display: block !important;
+    margin-top: 2px !important;
   }
 
   .wm-mobile-checkpoint-text {
     font-family: 'Satoshi', sans-serif !important;
     font-weight: 700 !important;
-    font-size: 0.88rem !important;
+    font-size: 0.92rem !important;
     color: #1C1B17 !important;
-    line-height: 1.4 !important;
-    margin: 0 !important;
+    line-height: 1.45 !important;
+    margin: 2px 0 0 0 !important;
   }
 }
