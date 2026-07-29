@@ -24,10 +24,12 @@ export default function NewHero({ navigate }) {
   const box18Ref = useRef(null);
   const box22Ref = useRef(null);
 
-  // Mobile Animation Refs
-  const mobCircle16Ref = useRef(null);
-  const mobCircle18Ref = useRef(null);
-  const mobCircle22Ref = useRef(null);
+  // Mobile MotionPath & Avatar Refs
+  const mobBoyGroupRef = useRef(null);
+  const mobFace16Ref = useRef(null);
+  const mobFace18Ref = useRef(null);
+  const mobFace22Ref = useRef(null);
+
   const mobCard16Ref = useRef(null);
   const mobCard18Ref = useRef(null);
   const mobCard22Ref = useRef(null);
@@ -40,7 +42,7 @@ export default function NewHero({ navigate }) {
         const isMobile = window.innerWidth <= 768;
 
         if (!isMobile) {
-          // Desktop Pinned MotionPath Timeline
+          // Desktop Pinned MotionPath Timeline (UNTOUCHED)
           if (boy1GroupRef.current && boy2GroupRef.current && boy3GroupRef.current) {
             gsap.set(boy1GroupRef.current, { motionPath: { path: "#road-path", align: "#road-path", alignOrigin: [0.5, 0.5], start: 0, end: 0 } });
             gsap.set(boy2GroupRef.current, { motionPath: { path: "#road-path", align: "#road-path", alignOrigin: [0.5, 0.5], start: 0.5, end: 0.5 } });
@@ -80,44 +82,49 @@ export default function NewHero({ navigate }) {
             tl.to(box22Ref.current, { opacity: 1, duration: 0.05 }, 0.98);
           }
         } else {
-          // Mobile ScrollTrigger Sequence (Reveals Boy Faces & Event Tooltips)
-          const mobTl = gsap.timeline({
-            scrollTrigger: {
-              trigger: heroRef.current,
-              start: "top top+=20",
-              end: "+=400",
-              scrub: 0.5
-            }
-          });
+          // Mobile Pinned MotionPath Timeline (Single Boy Cartoon Character)
+          if (mobBoyGroupRef.current) {
+            gsap.set(mobBoyGroupRef.current, {
+              motionPath: { path: "#mobile-road-path", align: "#mobile-road-path", alignOrigin: [0.5, 0.5], start: 0, end: 0 }
+            });
 
-          // Boy 16 reveal
-          if (mobCircle16Ref.current) {
-            mobTl.to(mobCircle16Ref.current, { scale: 1.15, borderColor: '#f97316', duration: 0.2 }, 0);
-            mobTl.to(mobCircle16Ref.current.querySelector('.mob-badge-num'), { opacity: 0, duration: 0.1 }, 0);
-            mobTl.to(mobCircle16Ref.current.querySelector('.mob-badge-img'), { opacity: 1, scale: 1, duration: 0.2 }, 0);
-          }
-          if (mobCard16Ref.current) {
-            mobTl.to(mobCard16Ref.current, { opacity: 1, y: 0, duration: 0.2 }, 0.05);
-          }
+            const mobTl = gsap.timeline({
+              scrollTrigger: {
+                trigger: heroRef.current,
+                start: "top top+=20",
+                end: "+=1200",
+                scrub: 1,
+                pin: true,
+                pinSpacing: true
+              }
+            });
 
-          // Boy 18 reveal
-          if (mobCircle18Ref.current) {
-            mobTl.to(mobCircle18Ref.current, { scale: 1.15, borderColor: '#f97316', duration: 0.2 }, 0.3);
-            mobTl.to(mobCircle18Ref.current.querySelector('.mob-badge-num'), { opacity: 0, duration: 0.1 }, 0.3);
-            mobTl.to(mobCircle18Ref.current.querySelector('.mob-badge-img'), { opacity: 1, scale: 1, duration: 0.2 }, 0.3);
-          }
-          if (mobCard18Ref.current) {
-            mobTl.to(mobCard18Ref.current, { opacity: 1, y: 0, duration: 0.2 }, 0.35);
-          }
+            // Stage 16 (0 to 0.5): Card 16 shows, Boy 16 moves to 18
+            mobTl.to(mobCard16Ref.current, { opacity: 1, y: 0, duration: 0.08 }, 0);
+            mobTl.to(mobBoyGroupRef.current, {
+              motionPath: { path: "#mobile-road-path", align: "#mobile-road-path", alignOrigin: [0.5, 0.5], start: 0, end: 0.5 },
+              duration: 0.5,
+              ease: "none"
+            }, 0);
 
-          // Boy 22 reveal
-          if (mobCircle22Ref.current) {
-            mobTl.to(mobCircle22Ref.current, { scale: 1.15, borderColor: '#f97316', duration: 0.2 }, 0.6);
-            mobTl.to(mobCircle22Ref.current.querySelector('.mob-badge-num'), { opacity: 0, duration: 0.1 }, 0.6);
-            mobTl.to(mobCircle22Ref.current.querySelector('.mob-badge-img'), { opacity: 1, scale: 1, duration: 0.2 }, 0.6);
-          }
-          if (mobCard22Ref.current) {
-            mobTl.to(mobCard22Ref.current, { opacity: 1, y: 0, duration: 0.2 }, 0.65);
+            // Morph at Stage 18 (0.5)
+            mobTl.to(mobCard16Ref.current, { opacity: 0, y: -8, duration: 0.05 }, 0.48);
+            mobTl.to(mobFace16Ref.current, { opacity: 0, duration: 0.02 }, 0.48);
+            mobTl.to(mobFace18Ref.current, { opacity: 1, duration: 0.02 }, 0.48);
+            mobTl.to(mobCard18Ref.current, { opacity: 1, y: 0, duration: 0.08 }, 0.5);
+
+            // Stage 18 to 22 (0.5 to 1.0): Boy 18 moves to 22
+            mobTl.to(mobBoyGroupRef.current, {
+              motionPath: { path: "#mobile-road-path", align: "#mobile-road-path", alignOrigin: [0.5, 0.5], start: 0.5, end: 1.0 },
+              duration: 0.5,
+              ease: "none"
+            }, 0.5);
+
+            // Morph at Stage 22 (1.0)
+            mobTl.to(mobCard18Ref.current, { opacity: 0, y: -8, duration: 0.05 }, 0.98);
+            mobTl.to(mobFace18Ref.current, { opacity: 0, duration: 0.02 }, 0.98);
+            mobTl.to(mobFace22Ref.current, { opacity: 1, duration: 0.02 }, 0.98);
+            mobTl.to(mobCard22Ref.current, { opacity: 1, y: 0, duration: 0.08 }, 0.98);
           }
         }
 
@@ -285,50 +292,65 @@ export default function NewHero({ navigate }) {
           </div>
         </div>
 
-        {/* Mobile Vertical S-Curve Timeline (Design Spec) */}
+        {/* Mobile Vertical S-Curve Timeline with Single Moving Boy Cartoon */}
         <div className="mobile-receipt-timeline mobile-only">
+          {/* Static Stage Markers (16, 18, 22) */}
           <div className="mobile-timeline-step step-16">
-            <div className="mobile-badge-circle" ref={mobCircle16Ref}>
-              <span className="mob-badge-num">16</span>
-              <img src="/boy16.png" alt="16" className="mob-badge-img" />
-            </div>
+            <div className="mobile-node-circle">16</div>
             <p className="mobile-step-desc">You enter the system.</p>
-            <div className="mobile-event-card card-16" ref={mobCard16Ref}>
-              Lakhs to a coaching institute to crack JEE/NEET.
-            </div>
           </div>
 
           <div className="mobile-timeline-step step-18">
-            <div className="mobile-badge-circle" ref={mobCircle18Ref}>
-              <span className="mob-badge-num">18</span>
-              <img src="/boy18.png" alt="18" className="mob-badge-img" />
-            </div>
+            <div className="mobile-node-circle">18</div>
             <p className="mobile-step-desc">You prepare for the exam.</p>
-            <div className="mobile-event-card card-18" ref={mobCard18Ref}>
-              9 out of 10 don't crack it. So: lakhs more to college.
-            </div>
           </div>
 
           <div className="mobile-timeline-step step-22">
-            <div className="mobile-badge-circle" ref={mobCircle22Ref}>
-              <span className="mob-badge-num">22</span>
-              <img src="/boy22.png" alt="22" className="mob-badge-img" />
-            </div>
+            <div className="mobile-node-circle">22</div>
             <p className="mobile-step-desc">You get a degree.<br />Not a skill.</p>
-            <div className="mobile-event-card card-22" ref={mobCard22Ref}>
-              Job barely covers living expenses. Buy next exam: CAT/UPSC.
-            </div>
           </div>
 
-          <svg className="mobile-s-path-svg" viewBox="0 0 280 320" preserveAspectRatio="none">
+          {/* Event Cards (Revealed sequentially on scroll, clean offsets) */}
+          <div className="mobile-event-card card-16" ref={mobCard16Ref}>
+            <strong>Age 16</strong>
+            <p>Lakhs to a coaching institute to crack JEE/NEET.</p>
+          </div>
+
+          <div className="mobile-event-card card-18" ref={mobCard18Ref}>
+            <strong>Age 18</strong>
+            <p>9 out of 10 don't crack it. So: lakhs more, to a college you never wanted.</p>
+          </div>
+
+          <div className="mobile-event-card card-22" ref={mobCard22Ref}>
+            <strong>Age 22</strong>
+            <p>A job that barely covers living expenses. So you buy the next exam: CAT or UPSC.</p>
+          </div>
+
+          {/* SVG Motion Path & Single Moving Boy Cartoon */}
+          <svg className="mobile-s-path-svg" viewBox="0 0 300 450">
             <path
-              d="M 55 20 H 235 V 125 H 55 V 230 H 235"
+              id="mobile-road-path"
+              d="M 50 30 H 250 V 210 H 50 V 390 H 250"
               fill="none"
               stroke="#1C1B17"
-              strokeWidth="3.5"
-              strokeDasharray="7 7"
+              strokeWidth="4"
+              strokeDasharray="8 8"
               strokeLinecap="round"
             />
+
+            {/* Single Boy Avatar moving along mobile-road-path */}
+            <g ref={mobBoyGroupRef}>
+              <circle cx="0" cy="0" r="22" fill="#FFFFFF" stroke="#f97316" strokeWidth="4" />
+              <g ref={mobFace16Ref} style={{ opacity: 1 }}>
+                <image href="/boy16.png" x="-22" y="-22" width="44" height="44" preserveAspectRatio="xMidYMid meet" />
+              </g>
+              <g ref={mobFace18Ref} style={{ opacity: 0 }}>
+                <image href="/boy18.png" x="-22" y="-22" width="44" height="44" preserveAspectRatio="xMidYMid meet" />
+              </g>
+              <g ref={mobFace22Ref} style={{ opacity: 0 }}>
+                <image href="/boy22.png" x="-22" y="-22" width="44" height="44" preserveAspectRatio="xMidYMid meet" />
+              </g>
+            </g>
           </svg>
         </div>
 

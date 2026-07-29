@@ -3925,12 +3925,12 @@ h3,
     line-height: 1.5 !important;
   }
 
-  /* Mobile Receipt Timeline (40px before timeline) */
+  /* Mobile Receipt Timeline (40px before timeline, 450px height for zero overlap) */
   .mobile-receipt-timeline {
     position: relative;
     width: 100%;
-    max-width: 340px;
-    height: 320px;
+    max-width: 320px;
+    height: 450px;
     margin: 40px auto 0 !important;
   }
 
@@ -3953,9 +3953,9 @@ h3,
     text-align: center;
   }
 
-  .mobile-badge-circle {
-    width: 42px;
-    height: 42px;
+  .mobile-node-circle {
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background: #FFFFFF;
     border: 3.5px solid #f97316;
@@ -3964,31 +3964,14 @@ h3,
     justify-content: center;
     font-family: 'Poppins', sans-serif;
     font-weight: 800;
-    font-size: 16px;
+    font-size: 15px;
     color: #1C1B17;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .mob-badge-num {
-    position: absolute;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-
-  .mob-badge-img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transform: scale(0.8);
-    transition: opacity 0.3s ease, transform 0.3s ease;
   }
 
   .mobile-step-desc {
     font-family: 'Satoshi', sans-serif;
-    font-size: 15.5px;
+    font-size: 14px;
     font-weight: 700;
     color: #1C1B17;
     margin: 6px 0 0;
@@ -3997,54 +3980,73 @@ h3,
   }
 
   .mobile-timeline-step.step-16 {
-    top: 0px;
-    left: 32px;
+    top: 10px;
+    left: 10px;
   }
 
   .mobile-timeline-step.step-18 {
-    top: 105px;
-    right: 32px;
+    top: 190px;
+    right: 10px;
   }
 
   .mobile-timeline-step.step-22 {
-    top: 210px;
-    left: 32px;
+    top: 370px;
+    left: 10px;
   }
 
-  /* Popup Event Cards for Mobile Storytelling */
+  /* Popup Event Cards for Mobile Storytelling (Zero Overlap) */
   .mobile-event-card {
     position: absolute;
     background: #FAF8F2;
     border: 1.5px solid #1C1B17;
-    border-radius: 6px;
-    padding: 8px 12px;
+    border-radius: 8px;
+    padding: 10px 14px;
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 600;
     color: #1C1B17;
     box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.12);
     opacity: 0;
     transform: translateY(8px);
     transition: opacity 0.3s ease, transform 0.3s ease;
-    width: 170px;
+    width: 190px;
     pointer-events: none;
     z-index: 10;
     text-align: left;
     line-height: 1.35;
   }
 
+  .mobile-event-card strong {
+    display: block;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    color: #f97316;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+
+  .mobile-event-card p {
+    margin: 0;
+    font-family: 'Satoshi', sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #1C1B17;
+  }
+
   .mobile-event-card.card-16 {
-    top: -12px;
-    left: 80px;
+    top: 10px;
+    left: 110px;
   }
 
   .mobile-event-card.card-18 {
-    top: 90px;
-    right: 80px;
+    top: 190px;
+    left: 15px;
   }
 
   .mobile-event-card.card-22 {
-    top: 195px;
-    left: 80px;
+    top: 370px;
+    left: 110px;
   }
 
   /* Mobile Hero CTA Block (32px after timeline) */
