@@ -1,6 +1,30 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 
-function useScrollPath(d) {
+const ART_DIRECTED_FRAME_ITEMS = [
+  // Top Edge (4 items)
+  { src: '/KK_frame_5.png', alt: 'Delivery Truck', class: 'piece-top-1 size-large' },
+  { src: '/KK_frame_2.png', alt: 'Barcode Scanner', class: 'piece-top-2 size-medium' },
+  { src: '/KK_frame_3.png', alt: 'Metal Gear', class: 'piece-top-3 size-medium' },
+  { src: '/KK_frame_4.png', alt: 'Laptop', class: 'piece-top-4 size-medium' },
+
+  // Right Edge (3 items)
+  { src: '/KK_frame_7.png', alt: 'Cardboard Box', class: 'piece-right-1 size-large' },
+  { src: '/KK_frame_1.png', alt: 'Thread Spool', class: 'piece-right-2 size-small' },
+  { src: '/KK_frame_2.png', alt: 'Barcode Scanner', class: 'piece-right-3 size-medium' },
+
+  // Bottom Edge (4 items)
+  { src: '/KK_frame_5.png', alt: 'Delivery Truck', class: 'piece-bottom-1 size-large' },
+  { src: '/KK_frame_3.png', alt: 'Metal Gear', class: 'piece-bottom-2 size-medium' },
+  { src: '/KK_frame_2.png', alt: 'Barcode Scanner', class: 'piece-bottom-3 size-medium' },
+  { src: '/KK_frame_7.png', alt: 'Cardboard Box', class: 'piece-bottom-4 size-large' },
+
+  // Left Edge (3 items)
+  { src: '/KK_frame_4.png', alt: 'Laptop', class: 'piece-left-1 size-medium' },
+  { src: '/KK_frame_6.png', alt: 'Tag Label', class: 'piece-left-2 size-small' },
+  { src: '/KK_frame_3.png', alt: 'Metal Gear', class: 'piece-left-3 size-medium' }
+];
+
+function useScrollPath(_d) {
   const pathRef = useRef(null);
   const [dashOffset, setDashOffset] = useState(0);
   const [dashLength, setDashLength] = useState(0);
@@ -42,6 +66,8 @@ function useScrollPath(d) {
 export default function Tracks() {
   const leftRoad = useScrollPath("M280 4 L280 26 C 280 56, 150 50, 148 86");
   const rightRoad = useScrollPath("M280 26 C 280 56, 410 50, 412 86");
+
+
 
   return (
     <div className="tracks-section">
@@ -127,12 +153,20 @@ export default function Tracks() {
 
         <div className="tracks">
           <div className="track maker-track">
+            <div className="kk-hover-corners" aria-hidden="true">
+              <img src="/KK_frame_5.png" alt="Delivery Truck" className="kk-hover-corner corner-tl" />
+              <img src="/KK_frame_7.png" alt="Cardboard Box" className="kk-hover-corner corner-tr" />
+              <img src="/KK_frame_2.png" alt="Barcode Scanner" className="kk-hover-corner corner-br" />
+              <img src="/KK_frame_4.png" alt="Laptop" className="kk-hover-corner corner-bl" />
+            </div>
+
             <h3>
               <span className="tracks-highlight-box blue-highlight">KARKHANA</span>
             </h3>
             <p>You build a merchandise brand for a community you belong to: your college, your city, your fandom. Design, suppliers, pre-orders, margins. One rule is iron: you never print what nobody has paid for.</p>
             <span className="cap mono">Capital: a few thousand ₹, mostly collected from customers first</span>
           </div>
+
           <div className="track skills-track">
             <h3>
               <span className="tracks-highlight-box pink-highlight">SEVADAATA</span>

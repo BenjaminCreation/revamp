@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 import BoyFace from './BoyFace';
 
-gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother, MotionPathPlugin);
 
 export default function NewHero({ navigate }) {
   const heroRef = useRef(null);
@@ -41,8 +42,7 @@ export default function NewHero({ navigate }) {
             end: "+=1500",
             scrub: 1,
             pin: true,
-            pinSpacing: true,
-            anticipatePin: 1
+            pinSpacing: true
           }
         });
 
@@ -82,7 +82,11 @@ export default function NewHero({ navigate }) {
 
     return () => {
       clearTimeout(timer);
-      if (ctx) ctx.revert();
+      if (ctx) {
+        try {
+          ctx.revert();
+        } catch (e) {}
+      }
     };
   }, []);
 
@@ -115,8 +119,13 @@ export default function NewHero({ navigate }) {
               href="#alt"
               onClick={(e) => {
                 e.preventDefault();
-                const el = document.getElementById('alt');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                const smoother = ScrollSmoother.get();
+                if (smoother) {
+                  smoother.scrollTo('#alt', true);
+                } else {
+                  const el = document.getElementById('alt');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }
               }}
             >
               So what's the alternative?
@@ -125,35 +134,28 @@ export default function NewHero({ navigate }) {
         </div>
 
         {/* Right Column: Pastel Event Boxes */}
-        <div className="new-hero-receipt-col" style={{ position: 'relative' }}>
-          <div className="hero-event-boxes">
-            <div className="hero-event-box box-16" ref={box16Ref}>
-              <p className="hero-event-text">Lakhs to a coaching institute to crack JEE.</p>
+        <div className="new-hero-receipt-col">
+          <div className="hero-road-graphic" style={{ position: 'relative', margin: '0 auto', width: '100%', maxWidth: '350px' }}>
+            <div className="hero-event-boxes">
+              <div className="hero-event-box box-16" ref={box16Ref}>
+                <p className="hero-event-text">Lakhs to a coaching institute to crack JEE.</p>
+              </div>
+              <div className="hero-event-box box-18" ref={box18Ref}>
+                <p className="hero-event-text">9 out of 10 don't crack it. So: lakhs more, to a college you never wanted.</p>
+              </div>
+              <div className="hero-event-box box-22" ref={box22Ref}>
+                <p className="hero-event-text">A job that barely covers living expenses. So you buy the next exam, CAT or UPSC.</p>
+              </div>
             </div>
-            <div className="hero-event-box box-18" ref={box18Ref}>
-              <p className="hero-event-text">9 out of 10 don't crack it. So: lakhs more, to a college you never wanted.</p>
-            </div>
-            <div className="hero-event-box box-22" ref={box22Ref}>
-              <p className="hero-event-text">A job that barely covers living expenses. So you buy the next exam, CAT or UPSC.</p>
-            </div>
-          </div>
-          
-          <div className="hero-road-graphic">
+            
             <svg viewBox="0 0 200 300" className="road-svg">
-              {/* Road Base */}
-              <path 
-                d="M 10 10 L 100 10 C 200 10, 200 150, 100 150 C 0 150, 0 290, 100 290 L 190 290" 
-                fill="none" 
-                stroke="#1C1B17" 
-                strokeWidth="40" 
-                strokeLinecap="round" 
-              />
+
               {/* Dashed Center Line (Used as Motion Path) */}
               <path 
                 id="road-path"
-                d="M 10 10 L 100 10 C 200 10, 200 150, 100 150 C 0 150, 0 290, 100 290 L 190 290" 
+                d="M 10 10 L 190 10 L 190 150 L 10 150 L 10 290 L 190 290" 
                 fill="none" 
-                stroke="#FDE68A" 
+                stroke="#1C1B17" 
                 strokeWidth="4" 
                 strokeDasharray="12 12" 
                 strokeLinecap="round" 

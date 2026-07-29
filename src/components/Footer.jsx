@@ -63,16 +63,6 @@ export default function Footer({ navigate }) {
 
   return (
     <footer className="sec8-footer-bottom">
-      {/* Background Animation Layer */}
-      <div className="footer-gradient-bg">
-        <div className="gradient-blobs-container">
-          <div className="hero-circ_blue2"></div>
-          <div className="hero-circ_pink2"></div>
-          <div className="hero-circ_blue"></div>
-          <div className="hero-circ_pink"></div>
-        </div>
-      </div>
-
       <div className="sec8-footer-inner">
         {/* Main Grid */}
         <div className="sec8-footer-grid">

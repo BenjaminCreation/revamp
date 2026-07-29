@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 
 const DISCIPLINES = [
   { name: 'Marketing',      count: 2, desc: 'Attract customers without a budget.' },
@@ -10,8 +10,25 @@ const DISCIPLINES = [
 ];
 
 export default function Curriculum() {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const marquee = section.querySelector('.curriculum-marquee-inner');
+    if (!marquee) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        marquee.classList.toggle('marquee-paused', !entry.isIntersecting);
+      },
+      { threshold: 0 }
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="curriculum-section">
+    <section className="curriculum-section" ref={sectionRef}>
       <div className="curriculum-main-box">
         <div className="curriculum-marquee">
           <div className="curriculum-marquee-inner">

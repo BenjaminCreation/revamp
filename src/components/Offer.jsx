@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Offer() {
+export default function Offer({ navigate }) {
   return (
     <section className="offer-section">
       <div className="offer-main-box">
@@ -68,7 +68,7 @@ export default function Offer() {
               </div>
             </div>
             
-            <button className="offer-cta-button">
+            <button className="offer-cta-button" onClick={(e) => { e.preventDefault(); navigate('/apply'); }}>
               APPLY NOW →
             </button>
           </div>

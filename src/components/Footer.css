@@ -14,74 +14,7 @@
   flex-direction: column;
 }
 
-/* Background Animation Layer */
-.footer-gradient-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  opacity: 0.85;
-  pointer-events: none;
-}
 
-.gradient-blobs-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  filter: blur(80px);
-}
-
-.hero-circ_blue2, .hero-circ_pink2, .hero-circ_blue, .hero-circ_pink {
-  position: absolute;
-  border-radius: 50%;
-  animation: blobFloat 15s infinite alternate ease-in-out;
-}
-
-.hero-circ_blue {
-  width: 400px;
-  height: 400px;
-  background: rgba(29, 78, 216, 0.4);
-  top: -100px;
-  left: 10%;
-  animation-delay: 0s;
-}
-
-.hero-circ_pink {
-  width: 450px;
-  height: 450px;
-  background: rgba(217, 119, 6, 0.4);
-  bottom: -150px;
-  right: 10%;
-  animation-delay: -3s;
-}
-
-.hero-circ_blue2 {
-  width: 300px;
-  height: 300px;
-  background: rgba(59, 130, 246, 0.3);
-  bottom: 10%;
-  left: 20%;
-  animation-delay: -5s;
-}
-
-.hero-circ_pink2 {
-  width: 350px;
-  height: 350px;
-  background: rgba(251, 146, 60, 0.3);
-  top: 20%;
-  right: 30%;
-  animation-delay: -7s;
-}
-
-@keyframes blobFloat {
-  0% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -50px) scale(1.1); }
-  66% { transform: translate(-20px, 20px) scale(0.9); }
-  100% { transform: translate(0, 0) scale(1); }
-}
 
 .sec8-footer-inner {
   position: relative;

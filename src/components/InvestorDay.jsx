@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 
 export default function InvestorDay() {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const marquees = section.querySelectorAll('.investor-marquee-inner');
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const action = entry.isIntersecting ? 'remove' : 'add';
+        marquees.forEach(el => el.classList[action]('marquee-paused'));
+      },
+      { threshold: 0 }
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="investor-section">
+    <section className="investor-section" ref={sectionRef}>
       {/* Top Marquee */}
       <div className="investor-marquee top-marquee">
         <div className="investor-marquee-inner">

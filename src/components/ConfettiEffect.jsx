@@ -11,6 +11,7 @@ export default function ConfettiEffect() {
     const duration = 2500;
     const end = Date.now() + duration;
     const colors = ['#C084FC', '#A855F7', '#FDE68A', '#FDA4AF', '#7C3AED', '#34D399'];
+    let rafId;
 
     const frame = () => {
       confetti({
@@ -28,11 +29,15 @@ export default function ConfettiEffect() {
         colors,
       });
       if (Date.now() < end) {
-        requestAnimationFrame(frame);
+        rafId = requestAnimationFrame(frame);
       }
     };
 
-    frame();
+    rafId = requestAnimationFrame(frame);
+
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   return null;

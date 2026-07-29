@@ -80,9 +80,8 @@ export default function ScrollPlane() {
       // ScrollSmoother is ready (or we've waited long enough) — measure and create trigger
       measureCoords();
 
-      // ScrollTrigger needs scroller: '#smooth-wrapper' when ScrollSmoother is active
-      // but ScrollSmoother patches ScrollTrigger globally, so the default scroller works.
-      // We just need to ensure refresh happens after measurement.
+      const currentSmoother = smoother;
+
       st = ScrollTrigger.create({
         trigger: "#plane-start-marker",
         endTrigger: "#plane-end-marker",
@@ -95,13 +94,11 @@ export default function ScrollPlane() {
         },
         onToggle: self => {
           if (self.isActive) {
-            // Flight active: hide inline placeholders, show active floating plane
             if (startImg) startImg.style.opacity = '0';
             if (endImg) endImg.style.opacity = '0';
             floatingPlane.style.opacity = '1';
             floatingPlane.style.visibility = 'visible';
           } else {
-            // Flight inactive: hide floating plane, show correct static placeholder
             floatingPlane.style.opacity = '0';
             floatingPlane.style.visibility = 'hidden';
             if (self.progress === 0) {
@@ -115,8 +112,7 @@ export default function ScrollPlane() {
         },
         onUpdate: self => {
           const progress = self.progress;
-          const smoother = ScrollSmoother.get();
-          const currentScrollY = smoother ? smoother.scrollTop() : window.scrollY;
+          const currentScrollY = currentSmoother.scrollTop();
 
           // Current viewport coordinates of the takeoff and landing placeholders
           const yStartViewport = startY - currentScrollY;
