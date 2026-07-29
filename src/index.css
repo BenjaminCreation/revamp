@@ -569,4 +569,54 @@ h3,
   margin: 2px 0 0;
 }
 
+/* ─── Hero Actions & CTA Buttons ─────────────────────────────────────────── */
+
+.new-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 26px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, filter 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--money);
+  color: var(--money-ink);
+  border: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+.hero-alt-link {
+  color: var(--ink-soft);
+  font-size: 14.5px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: color 0.15s ease;
+  cursor: pointer;
+}
+
+.hero-alt-link:hover {
+  color: var(--ink);
+}
+
 
