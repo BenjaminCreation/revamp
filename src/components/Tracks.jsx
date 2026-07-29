@@ -167,8 +167,7 @@ export default function Tracks() {
             <h3>
               <span className="tracks-highlight-box blue-highlight">KARKHANA</span>
             </h3>
-            <p>You build a merchandise brand for a community you belong to: your college, your city, your fandom. Design, suppliers, pre-orders, margins. One rule is iron: you never print what nobody has paid for.</p>
-            <p>This is a product-led business track meant to teach you supplier math, margin profile, design choices, landing pages, etc.</p>
+            <p>You build a merchandise brand for a community you belong to: your college, your city, your fandom. This is a product-led business track meant to teach you supplier math, margin profile, design choices, landing pages, etc.</p>
             <span className="cap mono">Capital: a few thousand ₹, mostly collected from customers first</span>
           </div>
 
@@ -183,8 +182,7 @@ export default function Tracks() {
             <h3>
               <span className="tracks-highlight-box pink-highlight">SEVADAATA</span>
             </h3>
-            <p>India has over 6 crore small businesses, and most run on instinct. You pick a skill they need, package it as a service, price it, and land your first paying client. Sell to the shops around you.</p>
-            <p>This is a service-led business track meant to teach you how to spot paying problems and package solutions.</p>
+            <p>India has over 6 crore small businesses, and most run on instinct. You pick a skill they need, package it as a service, price it, and land your first paying client. This is a service-led business track meant to teach you how to spot paying problems and package solutions.</p>
             <span className="cap mono">Capital: ₹0</span>
           </div>
         </div>

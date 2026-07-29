@@ -18,12 +18,12 @@ export default function Beliefs({ navigate }) {
     {
       num: '03',
       title: "You don't need a degree. You need the basics.",
-      text: "Marketing, strategy, finance: enough to get moving. That takes weeks, not years. The rest you learn on the business, while running it."
+      text: "Marketing, strategy, finance, relevant tech tools: enough to get moving. That takes weeks, not years. The rest you learn on the business, while running it."
     },
     {
       num: '04',
       title: 'Your network is the moat.',
-      text: "Survival depends most on the people around your business: customers who trust you, founders who've seen your problem, one senior who picks up your call. AI can write your ads. It cannot build your relationships."
+      text: "Dhandhas are built on meaningful relationships: customers who trust you, founders who've seen your problem, one senior who picks up your call. AI can write your ads. It cannot build your relationships."
     }
   ];
 

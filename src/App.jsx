@@ -22,6 +22,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 export default function App() {
   const [path, setPath] = useState(window.location.pathname);
+  const [isDesktopViewport, setIsDesktopViewport] = useState(window.innerWidth > 768);
 
   useEffect(() => {
     const handlePopState = () => {
@@ -31,13 +32,22 @@ export default function App() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  const [smootherReady, setSmootherReady] = useState(false);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktopViewport(window.innerWidth > 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Initialize GSAP ScrollSmoother ONLY on homepage ('/')
   React.useLayoutEffect(() => {
     let smoother = null;
     
-    if (path === '/') {
+    if (path === '/' && isDesktopViewport) {
       window.scrollTo(0, 0);
       try {
         if (typeof ScrollSmoother !== 'undefined' && ScrollSmoother.create) {
@@ -88,7 +98,7 @@ export default function App() {
         window.__smoother = null;
       }
     };
-  }, [path]);
+  }, [path, isDesktopViewport]);
 
   const navigate = (to, options = {}) => {
     // Revert and kill all active ScrollTriggers (unpins hero section synchronously)
@@ -144,7 +154,11 @@ export default function App() {
           {/* Full-bleed New Hero Section at the top of homepage */}
           {path === '/' && (
             <>
-              <NewHero navigate={navigate} />
+              <NewHero
+                key={isDesktopViewport ? 'hero-desktop' : 'hero-mobile'}
+                navigate={navigate}
+                isDesktopViewport={isDesktopViewport}
+              />
               <AlternativeSection />
               <Beliefs navigate={navigate} />
               <Offer navigate={navigate} />
@@ -181,7 +195,7 @@ export default function App() {
         </div>
       </div>
 
-      {path === '/' && <ScrollPlane />}
+      {path === '/' && <ScrollPlane key={isDesktopViewport ? 'plane-desktop' : 'plane-mobile'} />}
     </div>
   );
 }

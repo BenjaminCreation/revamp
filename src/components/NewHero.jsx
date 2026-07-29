@@ -1,5 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
+import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
+
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother, MotionPathPlugin);
 
 function ScrollDashedPath({ d, width, height, className }) {
   const pathRef = useRef(null);
@@ -70,11 +75,24 @@ function ScrollDashedPath({ d, width, height, className }) {
   );
 }
 
-export default function NewHero({ navigate }) {
+export default function NewHero({ navigate, isDesktopViewport }) {
+  const heroRef = useRef(null);
   const [activeStep, setActiveStep] = useState(16);
   const step16Ref = useRef(null);
   const step18Ref = useRef(null);
   const step22Ref = useRef(null);
+  const boy1GroupRef = useRef(null);
+  const boy1CircleRef = useRef(null);
+  const boy1FaceRef = useRef(null);
+  const boy2GroupRef = useRef(null);
+  const boy2CircleRef = useRef(null);
+  const boy2FaceRef = useRef(null);
+  const boy3GroupRef = useRef(null);
+  const boy3CircleRef = useRef(null);
+  const boy3FaceRef = useRef(null);
+  const box16Ref = useRef(null);
+  const box18Ref = useRef(null);
+  const box22Ref = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -102,8 +120,107 @@ export default function NewHero({ navigate }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useLayoutEffect(() => {
+    if (!isDesktopViewport) {
+      return undefined;
+    }
+
+    let ctx;
+    let initTimer;
+    let attempts = 0;
+    const maxAttempts = 20;
+
+    const initDesktopHeroAnimation = () => {
+      ctx = gsap.context(() => {
+        gsap.set(box16Ref.current, { opacity: 1 });
+        gsap.set([box18Ref.current, box22Ref.current], { opacity: 0 });
+        gsap.set([boy1GroupRef.current, boy2GroupRef.current, boy3GroupRef.current], { opacity: 1 });
+        gsap.set([boy1CircleRef.current, boy2CircleRef.current, boy3CircleRef.current], { opacity: 1 });
+        gsap.set([boy1FaceRef.current, boy2FaceRef.current, boy3FaceRef.current], { opacity: 0 });
+
+        gsap.set(boy1GroupRef.current, {
+          motionPath: { path: '#road-path', align: '#road-path', alignOrigin: [0.5, 0.5], start: 0, end: 0 },
+        });
+        gsap.set(boy2GroupRef.current, {
+          motionPath: { path: '#road-path', align: '#road-path', alignOrigin: [0.5, 0.5], start: 0.5, end: 0.5 },
+        });
+        gsap.set(boy3GroupRef.current, {
+          motionPath: { path: '#road-path', align: '#road-path', alignOrigin: [0.5, 0.5], start: 1, end: 1 },
+        });
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: 'top top',
+            end: '+=1500',
+            scrub: 1,
+            pin: true,
+            pinSpacing: true,
+          },
+        });
+
+        tl.to(boy1CircleRef.current, { opacity: 0, duration: 0.02 }, 0);
+        tl.to(boy1FaceRef.current, { opacity: 1, duration: 0.02 }, 0);
+        tl.to(box16Ref.current, { opacity: 1, duration: 0.05 }, 0);
+        tl.to(
+          boy1GroupRef.current,
+          {
+            motionPath: { path: '#road-path', align: '#road-path', alignOrigin: [0.5, 0.5], start: 0, end: 0.5 },
+            duration: 0.5,
+            ease: 'none',
+          },
+          0,
+        );
+        tl.set(boy1GroupRef.current, { opacity: 0 }, 0.5);
+
+        tl.to(boy2CircleRef.current, { opacity: 0, duration: 0.02 }, 0.5);
+        tl.to(boy2FaceRef.current, { opacity: 1, duration: 0.02 }, 0.5);
+        tl.to(box18Ref.current, { opacity: 1, duration: 0.05 }, 0.5);
+        tl.to(
+          boy2GroupRef.current,
+          {
+            motionPath: { path: '#road-path', align: '#road-path', alignOrigin: [0.5, 0.5], start: 0.5, end: 1 },
+            duration: 0.5,
+            ease: 'none',
+          },
+          0.5,
+        );
+        tl.set(boy2GroupRef.current, { opacity: 0 }, 1.0);
+
+        tl.to(boy3CircleRef.current, { opacity: 0, duration: 0.02 }, 0.98);
+        tl.to(boy3FaceRef.current, { opacity: 1, duration: 0.02 }, 0.98);
+        tl.to(box22Ref.current, { opacity: 1, duration: 0.05 }, 0.98);
+
+        tl.progress(0);
+      }, heroRef);
+    };
+
+    const waitForSmootherAndInit = () => {
+      const smoother = ScrollSmoother.get();
+      if (!smoother && attempts < maxAttempts) {
+        attempts += 1;
+        initTimer = setTimeout(waitForSmootherAndInit, 50);
+        return;
+      }
+
+      initDesktopHeroAnimation();
+      ScrollTrigger.refresh();
+    };
+
+    initTimer = setTimeout(waitForSmootherAndInit, 50);
+
+    return () => {
+      clearTimeout(initTimer);
+      if (ctx) {
+        try {
+          ctx.revert();
+        } catch (e) {}
+      }
+    };
+  }, [isDesktopViewport]);
+
   return (
-    <section className="new-hero-section">
+    <section className="new-hero-section" ref={heroRef}>
       <div className="new-hero-container">
 
         {/* Headline and Subtitle */}
@@ -114,7 +231,7 @@ export default function NewHero({ navigate }) {
             <span className="exam-highlight-box mobile-block-highlight">IT HAS AN EXAM SYSTEM.</span>
           </h1>
           <p className="new-hero-subtitle">
-            You&rsquo;ve been our customer since you were 16. Here&rsquo;s the receipt.
+            You&rsquo;ve been its customer since you were 16.
           </p>
 
           {/* Desktop Actions */}
@@ -148,8 +265,69 @@ export default function NewHero({ navigate }) {
           </div>
         </div>
 
-        {/* Clean Un-boxed Receipt Column with Scroll Highlight */}
-        <div className="hero-receipt-column">
+        {/* Desktop Pinned Road Graphic from earlier version */}
+        <div className="new-hero-receipt-col desktop-only">
+          <div className="hero-road-graphic" style={{ position: 'relative', margin: '0 auto', width: '100%', maxWidth: '350px' }}>
+            <div className="hero-event-boxes">
+              <div className="hero-event-box box-16" ref={box16Ref}>
+                <p className="hero-event-text">Lakhs to a coaching institute to crack JEE/NEET.</p>
+              </div>
+              <div className="hero-event-box box-18" ref={box18Ref}>
+                <p className="hero-event-text">9 out of 10 don't crack it. So: lakhs more, to a college you never wanted.</p>
+              </div>
+              <div className="hero-event-box box-22" ref={box22Ref}>
+                <p className="hero-event-text">A job that barely covers living expenses. So you buy the next exam, CAT or UPSC.</p>
+              </div>
+            </div>
+
+            <svg viewBox="0 0 200 300" className="road-svg">
+              <path
+                id="road-path"
+                d="M 10 10 L 190 10 L 190 150 L 10 150 L 10 290 L 190 290"
+                fill="none"
+                stroke="#1C1B17"
+                strokeWidth="4"
+                strokeDasharray="12 12"
+                strokeLinecap="round"
+                className="road-dashed-line"
+              />
+              <g style={{ fontFamily: 'Poppins, sans-serif' }}>
+                <g ref={boy1GroupRef}>
+                  <g ref={boy1CircleRef}>
+                    <circle cx="0" cy="0" r="18" fill="#ffffff" stroke="#f97316" strokeWidth="3.5" />
+                    <text x="0" y="0" textAnchor="middle" dy=".35em" fontSize="15" fontWeight="800" fill="#1C1B17">16</text>
+                  </g>
+                  <g ref={boy1FaceRef} style={{ opacity: 0 }}>
+                    <image href="/boy16.png" x="-24" y="-24" width="48" height="48" preserveAspectRatio="xMidYMid meet" />
+                  </g>
+                </g>
+
+                <g ref={boy2GroupRef}>
+                  <g ref={boy2CircleRef}>
+                    <circle cx="0" cy="0" r="18" fill="#ffffff" stroke="#f97316" strokeWidth="3.5" />
+                    <text x="0" y="0" textAnchor="middle" dy=".35em" fontSize="15" fontWeight="800" fill="#1C1B17">18</text>
+                  </g>
+                  <g ref={boy2FaceRef} style={{ opacity: 0 }}>
+                    <image href="/boy18.png" x="-24" y="-24" width="48" height="48" preserveAspectRatio="xMidYMid meet" />
+                  </g>
+                </g>
+
+                <g ref={boy3GroupRef}>
+                  <g ref={boy3CircleRef}>
+                    <circle cx="0" cy="0" r="18" fill="#ffffff" stroke="#f97316" strokeWidth="3.5" />
+                    <text x="0" y="0" textAnchor="middle" dy=".35em" fontSize="15" fontWeight="800" fill="#1C1B17">22</text>
+                  </g>
+                  <g ref={boy3FaceRef} style={{ opacity: 0 }}>
+                    <image href="/boy22.png" x="-24" y="-24" width="48" height="48" preserveAspectRatio="xMidYMid meet" />
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        {/* Mobile receipt layout stays as-is */}
+        <div className="hero-receipt-column mobile-only">
           <div className="hero-receipt-card unboxed">
             <div 
               ref={step16Ref} 
