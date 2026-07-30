@@ -1232,17 +1232,6 @@ h3,
   background: linear-gradient(180deg, transparent 65%, rgba(200, 75, 49, 0.2) 65%);
 }
 
-<<<<<<< HEAD
-.new-hero-title .exam-highlight-box {
-  background: #FFD166;
-  color: #000 !important;
-  border: 2px solid #000;
-  box-shadow: 4px 4px 0px #000;
-  padding: 0.15rem 0.6rem;
-  display: inline-block;
-  transform: none;
-  margin-top: 0.4rem;
-=======
 .new-hero-title .exam-highlight-box,
 .new-hero-section .exam-highlight-box {
   background: #FFD166 !important;
@@ -1253,7 +1242,6 @@ h3,
   display: inline-block !important;
   transform: rotate(-1deg) !important;
   margin-top: 0.4rem !important;
->>>>>>> origin/main
 }
 
 .new-hero-subtitle {
@@ -4083,15 +4071,6 @@ h3,
   will-change: transform;
 }
 
-<<<<<<< HEAD
-@media (max-width: 992px) {
-  .apply-content-container {
-    flex-direction: column;
-    padding-left: 0;
-    margin-right: 0;
-=======
-
-
 /* ─── Apply Form Step 1-3 & Webhook Integration Additions ───────────────── */
 
 .apply-pills {
@@ -4445,18 +4424,10 @@ h3,
     padding-left: 0;
     margin-top: 1rem;
     gap: 0.75rem;
->>>>>>> origin/main
   }
 
   .apply-sidebar-steps {
     width: 100%;
-<<<<<<< HEAD
-    flex-direction: row;
-  }
-
-  .apply-card {
-    flex: 1;
-=======
     flex-direction: column;
     overflow: visible;
     gap: 0.65rem;
@@ -4508,24 +4479,10 @@ h3,
     color: inherit;
     flex-shrink: 0;
     margin-left: auto; /* Push arrow to the right */
->>>>>>> origin/main
   }
 
   .apply-purple-box {
     margin-right: 0;
-<<<<<<< HEAD
-    width: 100%;
-    padding: 1.25rem;
-  }
-}
-
-@media (max-width: 640px) {
-  .apply-sidebar-steps {
-    flex-direction: column;
-  }
-}
-
-=======
     height: auto;
     min-height: auto;
     padding: 1.25rem 1rem;
@@ -5826,4 +5783,3 @@ h3,
   box-shadow: 4px 4px 0px #1C1B17 !important;
   transform: rotate(-1deg) scale(1.02);
 }
->>>>>>> origin/main
