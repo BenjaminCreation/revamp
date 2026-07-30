@@ -47,20 +47,16 @@ export default function Footer({ navigate }) {
       const id = targetId.replace('#', '');
       const waitForEl = setInterval(() => {
         const el = document.getElementById(id);
-        const smoother = ScrollSmoother.get();
-        if (el && smoother) {
+        if (el) {
           clearInterval(waitForEl);
-          if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
-          smoother.scrollTo(el, false);
+          scrollToTarget(targetId, true);
 
           setTimeout(() => {
-            if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
-            smoother.scrollTo(el, true);
+            scrollToTarget(targetId, true);
           }, 300);
 
           setTimeout(() => {
-            if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
-            smoother.scrollTo(el, true);
+            scrollToTarget(targetId, true);
           }, 750);
         }
       }, 50);

@@ -41,20 +41,16 @@ export default function Navbar({ navigate }) {
                 navigate('/', { skipScroll: true });
                 const waitForFaq = setInterval(() => {
                   const el = document.getElementById('faq');
-                  const smoother = ScrollSmoother.get();
-                  if (el && smoother) {
+                  if (el) {
                     clearInterval(waitForFaq);
-                    if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
-                    smoother.scrollTo(el, false);
+                    scrollToFaq(true);
 
                     setTimeout(() => {
-                      if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
-                      smoother.scrollTo(el, true);
+                      scrollToFaq(true);
                     }, 300);
 
                     setTimeout(() => {
-                      if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
-                      smoother.scrollTo(el, true);
+                      scrollToFaq(true);
                     }, 750);
                   }
                 }, 50);

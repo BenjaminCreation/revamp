@@ -197,7 +197,7 @@ export default function Apply({ navigate, isStandalone = false }) {
             >
               <span className="apply-step-num">Step 2</span>
               <h3>Your mindset</h3>
-              <p>Track choice + &ldquo;sell us something you&rsquo;ve sold&rdquo; + &ldquo;what will you cut to make 10 hrs/week&rdquo;.</p>
+              <p>Track choice + &ldquo;tell us something you&rsquo;ve sold&rdquo; + &ldquo;what will you cut to make 10 hrs/week&rdquo;.</p>
             </div>
 
             <div
@@ -357,7 +357,7 @@ export default function Apply({ navigate, isStandalone = false }) {
                       {/* Right: Textareas */}
                       <div className="step2-textareas">
                         <div className="purple-form-group">
-                          <label htmlFor="soldSomething">Sell us something you&rsquo;ve sold in the past (or explain how you would sell it)</label>
+                          <label htmlFor="soldSomething">Tell us something you&rsquo;ve sold in the past (or explain how you would sell it)</label>
                           <textarea
                             id="soldSomething"
                             name="soldSomething"
