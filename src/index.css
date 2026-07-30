@@ -4746,7 +4746,8 @@ h3,
   }
 
   .beliefs-marquee-inner,
-  .curriculum-marquee-inner {
+  .curriculum-marquee-inner,
+  .investor-marquee-inner {
     display: flex !important;
     width: max-content !important;
     will-change: transform !important;
@@ -4754,12 +4755,14 @@ h3,
   }
 
   .beliefs-marquee-content,
-  .curriculum-marquee-content {
+  .curriculum-marquee-content,
+  .investor-marquee-content {
     display: flex !important;
     align-items: center !important;
     flex-shrink: 0 !important;
     gap: 1.5rem !important;
     padding-right: 1.5rem !important;
+    height: 100% !important;
   }
 
   .marquee-item {
@@ -4767,8 +4770,18 @@ h3,
     font-weight: 800 !important;
     font-size: 0.85rem !important;
     letter-spacing: 0.8px !important;
-    color: #FAF8F2 !important;
     white-space: nowrap !important;
+  }
+
+  .beliefs-marquee .marquee-item,
+  .curriculum-marquee .marquee-item {
+    color: #FAF8F2 !important;
+  }
+
+  .investor-marquee .marquee-item,
+  .investor-marquee-container .marquee-item,
+  .readthis-section .marquee-item {
+    color: #1C1B17 !important;
   }
 
   .beliefs-header {
