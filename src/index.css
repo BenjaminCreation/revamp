@@ -1099,6 +1099,17 @@ h3,
   letter-spacing: 0.5px;
 }
 
+.landing-card-cont.beliefs-btn-text {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #1C1B17 !important;
+}
+
+.beliefs-plus-icon {
+  display: none;
+}
+
 .landing-card-content h3 {
   font-family: 'Poppins', sans-serif !important;
   font-weight: 800;
@@ -1221,6 +1232,7 @@ h3,
   background: linear-gradient(180deg, transparent 65%, rgba(200, 75, 49, 0.2) 65%);
 }
 
+<<<<<<< HEAD
 .new-hero-title .exam-highlight-box {
   background: #FFD166;
   color: #000 !important;
@@ -1230,6 +1242,18 @@ h3,
   display: inline-block;
   transform: none;
   margin-top: 0.4rem;
+=======
+.new-hero-title .exam-highlight-box,
+.new-hero-section .exam-highlight-box {
+  background: #FFD166 !important;
+  color: #000 !important;
+  border: 2px solid #000 !important;
+  box-shadow: 4px 4px 0px #000 !important;
+  padding: 0.1rem 0.5rem !important;
+  display: inline-block !important;
+  transform: rotate(-1deg) !important;
+  margin-top: 0.4rem !important;
+>>>>>>> origin/main
 }
 
 .new-hero-subtitle {
@@ -1493,7 +1517,7 @@ h3,
   .new-hero-section {
     padding: 100px 24px 40px;
     text-align: left;
-    background: url('/Mobile_bg.png') center/cover no-repeat !important;
+    background: #FAF8F2 url('/Mobile_bg.png') top center/100% auto no-repeat !important;
   }
 
   .new-hero-content {
@@ -1667,6 +1691,248 @@ h3,
   /* Golden Amber hover fill */
   text-decoration: none !important;
   /* Remove underline */
+}
+
+/* ==========================================
+   Mobile Receipt Timeline Styles (Hero Section)
+   ========================================== */
+.mobile-receipt-timeline {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 2rem;
+}
+
+.mobile-timeline-step {
+  position: relative;
+  width: 100%;
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+  background: transparent;
+  z-index: 2;
+}
+
+.mobile-step-desc {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #55524A;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.mobile-event-card {
+  position: relative;
+  width: 100%;
+  max-width: 90%;
+  margin: 1rem auto 2rem;
+  padding: 1.25rem 1.5rem;
+  border: 2px solid #000;
+  border-radius: 4px;
+  box-shadow: 4px 4px 0px #000;
+  box-sizing: border-box;
+  opacity: 0;
+  z-index: 10;
+  transform: scale(0.95) translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.mobile-event-card p {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #000;
+  margin: 0;
+}
+
+.mobile-event-card.card-16 {
+  background: #B4D5FF;
+  transform: rotate(-1deg);
+}
+
+.mobile-event-card.card-18 {
+  background: #FFD166;
+  transform: rotate(1deg);
+}
+
+.mobile-event-card.card-22 {
+  background: #FFB3D9;
+  transform: rotate(-1deg);
+}
+
+.mobile-s-path-svg {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  margin: 0 auto 1rem;
+}
+
+/* Mobile Hero CTA & Navigation */
+.mobile-subnav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.plus-symbol {
+  font-size: 1.5rem;
+  color: #55524A;
+  font-weight: 300;
+}
+
+.mobile-subnav-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.mobile-subnav-box a {
+  color: #1C1B17;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.mobile-subnav-box a:hover {
+  color: #d97706;
+}
+
+.subnav-divider {
+  color: #C9C4B6;
+}
+
+.mobile-hero-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 2rem;
+  padding: 1.5rem 0;
+}
+
+.mobile-apply-black-btn {
+  display: inline-block;
+  background: #1C1B17;
+  color: #FAF8F2;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  padding: 14px 32px;
+  border-radius: 99px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+  width: auto;
+}
+
+.mobile-apply-black-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-alt-text-link {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: #55524A;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.mobile-alt-text-link:hover {
+  color: #d97706;
+}
+
+.plus-hint {
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+.mobile-pagebreak-dots {
+  font-size: 1rem;
+  color: #C9C4B6;
+  letter-spacing: 0.3rem;
+  margin-top: 0.5rem;
+}
+
+/* Mobile-only display utilities */
+.mobile-only {
+  display: none;
+}
+
+.desktop-only {
+  display: block;
+}
+
+.mobile-block-highlight {
+  background: #FFD166 !important;
+  color: #000 !important;
+  border: 2px solid #000 !important;
+  box-shadow: 4px 4px 0px #000 !important;
+  padding: 0.1rem 0.5rem !important;
+  display: inline-block !important;
+  transform: rotate(-1deg) !important;
+}
+
+@media (max-width: 768px) {
+  .mobile-only {
+    display: flex;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-subnav-wrapper {
+    flex-direction: row;
+  }
+
+  .mobile-receipt-timeline {
+    margin-top: 1.5rem;
+  }
+
+  .mobile-timeline-step {
+    padding: 1.25rem 1rem;
+  }
+
+  .mobile-event-card {
+    margin: 0.75rem auto 1.5rem;
+    max-width: 95%;
+    padding: 1rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .mobile-event-card p {
+    font-size: 0.9rem;
+  }
+
+  .mobile-hero-cta {
+    margin-top: 1.5rem;
+    padding: 1rem 0;
+  }
+
+  .mobile-apply-black-btn {
+    width: 100%;
+    max-width: 280px;
+  }
 }
 
 /* New Hero Receipt (All Black) */
@@ -2133,12 +2399,29 @@ h3,
   .alt-section {
     height: auto;
     min-height: auto;
-    padding: 4rem 1.5rem;
+    padding: 3rem 1.25rem;
   }
 
   .alt-container {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .alt-title {
+    font-size: 2.1rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .alt-highlight-box {
+    margin-right: 0;
+    margin-top: 0.5rem;
+    transform: rotate(-2deg);
+  }
+
+  .alt-text-box {
+    padding: 1.25rem 1.25rem;
+    transform: rotate(1deg);
     text-align: left;
   }
 
@@ -2355,6 +2638,10 @@ h3,
   letter-spacing: 0px;
 }
 
+.offer-mobile-text {
+  display: none;
+}
+
 @media (max-width: 860px) {
   .offer-section {
     height: auto;
@@ -2374,19 +2661,11 @@ h3,
    GSAP ScrollSmoother Styles
    ========================================== */
 #smooth-wrapper {
-  overflow: hidden;
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  /* ScrollSmoother sets these inline automatically. Hardcoding them breaks native scrolling on other pages. */
 }
 
 #smooth-content {
-  overflow: visible;
-  width: 100%;
+  /* ScrollSmoother sets these inline automatically. */
 }
 
 /* ==========================================
@@ -2815,7 +3094,7 @@ h3,
   background: #fff;
   border: 3px solid #1C1B17;
   box-shadow: 6px 6px 0px #1C1B17;
-  padding: 1.25rem;
+  padding: 1rem;
   border-radius: 8px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   color: #1C1B17 !important;
@@ -2924,6 +3203,26 @@ h3,
 .readthis-cta-container {
   text-align: center;
   margin-bottom: 1rem;
+}
+
+@media (max-width: 860px) {
+  .readthis-section {
+    padding: 75px 1.25rem 4rem;
+  }
+  .readthis-section.standalone {
+    padding-bottom: 2rem;
+  }
+  .readthis-title {
+    font-size: 2.1rem !important;
+    line-height: 1.25 !important;
+  }
+  .readthis-grid {
+    grid-template-columns: 1fr; /* Force vertical stacking on mobile */
+    gap: 1.5rem;
+  }
+  .readthis-card {
+    padding: 0.85rem 1rem;
+  }
 }
 
 /* Apply Section */
@@ -3784,24 +4083,437 @@ h3,
   will-change: transform;
 }
 
+<<<<<<< HEAD
 @media (max-width: 992px) {
   .apply-content-container {
     flex-direction: column;
     padding-left: 0;
     margin-right: 0;
+=======
+
+
+/* ─── Apply Form Step 1-3 & Webhook Integration Additions ───────────────── */
+
+.apply-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+.apply-pill {
+  padding: 7px 15px;
+  border-radius: 999px;
+  border: 1.5px solid var(--line, #C9C4B6);
+  background: var(--surface, #EFECE3);
+  color: var(--ink, #1C1B17);
+  font-size: 13.5px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.apply-pill:hover {
+  border-color: var(--money, #0E7A4A);
+}
+.apply-pill.is-selected {
+  border-color: var(--money, #0E7A4A);
+  background: var(--money, #0E7A4A);
+  color: var(--money-ink, #F6F4EE);
+}
+
+.apply-track-sub {
+  font-size: 11.5px;
+  color: var(--ink-soft, #55524A);
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  letter-spacing: 0.5px;
+}
+.apply-track-card.is-selected .apply-track-sub {
+  color: color-mix(in srgb, var(--money, #0E7A4A) 70%, var(--ink, #1C1B17));
+}
+
+.apply-fee-note {
+  border: 1.5px solid var(--line, #C9C4B6);
+  border-radius: 6px;
+  padding: 18px 20px;
+  margin-top: 18px;
+  background: var(--surface, #EFECE3);
+}
+.apply-fee-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.apply-fee-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink-soft, #55524A);
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  margin: 0;
+}
+.apply-fee-price {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+.apply-fee-struck {
+  font-size: 20px;
+  color: var(--ink-soft, #55524A);
+  text-decoration: line-through;
+  font-family: 'Avenir Next Condensed', 'Arial Narrow', sans-serif;
+  font-weight: 700;
+}
+.apply-fee-badge {
+  background: var(--money, #0E7A4A);
+  color: var(--money-ink, #F6F4EE);
+  font-family: 'Avenir Next Condensed', 'Arial Narrow', sans-serif;
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: 0.3px;
+  padding: 4px 14px;
+  border-radius: 3px;
+}
+.apply-fee-sub {
+  font-size: 12px;
+  color: var(--ink-soft, #55524A);
+  margin: 2px 0 0;
+}
+
+/* ==========================================================================
+   Mobile View Specific Layout (Design Spec: iPhone 12 to 14 / Android)
+   ========================================================================== */
+
+/* ==========================================================================
+   Mobile View Specific Layout (Mobile Editorial Reinterpretation Specs)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .new-hero-section {
+    padding: 72px 16px 36px !important;
+    background: #FAF8F2 url('/Mobile_bg.png') center top/auto 100% no-repeat !important;
+    text-align: center !important;
+    overflow-x: hidden;
+    margin-bottom: 0 !important;
+    min-height: 100svh;
+  }
+
+  .new-hero-container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 0 !important;
+    max-width: 360px !important;
+    margin: 0 auto !important;
+  }
+
+  .new-hero-content {
+    margin-left: 0 !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Sub-nav Box (READ THIS | FAQ | APPLY) */
+  .mobile-subnav-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 20px;
+  }
+
+  .plus-symbol {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1C1B17;
+    line-height: 1;
+  }
+
+  .mobile-subnav-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    border: 2px solid #1C1B17;
+    background: #FAF8F2;
+    padding: 6px 18px;
+    border-radius: 4px;
+    box-shadow: 2.5px 2.5px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .mobile-subnav-box a {
+    font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 12.5px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    color: #1C1B17;
+    text-decoration: none;
+  }
+
+  .subnav-divider {
+    color: #C9C4B6;
+    font-size: 12.5px;
+  }
+
+  /* Headline & Block Highlight (44–52px requested range) */
+  .new-hero-title {
+    font-family: 'Poppins', 'Satoshi', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: clamp(34px, 10.8vw, 44px) !important;
+    line-height: 1.02 !important;
+    text-transform: uppercase !important;
+    color: #1C1B17 !important;
+    letter-spacing: -0.035em !important;
+    margin: 0 auto !important;
+    max-width: 8.4ch;
+  }
+
+  .mobile-block-highlight {
+    display: inline-block;
+    background: #FFD166 !important;
+    color: #1C1B17 !important;
+    border: 2px solid #1C1B17 !important;
+    box-shadow: 4px 4px 0 #1C1B17 !important;
+    padding: 3px 10px 4px !important;
+    margin-top: 10px;
+    border-radius: 3px;
+    font-size: inherit !important;
+    line-height: 1.06 !important;
+  }
+
+  /* Supporting Copy (16-18px, 24px after headline) */
+  .new-hero-subtitle {
+    font-family: 'Satoshi', Charter, Georgia, serif !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    color: #55524A !important;
+    max-width: 22ch !important;
+    margin: 18px auto 0 !important;
+    line-height: 1.45 !important;
+  }
+
+  /* Clean Website Receipt Column */
+  .hero-receipt-column {
+    width: 100%;
+    max-width: 100%;
+    margin: 22px auto 0;
+  }
+
+  .hero-receipt-card {
+    background: #FAF8F2;
+    border: 2px solid #1C1B17;
+    border-radius: 8px;
+    box-shadow: 5px 5px 0px #1C1B17;
+    padding: 24px 18px;
+    position: relative;
+    box-sizing: border-box;
+  }
+
+  .receipt-stop {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .receipt-stop.shift-right {
+    padding-left: 48px;
+  }
+
+  .receipt-dot {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    border: 2.5px solid #f97316;
+    color: #1C1B17;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .receipt-body {
+    font-family: 'Satoshi', sans-serif;
+    font-size: 13.5px;
+    line-height: 1.45;
+    color: #1C1B17;
+    margin: 0;
+  }
+
+  .receipt-body strong {
+    font-weight: 800;
+  }
+
+  .receipt-curve {
+    display: block;
+    margin: 4px 0;
+  }
+
+  .receipt-kicker {
+    font-family: 'Satoshi', sans-serif;
+    font-style: italic;
+    font-size: 13px;
+    font-weight: 700;
+    color: #777368;
+    margin: 18px 0 0;
+    padding-top: 12px;
+    border-top: 1.5px dashed #C9C4B6;
+    text-align: center;
+  }
+
+  /* Mobile Hero CTA Block — clean separation below receipt card */
+  .mobile-hero-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px !important;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+  }
+
+  .mobile-apply-black-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #1C1B17;
+    color: #FAF8F2;
+    font-family: 'Poppins', 'Satoshi', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    padding: 16px 40px;
+    border-radius: 999px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22);
+    transition: transform 0.15s ease;
+  }
+
+  .mobile-apply-black-btn:active {
+    transform: scale(0.97);
+  }
+
+  .mobile-alt-text-link {
+    font-family: 'Satoshi', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1C1B17;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .plus-hint {
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .mobile-pagebreak-dots {
+    color: #1C1B17;
+    font-size: 18px;
+    letter-spacing: 6px;
+    margin-top: 6px;
+  }
+
+  /* Mobile Offer Body Text */
+  .offer-mobile-text {
+    display: block;
+    font-family: 'Satoshi', sans-serif;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--ink-soft, #55524A);
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  /* Mobile Apply Form Styling */
+  .apply-content-container {
+    flex-direction: column;
+    padding-left: 0;
+    margin-top: 1rem;
+    gap: 0.75rem;
+>>>>>>> origin/main
   }
 
   .apply-sidebar-steps {
     width: 100%;
+<<<<<<< HEAD
     flex-direction: row;
   }
 
   .apply-card {
     flex: 1;
+=======
+    flex-direction: column;
+    overflow: visible;
+    gap: 0.65rem;
+    padding-bottom: 0;
+  }
+
+  .apply-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    width: 100%;
+    min-height: 48px;
+    padding: 0.75rem 1rem !important;
+    box-sizing: border-box;
+    box-shadow: 4px 4px 0px;
+  }
+
+  .apply-card p {
+    display: none; /* Hide description on mobile to save vertical space */
+  }
+
+  .apply-card h3 {
+    margin: 0;
+    font-size: 1.05rem;
+  }
+
+  .apply-card.card-1 { box-shadow: 4px 4px 0px #2A75D3; }
+  .apply-card.card-2 { box-shadow: 4px 4px 0px #D9381E; }
+  .apply-card.card-3 { box-shadow: 4px 4px 0px #0E7A4A; }
+
+  .apply-card.active {
+    display: flex;
+    opacity: 1;
+    transform: translate(-2px, -2px);
+    width: 100%;
+  }
+
+  .apply-card.inactive {
+    opacity: 0.7;
+    transform: none;
+  }
+
+  .apply-card::after {
+    content: '›';
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: inherit;
+    flex-shrink: 0;
+    margin-left: auto; /* Push arrow to the right */
+>>>>>>> origin/main
   }
 
   .apply-purple-box {
     margin-right: 0;
+<<<<<<< HEAD
     width: 100%;
     padding: 1.25rem;
   }
@@ -3813,3 +4525,1305 @@ h3,
   }
 }
 
+=======
+    height: auto;
+    min-height: auto;
+    padding: 1.25rem 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 4px 4px 0px #C084FC;
+  }
+
+  .purple-step-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .purple-form-grid {
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 0.85rem 0;
+    margin-top: 0.85rem;
+  }
+
+  .purple-form-group input[type="text"],
+  .purple-form-group input[type="email"],
+  .purple-form-group input[type="number"],
+  .purple-form-group input[type="tel"],
+  .purple-form-group textarea {
+    padding: 11px 10px;
+    font-size: 0.88rem;
+    min-height: 44px;
+    box-sizing: border-box;
+  }
+
+  .step2-layout .step2-body {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .track-image-selector,
+  .step2-textareas {
+    width: 100%;
+  }
+
+  .step3-layout .step3-body {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .step3-left, .step3-right {
+    width: 100%;
+    flex-basis: auto;
+  }
+
+  .howfound-pill {
+    padding: 8px 14px;
+    min-height: 44px;
+    font-size: 0.85rem;
+  }
+
+  .checkbox-label {
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .checkbox-label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+  }
+
+  .purple-form-actions {
+    justify-content: stretch;
+    margin-top: 1rem;
+    gap: 0.75rem;
+  }
+
+  .purple-btn {
+    flex: 1;
+    padding: 14px 16px;
+    font-size: 1rem;
+    min-height: 48px;
+    text-align: center;
+  }
+
+  /* ==========================================================================
+     Mobile Beliefs Section Redesign (Exact Screenshot Spec)
+     ========================================================================== */
+
+  .beliefs-section {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 24px 14px 40px !important;
+    background-color: #FAF8F2 !important;
+  }
+
+  .beliefs-main-box {
+    width: 100% !important;
+    max-width: 440px !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+
+  .beliefs-marquee {
+    margin: 0 -14px 20px -14px !important;
+    height: 38px !important;
+    border-bottom: 2px solid #1C1B17 !important;
+    border-top: 2px solid #1C1B17 !important;
+    background-color: #1C1B17 !important;
+  }
+
+  .marquee-item {
+    font-size: 0.85rem !important;
+    letter-spacing: 0.5px !important;
+  }
+
+  .beliefs-header {
+    margin-bottom: 20px !important;
+    text-align: left !important;
+  }
+
+  .beliefs-title {
+    font-size: clamp(30px, 8vw, 40px) !important;
+    line-height: 1.1 !important;
+    margin-bottom: 12px !important;
+    color: #1C1B17 !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+  }
+
+  .beliefs-highlight-box {
+    background: #B4D5FF !important;
+    border: 2.5px solid #1C1B17 !important;
+    box-shadow: 4px 4px 0 #1C1B17 !important;
+    padding: 2px 10px !important;
+    transform: rotate(-2deg) !important;
+    color: #1C1B17 !important;
+  }
+
+  .beliefs-subheading-box {
+    background: #1C1B17 !important;
+    color: #FAF8F2 !important;
+    font-size: 0.88rem !important;
+    font-weight: 700 !important;
+    padding: 6px 14px !important;
+    border-radius: 4px;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.15) !important;
+    transform: rotate(-1deg) !important;
+    display: inline-block !important;
+  }
+
+  .beliefs-split {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+
+  /* Upper Accordion Container Box */
+  .beliefs-options-box {
+    border: 2.5px solid #1C1B17 !important;
+    box-shadow: 4px 4px 0 #1C1B17 !important;
+    background: #FAF8F2 !important;
+    border-radius: 6px !important;
+    overflow: hidden;
+  }
+
+  .beliefs-btn {
+    padding: 14px 16px !important;
+    border-bottom: 1.5px solid #E5E0D5 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    background: #FAF8F2 !important;
+    border-left: 5px solid transparent !important;
+  }
+
+  .beliefs-btn:last-child {
+    border-bottom: none !important;
+  }
+
+  .beliefs-btn-num {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: 1.1rem !important;
+    color: #9CA3AF !important;
+    min-width: 1.5rem !important;
+  }
+
+  .beliefs-btn.is-active {
+    background: #FFFDF8 !important;
+    border-left: 5px solid #f97316 !important;
+  }
+
+  .beliefs-btn.is-active .beliefs-btn-num {
+    color: #f97316 !important;
+  }
+
+  .beliefs-btn-text {
+    font-family: 'Satoshi', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 0.95rem !important;
+    color: #1C1B17 !important;
+    line-height: 1.25 !important;
+    flex: 1;
+    text-align: left;
+  }
+
+  .beliefs-plus-icon {
+    display: inline-block !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 1.3rem !important;
+    font-weight: 700 !important;
+    color: #1C1B17 !important;
+    margin-left: auto !important;
+    line-height: 1 !important;
+  }
+
+  /* Lower Detail Card (Trimmed empty space) */
+  .beliefs-content-card {
+    border: 2.5px solid #1C1B17 !important;
+    box-shadow: 4px 4px 0 #1C1B17 !important;
+    border-radius: 6px !important;
+    padding: 16px 18px !important;
+    min-height: auto !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    box-sizing: border-box !important;
+  }
+
+  .beliefs-content-num {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: 1.5rem !important;
+    color: #f97316 !important;
+    margin-bottom: 6px !important;
+    display: block !important;
+    text-align: left !important;
+  }
+
+  .beliefs-content-text {
+    font-family: 'Satoshi', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 1.02rem !important;
+    line-height: 1.42 !important;
+    color: #1C1B17 !important;
+    margin: 0 !important;
+    text-align: left !important;
+  }
+
+  .beliefs-segue {
+    border-top: 1.5px dashed #C9C4B6 !important;
+    padding-top: 14px !important;
+    margin-top: 16px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
+  }
+
+  .beliefs-segue-label {
+    font-size: 0.95rem !important;
+    color: #6B7280 !important;
+  }
+
+  .beliefs-segue-link {
+    font-size: 1.1rem !important;
+    color: #f97316 !important;
+    font-weight: 800 !important;
+    text-decoration: underline !important;
+  }
+
+  /* ==========================================================================
+     Mobile Offer Section Redesign (Exact Screenshot Spec)
+     ========================================================================== */
+
+  .offer-section {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 24px 14px 40px !important;
+    background-color: #FAD06B !important;
+  }
+
+  .offer-main-box {
+    width: 100% !important;
+    max-width: 440px !important;
+    padding: 24px 18px !important;
+    border: 2.5px solid #1C1B17 !important;
+    box-shadow: 6px 6px 0 #1C1B17 !important;
+    background: #ffffff !important;
+    border-radius: 4px;
+    box-sizing: border-box !important;
+  }
+
+  .offer-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+
+  .offer-left, .offer-right {
+    width: 100% !important;
+  }
+
+  .offer-header {
+    text-align: left !important;
+  }
+
+  .offer-title {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: clamp(26px, 7.5vw, 36px) !important;
+    line-height: 1.15 !important;
+    color: #1C1B17 !important;
+    text-transform: uppercase !important;
+    margin: 0 0 14px 0 !important;
+  }
+
+  .offer-highlight-box {
+    border: 2px solid #1C1B17 !important;
+    box-shadow: 3px 3px 0 #1C1B17 !important;
+    padding: 2px 8px !important;
+    display: inline-block !important;
+    color: #1C1B17 !important;
+  }
+
+  .offer-highlight-box.blue-highlight {
+    background: #B4D5FE !important;
+    transform: rotate(-1.5deg) !important;
+  }
+
+  .offer-highlight-box.green-highlight {
+    background: #C2F5E9 !important;
+    transform: rotate(1.5deg) !important;
+  }
+
+  .offer-subheading-box {
+    background: #1C1B17 !important;
+    color: #FAF8F2 !important;
+    font-family: 'Satoshi', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.88rem !important;
+    padding: 6px 14px !important;
+    border-radius: 4px !important;
+    display: inline-block !important;
+    margin-bottom: 20px !important;
+  }
+
+  .offer-text {
+    display: none !important;
+  }
+
+  /* 2x2 Grid of Feature Metric Cards */
+  .offer-metrics-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .offer-metric-card {
+    background: #ffffff !important;
+    border: 2px solid #1C1B17 !important;
+    box-shadow: 3.5px 3.5px 0 #1C1B17 !important;
+    padding: 16px 12px !important;
+    border-radius: 4px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    text-align: left !important;
+    box-sizing: border-box !important;
+  }
+
+  .offer-metric-num {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: 2.2rem !important;
+    line-height: 1 !important;
+    color: #1C1B17 !important;
+    text-shadow: 2.5px 2.5px 0 #FFD166 !important;
+    margin-bottom: 4px !important;
+  }
+
+  .offer-metric-label {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 0.78rem !important;
+    letter-spacing: 0.05em !important;
+    color: #1C1B17 !important;
+    text-transform: uppercase !important;
+  }
+
+  /* Full-width Highlight Card 5 (Free Flight to Bangalore with Airplane image) */
+  .offer-metric-card.highlight {
+    grid-column: span 2 !important;
+    background: #FFB3D9 !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 14px 16px !important;
+  }
+
+  .offer-metric-card.highlight .offer-metric-card-content {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+  }
+
+  .offer-metric-card.highlight .offer-metric-num {
+    margin-bottom: 0 !important;
+    font-size: 2.2rem !important;
+  }
+
+  .offer-metric-card.highlight .offer-metric-label {
+    font-size: 0.85rem !important;
+    color: #1C1B17 !important;
+  }
+
+  .offer-metric-card.highlight .offer-metric-card-icon {
+    width: 3.5rem !important;
+    height: 2.5rem !important;
+  }
+
+  .airplane-img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
+  /* Mobile Summary Paragraph */
+  .offer-mobile-text {
+    display: block !important;
+    font-family: 'Satoshi', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    line-height: 1.48 !important;
+    color: #1C1B17 !important;
+    margin: 16px 0 20px 0 !important;
+    text-align: left !important;
+  }
+
+  /* Full-width Yellow CTA Button */
+  .offer-cta-button {
+    width: 100% !important;
+    background: #FFD166 !important;
+    color: #1C1B17 !important;
+    border: 2.5px solid #1C1B17 !important;
+    box-shadow: 4px 4px 0 #1C1B17 !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: 1.05rem !important;
+    letter-spacing: 0.05em !important;
+    padding: 14px 20px !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    transition: transform 0.15s ease !important;
+  }
+
+  .offer-cta-button:active {
+    transform: scale(0.97) !important;
+  }
+
+  /* ==========================================================================
+     Mobile Tracks Section Redesign (Exact Screenshot Spec)
+     ========================================================================== */
+
+  .tracks-section {
+    padding: 24px 14px 40px !important;
+    background-color: #FAF8F2 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .tracks-container {
+    max-width: 440px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+
+  .tracks-title {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: clamp(28px, 8vw, 38px) !important;
+    line-height: 1.15 !important;
+    color: #1C1B17 !important;
+    text-transform: uppercase !important;
+    text-align: center !important;
+    margin: 0 0 10px 0 !important;
+  }
+
+  .tracks-highlight-box.yellow-highlight {
+    background: #FFD166 !important;
+    border: 2.5px solid #1C1B17 !important;
+    box-shadow: 4px 4px 0 #1C1B17 !important;
+    padding: 2px 10px !important;
+    display: inline-block !important;
+    transform: rotate(-1.5deg) !important;
+    color: #1C1B17 !important;
+  }
+
+  .fork-svg {
+    display: block !important;
+    margin: 4px auto 0 !important;
+    width: 220px !important;
+    height: auto !important;
+  }
+
+  .tracks {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    margin-top: 0 !important;
+    width: 100% !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+
+  .track {
+    background: #ffffff !important;
+    border: 2.5px solid #1C1B17 !important;
+    box-shadow: 6px 6px 0 #1C1B17 !important;
+    border-radius: 4px !important;
+    padding: 22px 18px !important;
+    min-height: auto !important;
+    box-sizing: border-box !important;
+    text-align: left !important;
+  }
+
+  .track.maker-track:hover,
+  .track.skills-track:hover {
+    transform: none !important;
+    box-shadow: 6px 6px 0 #1C1B17 !important;
+  }
+
+  .kk-hover-corners {
+    display: none !important;
+  }
+
+  .track h3 {
+    margin: 0 0 14px 0 !important;
+  }
+
+  .tracks-highlight-box.blue-highlight {
+    background: #B4D5FE !important;
+    border: 2px solid #1C1B17 !important;
+    box-shadow: 3px 3px 0 #1C1B17 !important;
+    padding: 4px 12px !important;
+    display: inline-block !important;
+    transform: rotate(-2deg) !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: 1.15rem !important;
+    color: #1C1B17 !important;
+  }
+
+  .tracks-highlight-box.pink-highlight {
+    background: #FFB3D9 !important;
+    border: 2px solid #1C1B17 !important;
+    box-shadow: 3px 3px 0 #1C1B17 !important;
+    padding: 4px 12px !important;
+    display: inline-block !important;
+    transform: rotate(-1.5deg) !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: 1.15rem !important;
+    color: #1C1B17 !important;
+  }
+
+  .track p {
+    font-family: 'Satoshi', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.94rem !important;
+    line-height: 1.45 !important;
+    color: #1C1B17 !important;
+    margin: 0 0 16px 0 !important;
+  }
+
+  .track .cap {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace !important;
+    font-size: 0.88rem !important;
+    font-weight: 700 !important;
+    color: #0E7A4A !important;
+    border-top: 1.5px dashed #D5D0C3 !important;
+    padding-top: 12px !important;
+    margin-top: 0 !important;
+    display: block !important;
+    line-height: 1.4 !important;
+  }
+
+  .join-line {
+    font-family: 'Satoshi', sans-serif !important;
+    font-style: italic !important;
+    font-weight: 700 !important;
+    font-size: 0.88rem !important;
+    color: #55524A !important;
+    text-align: center !important;
+    margin-top: 20px !important;
+    margin-bottom: 0 !important;
+    line-height: 1.35 !important;
+  }
+
+  /* ==========================================================================
+     Mobile Curriculum Section Redesign (Exact Screenshot Spec)
+     ========================================================================== */
+
+  .curriculum-section {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 24px 14px 40px !important;
+    background-color: #B4D5FE !important;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.15) 1px, transparent 1px) !important;
+    background-size: 20px 20px !important;
+  }
+
+  .curriculum-marquee {
+    margin: 0 -14px 20px -14px !important;
+    height: 38px !important;
+    border-bottom: 2px solid #1C1B17 !important;
+    border-top: 2px solid #1C1B17 !important;
+    background-color: #1C1B17 !important;
+  }
+
+  .curriculum-main-box {
+    width: 100% !important;
+    max-width: 440px !important;
+    padding: 24px 18px !important;
+    border: 2.5px solid #1C1B17 !important;
+    box-shadow: 6px 6px 0 #1C1B17 !important;
+    background: #ffffff !important;
+    border-radius: 4px !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
+  }
+
+  .curriculum-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    width: 100% !important;
+  }
+
+  .curriculum-left, .curriculum-right {
+    width: 100% !important;
+  }
+
+  .curriculum-title {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: clamp(26px, 7.5vw, 36px) !important;
+    line-height: 1.15 !important;
+    color: #1C1B17 !important;
+    text-transform: uppercase !important;
+    text-align: center !important;
+    margin: 0 0 14px 0 !important;
+  }
+
+  .curriculum-highlight-box.yellow-highlight {
+    background: #FFD166 !important;
+    border: 2.5px solid #1C1B17 !important;
+    box-shadow: 4px 4px 0 #1C1B17 !important;
+    padding: 2px 10px !important;
+    display: inline-block !important;
+    transform: rotate(-1.5deg) !important;
+    color: #1C1B17 !important;
+  }
+
+  .curriculum-text-box {
+    background: #1C1B17 !important;
+    color: #FAF8F2 !important;
+    font-family: 'Satoshi', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.88rem !important;
+    padding: 10px 14px !important;
+    border-radius: 4px !important;
+    transform: rotate(-1deg) !important;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.15) !important;
+    margin-bottom: 14px !important;
+    text-align: center !important;
+    line-height: 1.4 !important;
+  }
+
+  .curriculum-footnote.mono {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace !important;
+    font-size: 0.78rem !important;
+    font-weight: 700 !important;
+    color: #0E7A4A !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    text-align: center !important;
+    margin-bottom: 20px !important;
+    line-height: 1.35 !important;
+  }
+
+  .curriculum-disc-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    width: 100% !important;
+  }
+
+  .curriculum-disc-card {
+    background: #ffffff !important;
+    border: 2.5px solid #1C1B17 !important;
+    box-shadow: 4px 4px 0 #1C1B17 !important;
+    padding: 14px 16px !important;
+    border-radius: 4px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 16px !important;
+    box-sizing: border-box !important;
+    text-align: left !important;
+  }
+
+  .curriculum-disc-num {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: 2.6rem !important;
+    line-height: 1 !important;
+    color: #1C1B17 !important;
+    text-shadow: 2.5px 2.5px 0 #B4D5FE !important;
+    min-width: 2rem !important;
+    text-align: center !important;
+  }
+
+  .curriculum-disc-right {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2px !important;
+  }
+
+  .curriculum-disc-name {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 0.95rem !important;
+    letter-spacing: 0.05em !important;
+    color: #1C1B17 !important;
+    text-transform: uppercase !important;
+    margin: 0 !important;
+  }
+
+  .curriculum-disc-desc {
+    font-family: 'Satoshi', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.85rem !important;
+    color: #1C1B17 !important;
+    line-height: 1.35 !important;
+    margin: 0 !important;
+  }
+
+  /* ==========================================================================
+     Mobile WeekMap Section Redesign (Exact Screenshot Spec)
+     ========================================================================== */
+
+  .weekmap-section {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 24px 14px 40px !important;
+    background-color: #D8F3DC !important;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.12) 1px, transparent 1px) !important;
+    background-size: 20px 20px !important;
+  }
+
+  .weekmap-inner {
+    width: 100% !important;
+    max-width: 440px !important;
+    margin: 0 auto !important;
+  }
+
+  .weekmap-title {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: clamp(26px, 7.5vw, 36px) !important;
+    line-height: 1.15 !important;
+    color: #1C1B17 !important;
+    text-transform: uppercase !important;
+    text-align: center !important;
+    margin: 0 0 14px 0 !important;
+  }
+
+  .wm-highlight-box.yellow-highlight {
+    background: #FFD166 !important;
+    border: 2.5px solid #1C1B17 !important;
+    box-shadow: 4px 4px 0 #1C1B17 !important;
+    padding: 2px 10px !important;
+    display: inline-block !important;
+    transform: rotate(-1.5deg) !important;
+    color: #1C1B17 !important;
+  }
+
+  .wm-highlight-box.blue-highlight {
+    background: #B4D5FE !important;
+    border: 2.5px solid #1C1B17 !important;
+    box-shadow: 4px 4px 0 #1C1B17 !important;
+    padding: 2px 10px !important;
+    display: inline-block !important;
+    transform: rotate(1.5deg) !important;
+    color: #1C1B17 !important;
+  }
+
+  .weekmap-subtitle-box {
+    background: #1C1B17 !important;
+    color: #FAF8F2 !important;
+    font-family: 'Satoshi', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.88rem !important;
+    padding: 10px 14px !important;
+    border-radius: 4px !important;
+    transform: rotate(-1deg) !important;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.15) !important;
+    margin: 0 auto 20px auto !important;
+    text-align: center !important;
+    line-height: 1.4 !important;
+    max-width: 380px !important;
+  }
+
+  /* Mobile Vertical Timeline (Exact Design System Colors & Fonts) */
+  .wm-mobile-timeline {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    width: 100% !important;
+    max-width: 440px !important;
+    margin: 0 auto !important;
+  }
+
+  .wm-mobile-week-card {
+    background: #ffffff !important;
+    border: 2.5px solid #1C1B17 !important;
+    box-shadow: 6px 6px 0 #1C1B17 !important;
+    border-radius: 4px !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  .wm-mobile-week-header {
+    padding: 16px 18px !important;
+    border-bottom: 2.5px solid #1C1B17 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
+  }
+
+  .wm-mobile-week-header.wm-week-1 { background: #FFD166 !important; }
+  .wm-mobile-week-header.wm-week-2 { background: #B4D5FE !important; }
+  .wm-mobile-week-header.wm-week-3 { background: #FFB3D9 !important; }
+  .wm-mobile-week-header.wm-week-4 { background: #C2F5E9 !important; }
+
+  .wm-mobile-week-header .wm-wno {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: 0.78rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    color: #1C1B17 !important;
+    margin-bottom: 2px !important;
+    display: block !important;
+    opacity: 0.85 !important;
+  }
+
+  .wm-mobile-week-header .wm-theme {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: 1.15rem !important;
+    line-height: 1.2 !important;
+    color: #1C1B17 !important;
+    text-transform: uppercase !important;
+    display: block !important;
+  }
+
+  .wm-mobile-week-body {
+    padding: 18px 16px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    background: #ffffff !important;
+  }
+
+  .wm-mobile-sub-block {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 6px !important;
+    text-align: left !important;
+  }
+
+  .wm-mobile-pill {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: 0.75rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    padding: 4px 10px !important;
+    border-radius: 3px !important;
+    border: 2px solid #1C1B17 !important;
+    color: #ffffff !important;
+    box-shadow: 2.5px 2.5px 0 #1C1B17 !important;
+    display: inline-block !important;
+  }
+
+  .wm-blue-pill { background: #6CA6F1 !important; color: #ffffff !important; }
+  .wm-green-pill { background: #3BB481 !important; color: #ffffff !important; }
+  .wm-orange-pill { background: #ECAE64 !important; color: #ffffff !important; }
+
+  .wm-mobile-sessions-text {
+    font-family: 'Satoshi', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 0.96rem !important;
+    color: #0E7A4A !important;
+    line-height: 1.45 !important;
+    display: block !important;
+    margin-top: 2px !important;
+  }
+
+  .wm-mobile-checkpoint-text {
+    font-family: 'Satoshi', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.92rem !important;
+    color: #1C1B17 !important;
+    line-height: 1.45 !important;
+    margin: 2px 0 0 0 !important;
+  }
+
+  /* ==========================================================================
+     Mobile FAQ Section Redesign (Exact Screenshot Spec)
+     ========================================================================== */
+
+  .faq-section {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 32px 16px 48px !important;
+    background-color: #E6E0F8 !important;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px) !important;
+    background-size: 20px 20px !important;
+    display: block !important;
+  }
+
+  .faq-container {
+    max-width: 440px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .bottom-tag-container {
+    display: flex !important;
+    justify-content: center !important;
+    margin-bottom: 18px !important;
+  }
+
+  .bottom-tag {
+    display: inline-block !important;
+    border: 2px solid #1C1B17 !important;
+    border-radius: 20px !important;
+    padding: 4px 16px !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+    color: #1C1B17 !important;
+    background: transparent !important;
+  }
+
+  .bottom-faq-title {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: clamp(1.7rem, 7vw, 2.2rem) !important;
+    color: #1C1B17 !important;
+    text-align: left !important;
+    margin: 0 0 24px 0 !important;
+    line-height: 1.3 !important;
+    width: 100% !important;
+  }
+
+  .faq-highlight-box {
+    color: #000 !important;
+    border: 2.5px solid #1C1B17 !important;
+    box-shadow: 4px 4px 0 #1C1B17 !important;
+    padding: 2px 8px !important;
+    display: inline-block !important;
+  }
+
+  .faq-highlight-box.yellow-highlight {
+    background: #FFD166 !important;
+    transform: rotate(-1.5deg) !important;
+  }
+
+  .faq-highlight-box.blue-highlight {
+    background: #B4D5FE !important;
+    transform: rotate(1deg) !important;
+  }
+
+  .bottom-faq-list {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .bottom-faq-list details {
+    background: #ffffff !important;
+    border: 2px solid #1C1B17 !important;
+    border-radius: 4px !important;
+    margin-bottom: 12px !important;
+    box-shadow: 4px 4px 0 #1C1B17 !important;
+    padding: 0 !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+    box-sizing: border-box !important;
+  }
+
+  .bottom-faq-list details[open] {
+    box-shadow: 2px 2px 0 #1C1B17 !important;
+    transform: translate(2px, 2px) !important;
+  }
+
+  .bottom-faq-list summary {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    color: #1C1B17 !important;
+    list-style: none !important;
+    cursor: pointer !important;
+    padding: 16px 18px !important;
+    gap: 12px !important;
+  }
+
+  .bottom-faq-list summary::-webkit-details-marker {
+    display: none !important;
+  }
+
+  .bottom-faq-list summary::after {
+    content: '+' !important;
+    font-weight: 700 !important;
+    font-size: 1.3rem !important;
+    line-height: 1 !important;
+    color: #1C1B17 !important;
+    flex-shrink: 0 !important;
+  }
+
+  .bottom-faq-list details[open] summary::after {
+    content: '−' !important;
+  }
+
+  .bottom-faq-list details p {
+    color: #55524A !important;
+    font-family: 'Satoshi', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.9rem !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 18px 16px 18px !important;
+    line-height: 1.55 !important;
+  }
+
+  /* ==========================================================================
+     Mobile CTA Section Redesign (Design System Match)
+     ========================================================================== */
+
+  .cta-section {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 40px 16px !important;
+    background: repeating-linear-gradient(
+      -45deg,
+      #3BB481,
+      #3BB481 32px,
+      #1C1B17 32px,
+      #1C1B17 64px
+    ) !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .cta-main-box {
+    background: #FAF8F2 !important;
+    border: 3px solid #1C1B17 !important;
+    box-shadow: 8px 8px 0 #1C1B17 !important;
+    border-radius: 4px !important;
+    padding: 32px 24px !important;
+    max-width: 440px !important;
+    width: 100% !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
+    transform: rotate(-1deg) !important;
+  }
+
+  .bottom-cta-title {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 900 !important;
+    font-size: clamp(1.7rem, 7vw, 2.1rem) !important;
+    color: #1C1B17 !important;
+    margin: 0 0 14px 0 !important;
+    line-height: 1.15 !important;
+    text-transform: uppercase !important;
+  }
+
+  .cta-highlight-box {
+    color: #1C1B17 !important;
+    border: 2.5px solid #1C1B17 !important;
+    box-shadow: 4px 4px 0 #1C1B17 !important;
+    padding: 2px 8px !important;
+    display: inline-block !important;
+  }
+
+  .cta-highlight-box.yellow-highlight {
+    background: #FFD166 !important;
+    transform: rotate(1.5deg) !important;
+  }
+
+  .bottom-cta-sub {
+    font-family: 'Satoshi', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.92rem !important;
+    color: #1C1B17 !important;
+    max-width: none !important;
+    margin: 0 0 24px !important;
+    line-height: 1.55 !important;
+    text-align: center !important;
+  }
+
+  .bottom-cta-btn {
+    display: block !important;
+    width: 100% !important;
+    background: #1C1B17 !important;
+    color: #FAF8F2 !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 1rem !important;
+    letter-spacing: 0.5px !important;
+    text-transform: uppercase !important;
+    padding: 16px 24px !important;
+    border-radius: 4px !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    border: 2.5px solid #1C1B17 !important;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3) !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+  }
+}
+
+/* ==========================================================================
+   Mobile Highlight Box Spacing Fix
+   ========================================================================== */
+@media (max-width: 860px) {
+  .offer-highlight-box,
+  .exam-highlight-box,
+  .beliefs-highlight-box,
+  .tracks-highlight-box,
+  .faq-highlight-box,
+  .cta-highlight-box,
+  .alt-highlight-box,
+  .readthis-highlight-box {
+    display: inline-block !important;
+    margin-bottom: 0.25rem !important;
+  }
+}
+
+/* ==========================================================================
+   Clean Un-boxed Hero Receipt Column with Scroll-Activated Highlights
+   ========================================================================== */
+.hero-receipt-column {
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.hero-receipt-card.unboxed {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  position: relative;
+}
+
+.receipt-stop {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.receipt-stop.shift-right {
+  padding-left: 42px;
+}
+
+.receipt-dot {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 2.5px solid #f97316;
+  color: #1C1B17;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.receipt-body-box {
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  padding: 9px 12px;
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: inline-block;
+}
+
+.receipt-body {
+  font-family: 'Satoshi', sans-serif !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  line-height: 1.42 !important;
+  color: #1C1B17 !important;
+  margin: 0;
+}
+
+.receipt-body strong {
+  font-weight: 800;
+  color: #1C1B17;
+}
+
+.receipt-curve {
+  display: block;
+  margin: 6px 0;
+}
+
+.receipt-kicker {
+  font-family: 'Satoshi', sans-serif !important;
+  font-style: italic;
+  font-size: 0.94rem !important;
+  font-weight: 700 !important;
+  color: #55524A !important;
+  margin: 22px 0 0;
+  padding-top: 14px;
+  border-top: 2px dashed #C9C4B6;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* Dynamic Scroll Highlight States for Step Boxes */
+.receipt-stop.is-active .receipt-dot {
+  transform: scale(1.15);
+  border-color: #1C1B17 !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.receipt-stop.step-16-active .receipt-dot {
+  background: #B4D5FE !important;
+}
+
+.receipt-stop.step-18-active .receipt-dot {
+  background: #FFD966 !important;
+}
+
+.receipt-stop.step-22-active .receipt-dot {
+  background: #FFB3D9 !important;
+}
+
+.receipt-stop.step-16-active .receipt-body-box {
+  background: #B4D5FE !important;
+  border: 2.5px solid #1C1B17 !important;
+  box-shadow: 4px 4px 0px #1C1B17 !important;
+  transform: rotate(-1deg) scale(1.02);
+}
+
+.receipt-stop.step-18-active .receipt-body-box {
+  background: #FFD966 !important;
+  border: 2.5px solid #1C1B17 !important;
+  box-shadow: 4px 4px 0px #1C1B17 !important;
+  transform: rotate(1deg) scale(1.02);
+}
+
+.receipt-stop.step-22-active .receipt-body-box {
+  background: #FFB3D9 !important;
+  border: 2.5px solid #1C1B17 !important;
+  box-shadow: 4px 4px 0px #1C1B17 !important;
+  transform: rotate(-1deg) scale(1.02);
+}
+>>>>>>> origin/main

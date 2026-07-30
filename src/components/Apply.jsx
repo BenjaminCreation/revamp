@@ -1,6 +1,12 @@
 import React, { useState, useCallback } from 'react';
 import ConfettiEffect from './ConfettiEffect';
 
+const API_URL =
+  import.meta.env.PROD
+    ? 'https://dhandha-api.gauravkalal134.workers.dev/api/apply'
+    : '/api/apply';
+
+
 const HEARD_FROM_OPTIONS = [
   { value: 'twitter',   label: 'Twitter / X' },
   { value: 'instagram', label: 'Instagram' },
@@ -33,6 +39,8 @@ export default function Apply({ navigate, isStandalone = false }) {
     commitCheckpoint: false
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [apiError, setApiError] = useState('');
   const [errors, setErrors] = useState({});
   const [shakingFields, setShakingFields] = useState([]);
 
@@ -111,10 +119,49 @@ export default function Apply({ navigate, isStandalone = false }) {
     goToStep(activeStep - 1);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateStep(3)) {
-      setIsSubmitted(true);
+      setSubmitting(true);
+      setApiError('');
+      try {
+        const howFoundLabels = formData.howFound.map(v => {
+          const found = HEARD_FROM_OPTIONS.find(o => o.value === v);
+          return found ? found.label : v;
+        });
+
+        const res = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            full_name: formData.name.trim(),
+            age: Number(formData.age),
+            email: formData.email.trim(),
+            whatsapp: formData.whatsapp.trim(),
+            city: formData.city.trim(),
+            current_role: formData.whatYouDo.trim(),
+            track: formData.trackChoice === 'maker' ? 'karkhana' : 'sevadaata',
+            sold_story: formData.soldSomething.trim(),
+            time_commitment: formData.whatToCut.trim(),
+            background_story: formData.backgroundStory.trim(),
+            why_apply: formData.whyJoin.trim(),
+            how_found: howFoundLabels,
+            attend_commit: formData.commitLive,
+            checkpoint_commit: formData.commitCheckpoint,
+          }),
+        });
+
+        const result = await res.json();
+        if (!res.ok || !result.ok) {
+          throw new Error(result.error || (Array.isArray(result.errors) ? result.errors.join(', ') : 'Failed to submit application.'));
+        }
+
+        setIsSubmitted(true);
+      } catch (err) {
+        setApiError(err.message || 'Something went wrong.');
+      } finally {
+        setSubmitting(false);
+      }
     }
   };
 
@@ -426,7 +473,7 @@ export default function Apply({ navigate, isStandalone = false }) {
                               <span className="step3-fee-crossed">₹14,999</span>
                               <span className="step-highlight-box free-to-apply-badge">Free to Apply</span>
                             </div>
-                            <p className="step3-fee-note">The founding cohort will be given 100% scholarships</p>
+                            <p className="step3-fee-note">The founding cohort will be given 100% scholarships.</p>
                           </div>
                         </div>
                       </div>
@@ -436,9 +483,14 @@ export default function Apply({ navigate, isStandalone = false }) {
 
 
                 {/* Controls */}
+                {apiError && (
+                  <p className="apply-api-error" style={{ color: '#ef4444', textAlign: 'center', margin: '12px 0 0', fontWeight: 600 }}>
+                    {apiError}
+                  </p>
+                )}
                 <div className="purple-form-actions">
                   {activeStep > 1 && (
-                    <button type="button" onClick={handleBack} className="purple-btn back-btn">
+                    <button type="button" onClick={handleBack} className="purple-btn back-btn" disabled={submitting}>
                       Back
                     </button>
                   )}
@@ -447,8 +499,8 @@ export default function Apply({ navigate, isStandalone = false }) {
                       Next Step &rarr;
                     </button>
                   ) : (
-                    <button type="submit" className="purple-btn submit-btn">
-                      Submit Application
+                    <button type="submit" className="purple-btn submit-btn" disabled={submitting}>
+                      {submitting ? 'Submitting...' : 'Submit Application'}
                     </button>
                   )}
                 </div>

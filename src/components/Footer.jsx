@@ -91,7 +91,7 @@ export default function Footer({ navigate }) {
               <li><a href="#tracks" onClick={(e) => handleScrollTo(e, '#tracks')}>Tracks</a></li>
               <li><a href="#curriculum" onClick={(e) => handleScrollTo(e, '#curriculum')}>Curriculum</a></li>
               <li><a href="#weekmap" onClick={(e) => handleScrollTo(e, '#weekmap')}>4-Week Map</a></li>
-              <li><a href="#investor" onClick={(e) => handleScrollTo(e, '#investor')}>Finale</a></li>
+              <li><a href="#investor" onClick={(e) => handleScrollTo(e, '#investor')}>Finale / VCs</a></li>
             </ul>
           </div>
 

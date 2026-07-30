@@ -22,6 +22,7 @@
   .pill-nav-container {
     width: 100%;
     left: 0;
+    top: 0;
     transform: none;
     padding: 0;
   }
@@ -31,6 +32,8 @@
     padding: 0.75rem 1.5rem;
     box-sizing: border-box;
     gap: 0;
+    background-color: #FAF8F2; /* Solid background so scrolling content doesn't show through */
+    border-bottom: 1.5px solid #E5E0D5; /* Optional separator */
   }
 }
 
@@ -243,59 +246,104 @@
 @media (max-width: 768px) {
   .mobile-menu-button {
     display: flex;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 6px;
+    width: auto;
+    height: auto;
+  }
+
+  .mobile-top-apply-btn {
+    border: 2px solid #1C1B17;
+    background: #FAF8F2;
+    color: #1C1B17;
+    font-family: 'Poppins', 'Satoshi', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    padding: 0.4rem 0.95rem;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .mobile-top-apply-btn:active {
+    transform: scale(0.96);
+  }
+
+  /* Force dark logo on mobile because background is always cream */
+  .nav-brand-dhandha {
+    color: #1C1B17 !important;
   }
 }
 
 .hamburger-line {
-  width: 1rem;
-  height: 0.12rem;
-  background: var(--pill-bg, #fff);
+  width: 1.25rem;
+  height: 0.15rem;
+  background: #1C1B17;
   border-radius: 0.06rem;
-  transition: all 0.01s ease;
+  transition: all 0.2s ease;
   transform-origin: center;
 }
 
 .mobile-menu-popover {
   position: absolute;
-  top: 4.5rem;
-  left: 1.5rem;
-  right: 1.5rem;
-  background: var(--base, #f0f0f0);
-  border-radius: 0;
-  box-shadow: 0 0.75rem 2.25rem rgba(0, 0, 0, 0.15);
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #FAF8F2;
+  border-top: 2px solid #1C1B17;
+  border-bottom: 2px solid #1C1B17;
   z-index: 1001;
   opacity: 0;
   transform-origin: top center;
   visibility: hidden;
-  border: 2px solid var(--pill-bg);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  max-height: calc(100vh - 60px); /* keep menu options scrollable */
+  overflow-y: auto;
 }
 
 .mobile-menu-list {
   list-style: none;
   margin: 0;
-  padding: 0.5rem;
+  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+}
+
+.mobile-menu-list li {
+  border-bottom: 1.5px solid #E5E0D5;
+}
+
+.mobile-menu-list li:last-child {
+  border-bottom: none;
 }
 
 .mobile-menu-popover .mobile-menu-link {
   display: block;
-  padding: 0.85rem 1.25rem;
-  color: var(--pill-text, #fff);
-  background-color: var(--pill-bg, #fff);
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem 1.5rem;
+  color: #1C1B17;
+  background-color: #FAF8F2;
   text-decoration: none;
   font-family: 'Poppins', sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.02rem;
-  border-radius: 0;
-  transition: all 0.2s ease;
+  letter-spacing: 0.06em;
+  transition: background 0.15s ease, color 0.15s ease;
 }
 
-.mobile-menu-popover .mobile-menu-link:hover {
-  cursor: pointer;
-  background-color: var(--base);
-  color: var(--hover-text, #fff);
+.mobile-menu-popover .mobile-menu-link:hover,
+.mobile-menu-popover .mobile-menu-link:active {
+  background-color: #1C1B17;
+  color: #FAF8F2;
+}
+
+.mobile-menu-popover .mobile-menu-link.is-active {
+  color: #d97706;
+  border-left: 4px solid #d97706;
+  padding-left: calc(1.5rem - 4px);
 }

@@ -87,23 +87,9 @@ export default function Beliefs({ navigate }) {
                 >
                   <span className="beliefs-btn-num">{item.num}</span>
                   <span className="beliefs-btn-text">{item.title}</span>
+                  <span className="beliefs-plus-icon">+</span>
                 </button>
               ))}
-            </div>
-            
-            {/* Inline Segue Link Block */}
-            <div className="beliefs-segue">
-              <span className="beliefs-segue-label">Still not convinced? Fair.</span>
-              <a
-                className="beliefs-segue-link"
-                href="/read-this"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigate('/read-this');
-                }}
-              >
-                Read this →
-              </a>
             </div>
           </div>
           
@@ -119,6 +105,21 @@ export default function Beliefs({ navigate }) {
               </p>
             </div>
           </div>
+        </div>
+
+        {/* Inline Segue Link Block */}
+        <div className="beliefs-segue">
+          <span className="beliefs-segue-label">Still not convinced? Fair.</span>
+          <a
+            className="beliefs-segue-link"
+            href="/read-this"
+            onClick={(e) => {
+              e.preventDefault();
+              navigate('/read-this');
+            }}
+          >
+            Read this →
+          </a>
         </div>
       </div>
     </section>

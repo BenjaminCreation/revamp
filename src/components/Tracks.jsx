@@ -149,6 +149,10 @@ export default function Tracks() {
           <g mask="url(#road-mask-right)">
             <path d="M280 26 C 280 56, 410 50, 412 86" fill="none" stroke="#FFD166" strokeWidth="2" strokeDasharray="4 6" strokeLinecap="butt" />
           </g>
+
+          {/* End Nodes (Blue for Karkhana, Pink for Sevadaata) */}
+          <circle cx="148" cy="86" r="7" fill="#B4D5FE" stroke="#000" strokeWidth="2.5" />
+          <circle cx="412" cy="86" r="7" fill="#FFB3D9" stroke="#000" strokeWidth="2.5" />
         </svg>
 
         <div className="tracks">

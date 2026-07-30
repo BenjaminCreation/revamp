@@ -289,7 +289,18 @@ const PillNav = ({
   return (
     <div className="pill-nav-container">
       <div className="pill-nav-wrapper">
-        {/* Navigation Header Logo (Compact Variant A) */}
+        {/* Mobile Hamburger Button (Left) */}
+        <button
+          className="mobile-menu-button mobile-only"
+          onClick={toggleMobileMenu}
+          aria-label="Toggle menu"
+          ref={hamburgerRef}
+        >
+          <span className="hamburger-line" />
+          <span className="hamburger-line" />
+        </button>
+
+        {/* Navigation Header Logo (Centered on Mobile) */}
         <div 
           className="nav-logo-container" 
           onClick={(e) => handleLinkClick(e, '/')}
@@ -302,6 +313,7 @@ const PillNav = ({
           <span className="nav-brand-school">school</span>
         </div>
 
+        {/* Desktop Nav Items */}
         <nav className={`pill-nav ${className}`} aria-label="Primary" style={cssVars}>
           <div className="pill-nav-items desktop-only" ref={navItemsRef}>
             <ul className="pill-list" role="menubar">
@@ -334,17 +346,15 @@ const PillNav = ({
               ))}
             </ul>
           </div>
-
-          <button
-            className="mobile-menu-button mobile-only"
-            onClick={toggleMobileMenu}
-            aria-label="Toggle menu"
-            ref={hamburgerRef}
-          >
-            <span className="hamburger-line" />
-            <span className="hamburger-line" />
-          </button>
         </nav>
+
+        {/* Mobile Right APPLY Outline Button */}
+        <button
+          className="mobile-top-apply-btn mobile-only"
+          onClick={(e) => handleLinkClick(e, '/apply')}
+        >
+          APPLY
+        </button>
       </div>
 
       <div className="mobile-menu-popover mobile-only" ref={mobileMenuRef} style={cssVars}>

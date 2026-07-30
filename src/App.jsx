@@ -22,6 +22,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 export default function App() {
   const [path, setPath] = useState(window.location.pathname);
+  const [isDesktopViewport, setIsDesktopViewport] = useState(window.innerWidth > 768);
 
   useEffect(() => {
     const handlePopState = () => {
@@ -31,21 +32,40 @@ export default function App() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  const [smootherReady, setSmootherReady] = useState(false);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktopViewport(window.innerWidth > 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Initialize GSAP ScrollSmoother ONLY on homepage ('/')
   React.useLayoutEffect(() => {
     let smoother = null;
     
-    if (path === '/') {
+    if (path === '/' && isDesktopViewport) {
       window.scrollTo(0, 0);
-      smoother = ScrollSmoother.create({
-        smooth: 0.8,
-        effects: false,
-        smoothTouch: 0.1
-      });
-      window.__smoother = smoother;
-      setSmootherReady(true);
+      try {
+        if (typeof ScrollSmoother !== 'undefined' && ScrollSmoother.create) {
+          smoother = ScrollSmoother.create({
+            smooth: 0.8,
+            effects: false,
+            smoothTouch: 0.1
+          });
+          window.__smoother = smoother;
+        }
+      } catch (err) {
+        console.warn('ScrollSmoother initialization skipped:', err);
+      }
+      setTimeout(() => {
+        try {
+          ScrollTrigger.refresh();
+        } catch (e) {}
+      }, 100);
     } else {
       if (window.__smoother) {
         try {
@@ -68,82 +88,17 @@ export default function App() {
         } catch (e) {}
       });
       window.scrollTo(0, 0);
-      setSmootherReady(true);
     }
 
     return () => {
       if (smoother) {
-        smoother.kill();
+        try {
+          smoother.kill();
+        } catch (e) {}
         window.__smoother = null;
       }
     };
-  }, [path]);
-
-  // Prevent and correct browser zoom levels to preserve 100% layout proportions
-  useEffect(() => {
-    const handleZoomPrevention = (e) => {
-      if (
-        e.ctrlKey &&
-        (e.key === '=' ||
-          e.key === '-' ||
-          e.key === '0' ||
-          e.keyCode === 187 ||
-          e.keyCode === 189 ||
-          e.keyCode === 48 ||
-          e.keyCode === 96 ||
-          e.keyCode === 107 ||
-          e.keyCode === 109)
-      ) {
-        e.preventDefault();
-      }
-    };
-
-    const handleWheelPrevention = (e) => {
-      if (e.ctrlKey) {
-        e.preventDefault();
-      }
-    };
-
-    window.addEventListener('keydown', handleZoomPrevention, { capture: true });
-    window.addEventListener('wheel', handleWheelPrevention, { passive: false, capture: true });
-
-    const correctZoom = () => {
-      try {
-        const outerW = window.outerWidth;
-        const innerW = window.innerWidth;
-        if (outerW && innerW) {
-          const zoomLevel = outerW / innerW;
-          // Apply scaling counter-correction if zoom is not 1.0 (with 5% buffer)
-          if (Math.abs(zoomLevel - 1.0) > 0.05 && zoomLevel > 0.1 && zoomLevel < 5) {
-            document.body.style.zoom = 1 / zoomLevel;
-          } else {
-            document.body.style.zoom = 1.0;
-          }
-        }
-      } catch (err) {
-        console.error("Zoom correction failed", err);
-      }
-    };
-
-    let resizeTimer;
-    const debouncedCorrectZoom = () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(correctZoom, 100);
-    };
-
-    window.addEventListener('resize', debouncedCorrectZoom);
-    // Double trigger to ensure layout finishes rendering before sizing check
-    correctZoom();
-    const t = setTimeout(correctZoom, 150);
-
-    return () => {
-      window.removeEventListener('keydown', handleZoomPrevention, { capture: true });
-      window.removeEventListener('wheel', handleWheelPrevention, { capture: true });
-      window.removeEventListener('resize', debouncedCorrectZoom);
-      clearTimeout(t);
-      clearTimeout(resizeTimer);
-    };
-  }, []);
+  }, [path, isDesktopViewport]);
 
   const navigate = (to, options = {}) => {
     // Revert and kill all active ScrollTriggers (unpins hero section synchronously)
@@ -197,36 +152,40 @@ export default function App() {
         <div id="smooth-content">
 
           {/* Full-bleed New Hero Section at the top of homepage */}
-          {smootherReady && path === '/' && (
+          {path === '/' && (
             <>
-                  <NewHero navigate={navigate} />
-                  <AlternativeSection />
-                  <Beliefs navigate={navigate} />
-                  <Offer navigate={navigate} />
-                  <Tracks />
-                  <Curriculum />
-                  <WeekMap />
-                  <InvestorDay />
-                </>
-              )}
+              <NewHero
+                key={isDesktopViewport ? 'hero-desktop' : 'hero-mobile'}
+                navigate={navigate}
+                isDesktopViewport={isDesktopViewport}
+              />
+              <AlternativeSection />
+              <Beliefs navigate={navigate} />
+              <Offer navigate={navigate} />
+              <Tracks />
+              <Curriculum />
+              <WeekMap />
+              <InvestorDay />
+            </>
+          )}
 
           {/* Full-bleed ReadThis Section */}
-          {smootherReady && path === '/read-this' && (
+          {path === '/read-this' && (
             <ReadThis navigate={navigate} isStandalone={true} />
           )}
 
           {/* Full-bleed Apply Section */}
-          {smootherReady && path === '/apply' && (
+          {path === '/apply' && (
             <Apply navigate={navigate} isStandalone={true} />
           )}
 
           {/* Main Content Bounded Sheet */}
-          {smootherReady && path !== '/' && path !== '/read-this' && path !== '/apply' && (
+          {path !== '/' && path !== '/read-this' && path !== '/apply' && (
             <div className="sheet">
             </div>
           )}
 
-          {smootherReady && path === '/' && (
+          {path === '/' && (
             <>
               <BottomSection navigate={navigate} />
               <Footer navigate={navigate} />
@@ -236,7 +195,7 @@ export default function App() {
         </div>
       </div>
 
-      {smootherReady && path === '/' && <ScrollPlane />}
+      {path === '/' && <ScrollPlane key={isDesktopViewport ? 'plane-desktop' : 'plane-mobile'} />}
     </div>
   );
 }

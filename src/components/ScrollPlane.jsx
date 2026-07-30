@@ -24,6 +24,12 @@ export default function ScrollPlane() {
     let ARC_RELEASE = 0.20;
     let ARC_LANDING = 0.91;
     let radiusX = 100;
+    let slideDistance = 135;
+
+    const getScrollY = () => {
+      const smoother = ScrollSmoother.get();
+      return smoother ? smoother.scrollTop() : window.scrollY;
+    };
 
     const measureCoords = () => {
       const startEl = document.getElementById('plane-start-marker');
@@ -35,8 +41,8 @@ export default function ScrollPlane() {
       const viewportH = window.innerHeight;
       const viewportW = window.innerWidth;
 
-      const smoother = ScrollSmoother.get();
-      const currentScrollY = smoother ? smoother.scrollTop() : window.scrollY;
+      const currentScrollY = getScrollY();
+      const isMobile = viewportW <= 860;
 
       // Extract accurate horizontal points in viewport space and vertical offsets in document space
       // Since markers are styled absolute on the right edge, their centers are exactly the card boundaries.
@@ -59,9 +65,12 @@ export default function ScrollPlane() {
         ARC_LANDING = 0.91;
       }
 
-      // Compute radiusX to fit viewport bounds comfortably
-      radiusX = Math.min(viewportW - startX - 100, 220);
-      if (radiusX < 160) radiusX = 160; // minimum safety radius to accommodate 135px slide exit
+      // Keep the flight path visible inside the viewport on mobile.
+      slideDistance = isMobile ? 56 : 135;
+      radiusX = Math.min(viewportW - startX - (isMobile ? 28 : 100), isMobile ? 88 : 220);
+      if (radiusX < slideDistance + (isMobile ? 8 : 25)) {
+        radiusX = slideDistance + (isMobile ? 8 : 25);
+      }
     };
 
     let st = null;
@@ -69,18 +78,69 @@ export default function ScrollPlane() {
     let attempts = 0;
     const MAX_ATTEMPTS = 20; // poll up to ~1000ms
 
+    const applyPlaneProgress = (progress) => {
+      const currentScrollY = getScrollY();
+
+      // Current viewport coordinates of the takeoff and landing placeholders
+      const yStartViewport = startY - currentScrollY;
+      const yEndViewport = endY - currentScrollY;
+
+      let x = startX;
+      let y = Y_MID;
+      let rotate = 90;
+
+      if (progress < ARC_RELEASE) {
+        // Phase A: Takeoff slides straight rightward out of the card first, then curves down
+        const p = progress / ARC_RELEASE;
+        const SLIDE_RATIO = 0.45;
+
+        if (p < SLIDE_RATIO) {
+          const t = p / SLIDE_RATIO;
+          x = startX + t * slideDistance;
+          y = yStartViewport;
+          rotate = 90;
+        } else {
+          const t = (p - SLIDE_RATIO) / (1 - SLIDE_RATIO);
+          const xReleaseStart = startX + slideDistance;
+          x = xReleaseStart + Math.sin(t * Math.PI / 2) * (radiusX - slideDistance);
+          y = yStartViewport + t * (Y_MID - yStartViewport);
+          rotate = 90 + t * 90;
+        }
+      } else if (progress > ARC_LANDING) {
+        // Phase C: Landing drops vertically first, then slides horizontally left into card
+        const p = (progress - ARC_LANDING) / (1 - ARC_LANDING);
+        const xCruise = startX + radiusX;
+        const deltaX = xCruise - endX;
+        x = xCruise - (1 - Math.cos(p * Math.PI / 2)) * deltaX;
+        y = Y_MID + Math.sin(p * Math.PI / 2) * (yEndViewport - Y_MID);
+        rotate = 180 + p * 90;
+      } else {
+        // Phase B: Perfectly vertical descent
+        x = startX + radiusX;
+        y = Y_MID;
+        rotate = 180;
+      }
+
+      floatingPlane.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) rotate(${rotate}deg)`;
+    };
+
     const init = () => {
-      const smoother = ScrollSmoother.get();
-      if (!smoother && attempts < MAX_ATTEMPTS) {
+      const startEl = document.getElementById('plane-start-marker');
+      const endEl = document.getElementById('plane-end-marker');
+      if ((!startEl || !endEl) && attempts < MAX_ATTEMPTS) {
         attempts++;
         pollTimer = setTimeout(init, 50);
         return;
       }
 
-      // ScrollSmoother is ready (or we've waited long enough) — measure and create trigger
-      measureCoords();
+      if (!startEl || !endEl) return;
 
-      const currentSmoother = smoother;
+      // Markers are ready, so measure and create the trigger.
+      measureCoords();
+      if (startImg) startImg.style.opacity = '1';
+      if (endImg) endImg.style.opacity = '0';
+      floatingPlane.style.opacity = '0';
+      floatingPlane.style.visibility = 'hidden';
 
       st = ScrollTrigger.create({
         trigger: "#plane-start-marker",
@@ -91,6 +151,7 @@ export default function ScrollPlane() {
         invalidateOnRefresh: true,
         onRefresh: () => {
           measureCoords();
+          applyPlaneProgress(st ? st.progress : 0);
         },
         onToggle: self => {
           if (self.isActive) {
@@ -111,51 +172,7 @@ export default function ScrollPlane() {
           }
         },
         onUpdate: self => {
-          const progress = self.progress;
-          const currentScrollY = currentSmoother.scrollTop();
-
-          // Current viewport coordinates of the takeoff and landing placeholders
-          const yStartViewport = startY - currentScrollY;
-          const yEndViewport = endY - currentScrollY;
-
-          let x = startX;
-          let y = Y_MID;
-          let rotate = 90;
-
-          if (progress < ARC_RELEASE) {
-            // Phase A: Takeoff slides straight rightward out of the card first, then curves down
-            const p = progress / ARC_RELEASE;
-            const SLIDE_RATIO = 0.45; // First 45% of takeoff phase is purely horizontal slide
-
-            if (p < SLIDE_RATIO) {
-              const t = p / SLIDE_RATIO;
-              x = startX + t * 135; // Slide horizontally straight out of the card by 135px
-              y = yStartViewport; // Keep aligned vertically with card center
-              rotate = 90; // Face right
-            } else {
-              const t = (p - SLIDE_RATIO) / (1 - SLIDE_RATIO);
-              const xReleaseStart = startX + 135;
-              x = xReleaseStart + Math.sin(t * Math.PI / 2) * (radiusX - 135); // Curve to cruise X
-              y = yStartViewport + t * (Y_MID - yStartViewport); // Transition to Y_MID cruise height
-              rotate = 90 + t * 90; // Face right (90) to down (180)
-            }
-          } else if (progress > ARC_LANDING) {
-            // Phase C: Landing drops vertically first, then slides horizontally left into card
-            const p = (progress - ARC_LANDING) / (1 - ARC_LANDING);
-            const xCruise = startX + radiusX;
-            const deltaX = xCruise - endX;
-            x = xCruise - (1 - Math.cos(p * Math.PI / 2)) * deltaX; // Slide leftward into card
-            y = Y_MID + Math.sin(p * Math.PI / 2) * (yEndViewport - Y_MID); // Drop to target card height first
-            rotate = 180 + p * 90; // Face down (180) to left (270)
-          } else {
-            // Phase B: Perfectly vertical descent
-            x = startX + radiusX;
-            y = Y_MID;
-            rotate = 180; // Facing down
-          }
-
-          // Apply coordinates directly to bypass React virtual DOM lag
-          floatingPlane.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) rotate(${rotate}deg)`;
+          applyPlaneProgress(self.progress);
         }
       });
 

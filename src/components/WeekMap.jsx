@@ -15,8 +15,8 @@ export default function WeekMap() {
           </div>
         </div>
 
-        {/* Timeline Grid Wrapped in a Box */}
-        <div className="wm-main-box">
+        {/* Timeline Grid Wrapped in a Box (Desktop Only) */}
+        <div className="wm-main-box desktop-only">
           <div className="wm-timeline">
           
           {/* Column 1 */}
@@ -122,6 +122,97 @@ export default function WeekMap() {
             </div>
           </div>
 
+          </div>
+        </div>
+
+        {/* Mobile Vertical Timeline (0 horizontal scroll, 0 inner boxing, mobile-only) */}
+        <div className="wm-mobile-timeline mobile-only">
+          {/* Week 1 */}
+          <div className="wm-mobile-week-card">
+            <div className="wm-mobile-week-header wm-week-1">
+              <span className="wm-wno">Week 1</span>
+              <strong className="wm-theme">Understand The Basics</strong>
+            </div>
+            <div className="wm-mobile-week-body">
+              <div className="wm-mobile-sub-block">
+                <span className="wm-mobile-pill wm-blue-pill">SESSIONS</span>
+                <span className="wm-mobile-sessions-text">Strategy 1 &middot; Marketing 1 &middot; Finance 1</span>
+              </div>
+              <div className="wm-mobile-sub-block">
+                <span className="wm-mobile-pill wm-green-pill">KARKHANA CHECKPOINT</span>
+                <p className="wm-mobile-checkpoint-text">Niche picked, product idea locked, supplier shortlist. 10 customer conversations.</p>
+              </div>
+              <div className="wm-mobile-sub-block">
+                <span className="wm-mobile-pill wm-orange-pill">SEVADAATA CHECKPOINT</span>
+                <p className="wm-mobile-checkpoint-text">Service picked, 25 target businesses listed. 10 customer conversations.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Week 2 */}
+          <div className="wm-mobile-week-card">
+            <div className="wm-mobile-week-header wm-week-2">
+              <span className="wm-wno">Week 2</span>
+              <strong className="wm-theme">Learn To Play The Game</strong>
+            </div>
+            <div className="wm-mobile-week-body">
+              <div className="wm-mobile-sub-block">
+                <span className="wm-mobile-pill wm-blue-pill">SESSIONS</span>
+                <span className="wm-mobile-sessions-text">Sales 1 &middot; Founder Tech 1 &middot; Strategy 2</span>
+              </div>
+              <div className="wm-mobile-sub-block">
+                <span className="wm-mobile-pill wm-green-pill">KARKHANA CHECKPOINT</span>
+                <p className="wm-mobile-checkpoint-text">Final design, supplier quote, pre-order page live.</p>
+              </div>
+              <div className="wm-mobile-sub-block">
+                <span className="wm-mobile-pill wm-orange-pill">SEVADAATA CHECKPOINT</span>
+                <p className="wm-mobile-checkpoint-text">Offer packaged and priced, first 10 pitches made.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Week 3 */}
+          <div className="wm-mobile-week-card">
+            <div className="wm-mobile-week-header wm-week-3">
+              <span className="wm-wno">Week 3</span>
+              <strong className="wm-theme">Build Your Unfair Advantage</strong>
+            </div>
+            <div className="wm-mobile-week-body">
+              <div className="wm-mobile-sub-block">
+                <span className="wm-mobile-pill wm-blue-pill">SESSIONS</span>
+                <span className="wm-mobile-sessions-text">Founder Tech 2 &middot; Marketing 2</span>
+              </div>
+              <div className="wm-mobile-sub-block">
+                <span className="wm-mobile-pill wm-green-pill">KARKHANA CHECKPOINT</span>
+                <p className="wm-mobile-checkpoint-text">Pre-order window open, first paid orders in.</p>
+              </div>
+              <div className="wm-mobile-sub-block">
+                <span className="wm-mobile-pill wm-orange-pill">SEVADAATA CHECKPOINT</span>
+                <p className="wm-mobile-checkpoint-text">First paying client closed.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Week 4 */}
+          <div className="wm-mobile-week-card">
+            <div className="wm-mobile-week-header wm-week-4">
+              <span className="wm-wno">Week 4</span>
+              <strong className="wm-theme">Get Legally Ready</strong>
+            </div>
+            <div className="wm-mobile-week-body">
+              <div className="wm-mobile-sub-block">
+                <span className="wm-mobile-pill wm-blue-pill">SESSIONS</span>
+                <span className="wm-mobile-sessions-text">Finance 2 &middot; Audit &amp; Legal 1</span>
+              </div>
+              <div className="wm-mobile-sub-block">
+                <span className="wm-mobile-pill wm-green-pill">KARKHANA CHECKPOINT</span>
+                <p className="wm-mobile-checkpoint-text">Deliver orders. One-page P&amp;L. Demo pitch.</p>
+              </div>
+              <div className="wm-mobile-sub-block">
+                <span className="wm-mobile-pill wm-orange-pill">SEVADAATA CHECKPOINT</span>
+                <p className="wm-mobile-checkpoint-text">Deliver the work. One-page P&amp;L. Demo pitch.</p>
+              </div>
+            </div>
           </div>
         </div>
 
