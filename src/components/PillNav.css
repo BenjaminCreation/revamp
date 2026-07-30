@@ -29,9 +29,9 @@
   .pill-nav-wrapper {
     width: 100%;
     justify-content: space-between;
-    padding: 0.75rem 1.5rem;
+    padding: 0.65rem 1rem;
     box-sizing: border-box;
-    gap: 0;
+    gap: 0.5rem;
     background-color: #FAF8F2; /* Solid background so scrolling content doesn't show through */
     border-bottom: 1.5px solid #E5E0D5; /* Optional separator */
   }
@@ -47,6 +47,8 @@
   padding: 0;
   box-sizing: border-box;
   background: transparent;
+  flex-shrink: 0;
+  white-space: nowrap;
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -249,9 +251,10 @@
     background: transparent;
     border: none;
     box-shadow: none;
-    padding: 6px;
+    padding: 4px;
     width: auto;
     height: auto;
+    flex-shrink: 0;
   }
 
   .mobile-top-apply-btn {
@@ -259,13 +262,14 @@
     background: #FAF8F2;
     color: #1C1B17;
     font-family: 'Poppins', 'Satoshi', sans-serif;
-    font-size: 0.78rem;
+    font-size: 0.72rem;
     font-weight: 800;
-    letter-spacing: 0.06em;
-    padding: 0.4rem 0.95rem;
+    letter-spacing: 0.04em;
+    padding: 0.35rem 0.75rem;
     border-radius: 8px;
     cursor: pointer;
     text-transform: uppercase;
+    flex-shrink: 0;
     transition: transform 0.15s ease, background 0.15s ease;
   }
   .mobile-top-apply-btn:active {
@@ -275,6 +279,14 @@
   /* Force dark logo on mobile because background is always cream */
   .nav-brand-dhandha {
     color: #1C1B17 !important;
+    font-size: 1.15rem !important;
+    flex-shrink: 0;
+  }
+
+  .nav-brand-school {
+    font-size: 1.25rem !important;
+    margin-right: 0.15rem;
+    flex-shrink: 0;
   }
 }
 
