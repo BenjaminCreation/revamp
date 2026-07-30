@@ -23,10 +23,10 @@ function ScrollDashedPath({ d, width, height, className }) {
       if (!pathRef.current || !dashLength) return;
       const rect = pathRef.current.getBoundingClientRect();
       const viewHeight = window.innerHeight;
-      
+
       const start = viewHeight;
       const end = viewHeight / 2;
-      
+
       if (rect.top > start) {
         setDashOffset(dashLength);
       } else if (rect.top < end) {
@@ -62,7 +62,7 @@ function ScrollDashedPath({ d, width, height, className }) {
           />
         </mask>
       </defs>
-      <path 
+      <path
         d={d}
         fill="none"
         stroke="#1C1B17"
@@ -96,23 +96,27 @@ export default function NewHero({ navigate, isDesktopViewport }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      const vThreshold = window.innerHeight * 0.65;
+      if (!step16Ref.current || !step18Ref.current || !step22Ref.current) return;
 
-      if (step22Ref.current) {
-        const r22 = step22Ref.current.getBoundingClientRect();
-        if (r22.top <= vThreshold) {
-          setActiveStep(22);
-          return;
-        }
+      const r16 = step16Ref.current.getBoundingClientRect();
+      const r18 = step18Ref.current.getBoundingClientRect();
+      const r22 = step22Ref.current.getBoundingClientRect();
+
+      const focusLine = window.innerHeight * 0.55;
+
+      const d16 = Math.abs(r16.top + r16.height / 2 - focusLine);
+      const d18 = Math.abs(r18.top + r18.height / 2 - focusLine);
+      const d22 = Math.abs(r22.top + r22.height / 2 - focusLine);
+
+      if (window.scrollY < 50) {
+        setActiveStep(16);
+      } else if (d16 <= d18 && d16 <= d22) {
+        setActiveStep(16);
+      } else if (d18 <= d16 && d18 <= d22) {
+        setActiveStep(18);
+      } else {
+        setActiveStep(22);
       }
-      if (step18Ref.current) {
-        const r18 = step18Ref.current.getBoundingClientRect();
-        if (r18.top <= vThreshold) {
-          setActiveStep(18);
-          return;
-        }
-      }
-      setActiveStep(16);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -214,7 +218,7 @@ export default function NewHero({ navigate, isDesktopViewport }) {
       if (ctx) {
         try {
           ctx.revert();
-        } catch (e) {}
+        } catch (e) { }
       }
     };
   }, [isDesktopViewport]);
@@ -252,6 +256,7 @@ export default function NewHero({ navigate, isDesktopViewport }) {
               onClick={(e) => {
                 e.preventDefault();
                 const smoother = ScrollSmoother.get();
+                if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
                 if (smoother) {
                   smoother.scrollTo('#alt', true);
                 } else {
@@ -329,8 +334,8 @@ export default function NewHero({ navigate, isDesktopViewport }) {
         {/* Mobile receipt layout stays as-is */}
         <div className="hero-receipt-column mobile-only">
           <div className="hero-receipt-card unboxed">
-            <div 
-              ref={step16Ref} 
+            <div
+              ref={step16Ref}
               className={`receipt-stop ${activeStep === 16 ? 'is-active step-16-active' : ''}`}
             >
               <span className="receipt-dot">16</span>
@@ -348,8 +353,8 @@ export default function NewHero({ navigate, isDesktopViewport }) {
               d="M 20 2 C 20 28, 110 20, 110 46"
             />
 
-            <div 
-              ref={step18Ref} 
+            <div
+              ref={step18Ref}
               className={`receipt-stop shift-right ${activeStep === 18 ? 'is-active step-18-active' : ''}`}
             >
               <span className="receipt-dot">18</span>
@@ -367,8 +372,8 @@ export default function NewHero({ navigate, isDesktopViewport }) {
               d="M 110 2 C 110 28, 20 20, 20 46"
             />
 
-            <div 
-              ref={step22Ref} 
+            <div
+              ref={step22Ref}
               className={`receipt-stop ${activeStep === 22 ? 'is-active step-22-active' : ''}`}
             >
               <span className="receipt-dot">22</span>

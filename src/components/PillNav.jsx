@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './PillNav.css';
 
 const PillNav = ({
@@ -216,23 +217,16 @@ const PillNav = ({
 
   const isRouterLink = href => href && !isExternalLink(href);
 
-  const smoothScrollToFaq = () => {
+  const scrollToFaq = (smooth = true) => {
+    const el = document.getElementById('faq');
     const smoother = ScrollSmoother.get();
-    if (smoother) {
-      smoother.scrollTo('#faq', true);
-    } else {
-      const el = document.getElementById('faq');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (typeof ScrollTrigger !== 'undefined') {
+      ScrollTrigger.refresh();
     }
-  };
-
-  const jumpToFaq = () => {
-    const smoother = ScrollSmoother.get();
-    if (smoother) {
-      smoother.scrollTo('#faq', false);
-    } else {
-      const el = document.getElementById('faq');
-      if (el) el.scrollIntoView();
+    if (smoother && el) {
+      smoother.scrollTo(el, smooth);
+    } else if (el) {
+      el.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto' });
     }
   };
 
@@ -244,15 +238,24 @@ const PillNav = ({
         toggleMobileMenu();
       }
       if (window.location.pathname === '/') {
-        smoothScrollToFaq();
+        scrollToFaq(true);
       } else {
         if (navigate) {
           navigate('/', { skipScroll: true });
         }
         const waitForFaq = setInterval(() => {
-          if (document.getElementById('faq') && ScrollSmoother.get()) {
+          const el = document.getElementById('faq');
+          if (el) {
             clearInterval(waitForFaq);
-            jumpToFaq();
+            scrollToFaq(true);
+
+            setTimeout(() => {
+              scrollToFaq(true);
+            }, 300);
+
+            setTimeout(() => {
+              scrollToFaq(true);
+            }, 750);
           }
         }, 50);
         setTimeout(() => clearInterval(waitForFaq), 5000);

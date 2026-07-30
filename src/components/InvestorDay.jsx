@@ -23,7 +23,8 @@ export default function InvestorDay() {
       {/* Top Marquee */}
       <div className="investor-marquee top-marquee">
         <div className="investor-marquee-inner">
-          <div className="investor-marquee-content">
+          {[...Array(4)].map((_, i) => (
+            <div className="investor-marquee-content" key={i} aria-hidden={i > 0 ? "true" : undefined}>
               <span className="marquee-item">THE FINALE</span>
               <span className="marquee-item">✦</span>
               <span className="marquee-item">MEET FOUNDERS</span>
@@ -33,18 +34,9 @@ export default function InvestorDay() {
               <span className="marquee-item">BANGALORE TRIP</span>
               <span className="marquee-item">✦</span>
             </div>
-            <div className="investor-marquee-content" aria-hidden="true">
-              <span className="marquee-item">THE FINALE</span>
-              <span className="marquee-item">✦</span>
-              <span className="marquee-item">MEET FOUNDERS</span>
-              <span className="marquee-item">✦</span>
-              <span className="marquee-item">PITCH VCs</span>
-              <span className="marquee-item">✦</span>
-              <span className="marquee-item">BANGALORE TRIP</span>
-              <span className="marquee-item">✦</span>
-            </div>
-          </div>
+          ))}
         </div>
+      </div>
 
       <div className="investor-inner" style={{ position: 'relative', zIndex: 5 }}>
         <div className="investor-grid">
@@ -91,7 +83,8 @@ export default function InvestorDay() {
       {/* Bottom Marquee */}
       <div className="investor-marquee bottom-marquee">
         <div className="investor-marquee-inner">
-          <div className="investor-marquee-content">
+          {[...Array(4)].map((_, i) => (
+            <div className="investor-marquee-content" key={i} aria-hidden={i > 0 ? "true" : undefined}>
               <span className="marquee-item">THE FINALE</span>
               <span className="marquee-item">✦</span>
               <span className="marquee-item">MEET FOUNDERS</span>
@@ -101,18 +94,9 @@ export default function InvestorDay() {
               <span className="marquee-item">BANGALORE TRIP</span>
               <span className="marquee-item">✦</span>
             </div>
-            <div className="investor-marquee-content" aria-hidden="true">
-              <span className="marquee-item">THE FINALE</span>
-              <span className="marquee-item">✦</span>
-              <span className="marquee-item">MEET FOUNDERS</span>
-              <span className="marquee-item">✦</span>
-              <span className="marquee-item">PITCH VCs</span>
-              <span className="marquee-item">✦</span>
-              <span className="marquee-item">BANGALORE TRIP</span>
-              <span className="marquee-item">✦</span>
-            </div>
-          </div>
+          ))}
         </div>
+      </div>
     </section>
   );
 }
