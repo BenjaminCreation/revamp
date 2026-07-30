@@ -231,7 +231,7 @@ export default function Apply({ navigate, isStandalone = false }) {
                   </div>
                 </div>
                 <div className="success-next-box">
-                  <p>We will review your answers for <span className="success-em">Cohort 1</span> and reach out within <span className="success-em">48 hours</span>.</p>
+                  <p>We have received your answers and will review your application for <span className="success-em">Cohort 1</span></p>
                 </div>
                 <button type="button" className="success-home-btn" onClick={() => { if (isStandalone) { window.location.href = '/'; } else { navigate('/'); } }}>
                   ← Back to Homepage
